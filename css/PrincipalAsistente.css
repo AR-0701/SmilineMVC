@@ -1,0 +1,310 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to top, #13cdbd, #5a18ff);
+    min-height: 100vh;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    padding: -4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.logo2 {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.logo2 img {
+    height: 80px;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    position: relative;
+}
+
+.user-icon {
+    height: 60px;
+    cursor: pointer;
+    margin-right: 20px; /* Añade un margen derecho para moverla a la izquierda */
+    position: relative; /* Asegúrate de que la posición es relativa si vas a usar 'left' */
+    left: -20px; /* Ajusta este valor para mover la imagen más a la izquierda */
+
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 200px; /* Ajusta el ancho según sea necesario */
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+
+/* Estilo del menú */
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #13CDBD;
+    transition: all 0.3s ease;
+    z-index: 9999;
+    color: #000;
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    padding: 0;
+}
+
+.sidebar ul li {
+    list-style-type: none;
+    padding: 15px 10px;
+    border-bottom: 1px solid #fff;
+}
+
+.sidebar ul li a {
+    color: #000;
+    text-decoration: none;
+}
+
+.menu-toggle {
+    position: fixed;
+    top: 30px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.3s ease;
+}
+
+.about {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.text-content3 {
+    flex: 1;
+    min-width: 300px;
+    padding: 6px 50px;
+}
+
+.Titulo2 h2 {
+    font-size: 30px;
+    margin-top: 5px;
+    color: black;
+    text-align: center;
+}
+
+.parra3 p {
+    font-size: 20px;
+    color: black;
+    margin: 5px 0;
+}
+
+.image-section {
+    flex: 1;
+    text-align: center;
+    margin-top: -50px;
+    position: relative;
+}
+
+.image-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: white;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.footer-section h3 {
+    font-size: 22px;
+}
+
+ a {
+    color: white;
+    text-decoration: none;
+    
+}
+
+ a:hover{
+    text-decoration: underline;
+}
+
+
+.footer-section p {
+    font-size: 16px;
+}
+
+.footer-section.location {
+    background-color: #00a2b2;
+}
+
+.footer-section.contact {
+    background-color: #80cbc4;
+}
+
+.footer-section.legal {
+    background-color: #b2dfdb;
+
+}
+
+.footer-section .icon {
+    width: 40px;
+    height: 40px;
+    background-image: url('images/tooth-icon.png');
+    background-size: cover;
+    margin: 0 auto 10px;
+}
+
+.footer-section.location .icon {
+    background-color: #00a2b2;
+}
+
+.footer-section.contact .icon {
+    background-color: #80cbc4;
+}
+
+.footer-section.legal .icon {
+    background-color: #b2dfdb;
+}
+
+.m1 {
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .text-content3 {
+        padding: 6px 20px;
+    }
+
+    .Titulo2 h2 {
+        font-size: 30px;
+    }
+
+    .parra3 p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-content3 {
+        padding: 6px 10px;
+    }
+
+    .Titulo2 h2 {
+        font-size: 25px;
+    }
+
+    .parra3 p {
+        font-size: 16px;
+    }
+}
+
+/* Promociones */
+.carousel-container {
+    box-shadow: none;
+    padding: 20px 0;
+}
+
+.carousel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.carousel-item {
+    flex: 1;
+    text-align: center;
+}
+
+.carousel-item img {
+    max-width: 300px;
+    width: 80%;
+    height: auto;
+    box-shadow: none;
+    border-radius: 10px;
+}
+
+/* Principal */
+.content {
+    overflow: hidden;
+    align-items: center;
+}
+
+.content img {
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#textBPrincipa {
+    font-family: Arial, sans-serif;
+    font-size: 60px;
+    margin-left: 10%;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.content p {
+    margin-left: 15%;
+    font-size: 20px;
+}
+
+/*ver asistentes*/
+#nombreCompleto {
+    width: 50%;
+    max-width: 199px;
+    padding: 10px;
+    margin-top: 2px;
+    margin-bottom: 5px; /* Ajusta el valor según sea necesario */
+    border: 0px solid #ccc;
+    font-size: 18px;
+    margin-left: 15%;
+}

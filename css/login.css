@@ -1,0 +1,536 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to top, #13cdbd, #5a18ff);
+    min-height: 100vh;
+    padding-top: 40px;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 5px auto;
+    background-color: white;
+    padding: -4px; /*  ajustar el contenido de abajo*/
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+}
+
+.logo2 img {
+    height: 80px;
+}
+
+
+
+.menu nav ul {
+    list-style: none;
+    padding: 15px;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.menu nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.about {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+    padding: 5px 10px; /* Reduce el padding superior */
+}
+
+.text-content {
+    flex: 1;
+    min-width: 300px;
+    padding:30px 70px;
+    margin-right: -12px;
+}
+
+.text-content.Titulo h2 {
+    font-size: 30px;
+    margin-top: 0;
+}
+.eslogan h3 {
+    font-size: 18px;
+    color: black;
+    margin-top: 0;
+}
+
+.parra p  {
+    font-size: 14px;
+    color: black;
+    margin: 0px 0;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.login-button {
+    background-color: #00b3b3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.image-section {
+    flex: 1 1 40%;
+    text-align: right;
+
+
+
+}
+
+.image-section img {
+    width: 70%;
+    height: auto;
+    margin: -12px;
+    padding: 0px 20px;
+}
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: white;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.footer-section.location {
+    background-color: #00a2b2;
+}
+
+.footer-section.contact {
+    background-color: #80cbc4;
+}
+
+.footer-section.legal {
+    background-color: #b2dfdb;
+    text-align: left;
+    font-size: 12px;
+}
+
+.footer-section .icon {
+    width: 40px;
+    height: 40px;
+    background-image: url('images/tooth-icon.png');
+    background-size: cover;
+    margin: 0 auto 10px;
+}
+
+.footer-section.location .icon {
+    background-color: #00a2b2;
+}
+
+.footer-section.contact .icon {
+    background-color: #80cbc4;
+}
+
+.footer-section.legal .icon {
+    background-color: #b2dfdb;
+}
+
+.m1 {
+    padding: 10px;
+}
+
+@media (min-width: 768px) {
+    .logo-text {
+        flex: none;
+        text-align: left;
+        margin-top: 0;
+    }
+
+    .footer-section {
+        flex: 1;
+        text-align: center;
+    }
+
+    .footer-section.legal {
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-text, .menu nav ul {
+        text-align: center;
+    }
+
+    .main .about .Titulo h1, .main .about .eslogan p, .main .about .parra h2 {
+        text-align: center;
+    }
+
+    .login-button {
+        display: block;
+        margin: 20px auto;
+    }
+
+    .image-section {
+        text-align: center;
+    }
+
+    .image-section img {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .footer-section {
+        text-align: center;
+    }
+
+    .footer-section.legal {
+        text-align: center;
+    }
+    /* Existing styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #00b3b3;
+    }
+
+    .container {
+        width: 80%;
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding-bottom: 10px;
+    }
+
+    .logo2 img {
+        height: 80px;
+    }
+
+    .logo-text {
+        color: #00b3b3;
+        text-align: center;
+        flex: 1 1 100%;
+        margin-top: 10px;
+    }
+
+    .menu {
+        display: none; /* Ocultar menú por defecto */
+    }
+
+    .menu nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .menu nav ul li a {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+    .menu-toggle {
+        cursor: pointer;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+    }
+
+    .about {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .text-content {
+        flex: 1 1 50%;
+        text-align: left;
+    }
+
+    .Titulo h2 {
+        font-size: 30px;
+        color: #00b3b3;
+    }
+
+    .eslogan h3 {
+        font-size: 20px;
+        color: black;
+    }
+
+    .parra p {
+        font-size: 14px;
+        color: black;
+        margin: 5px 0;
+    }
+
+    .button-container {
+        margin-top: 20px;
+    }
+
+    .login-button {
+        background-color: #00b3b3;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .image-section {
+        flex: 1 1 40%;
+        text-align: right;
+    }
+
+    .image-section img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        color: white;
+    }
+
+
+}
+
+/*casos clinicos interfaz */
+.text-content2 {
+    flex: 1;
+    min-width: 300px;
+    padding: 6px 50px;
+    margin-right: -12px;
+}
+
+.Titulo1 h2 {
+    font-size: 30px;
+    margin-top: 5px;
+    color: black;
+    text-align: center;
+}
+
+.parra1 p {
+    font-size: 14px;
+    color: black;
+    margin: 5px -10px;
+    width: 142%;
+}
+.parra2 p {
+    font-size: 14px;
+    color: black;
+    margin: 7px -10px;
+    width: 142%;
+}
+
+/*Carosel estilo materalize*/
+
+.container {
+
+    box-shadow: none;
+}
+.carousel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.carousel .carousel-item1 img,
+.carousel .carousel-item2 img,
+.carousel .carousel-item3 img {
+    width: 70%;
+    box-shadow: none;
+}
+
+/*Servicos*/
+.image-section {
+    flex: 1 1 40%;
+    text-align: right;
+
+
+
+}
+
+.image-section img {
+    width: 60%;
+    height: auto;
+    margin: -10px;
+    padding: 0px 20px;
+}
+
+.text-content3 {
+    flex: 1;
+    min-width: 300px;
+    padding: 30px 70px;
+    margin-right: -20px;
+}
+
+.Titulo2 h2 {
+    font-size: 30px;
+    margin-top: 5px;
+    color: black;
+    text-align: center;
+}
+
+.parra3 p {
+    font-size: 18px;
+    color: black;
+    margin: 15px -12px;
+    width: 250%;
+}
+
+
+/*----------------------
+------------------------
+---------login---------
+-------------------------*/
+
+
+body.login-page .login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px; /* Ajusta esto según sea necesario */
+
+
+}
+
+
+body.login .image-container {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    padding: 60px;
+    margin: 30px;
+
+}
+
+
+body.login-page .image-container img {
+    border-radius: 10%;
+    width: 550px; /* Ajusta el ancho de la imagen según sea necesario */
+    height: 550px; /* Ajusta la altura de la imagen según sea necesario */
+    padding-right: 90px;
+    padding-left: 180px;
+    object-fit: cover;
+}
+
+body.login-page .form-container {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+    justify-content:flex-start; /* Centra el contenido verticalmente */
+    height: 400px;
+    width: 200px;
+    margin-right: 110px;
+
+}
+
+body.login-page .form-container img {
+    margin-bottom: 20px; /* Ajusta el margen inferior para separar la imagen del resto del contenido */
+    margin-top: -20px; /* Ajusta el margen superior para mover la imagen hacia arriba */
+    width: 45%; /* Ajusta el ancho de la imagen */
+    height: auto; /* Ajusta la altura de la imagen automáticamente */
+    max-width: 300px; /* Ajusta el máximo ancho de la imagen */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body.login-page .form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos dentro del formulario */
+    width: 100%;
+}
+body.login-page .form-container form input[type="email"],
+body.login-page .form-container form input[type="password"] {
+
+    padding:17px; /* Ajusta el relleno según sea necesario */
+    margin-bottom: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(90% - 40px); /* Ajusta el ancho según sea necesario */
+    height: auto; /* Ajusta la altura según sea necesario */
+}
+
+body.login-page .form-container form button {
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #009999;
+    color: #fff;
+    cursor: pointer;
+    width: calc(100% - 250px);  /*Ajusta el ancho según sea necesario */
+    height: auto; /* Ajusta la altura según sea necesario*/
+}
+
+body.login-page .form-container a button {
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #009999;
+    color: #fff;
+    cursor: pointer;
+    width:  270px; /* Ajusta el ancho según sea necesario */
+    height: auto; /* Ajusta la altura según sea necesario */
+}
+body.login-page .form-container form button:hover {
+    background-color: #007777;
+}
+
