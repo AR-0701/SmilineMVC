@@ -22,4 +22,3 @@ if ($accion === 'agendar') {
     header("Location: ../vista/mensaje.view.php?msg=accion_invalida&redirect=../vistas/inicioClientes.php");
     exit();
 }
-

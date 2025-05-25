@@ -87,7 +87,7 @@
         // Ejemplo de cómo llamar a la función desde PHP
         <?php if (isset($_GET['msg'])): ?>
             <?php if ($_GET['msg'] == 'no_horarios'): ?>
-                showModal('Sin horarios disponibles', 'No hay horarios habilitados para el día seleccionado.', '..public/agendar.php');
+                showModal('Sin horarios disponibles', 'No hay horarios habilitados para el día seleccionado.', '../public/agendar.php');
             <?php elseif ($_GET['msg'] == 'cita_agendada'): ?>
                 showModal('Cita agendada', 'Tu cita ha sido agendada exitosamente.', '../public/inicioClientes.php');
             <?php elseif ($_GET['msg'] == 'horario_ocupado'): ?>

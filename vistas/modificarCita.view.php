@@ -10,30 +10,23 @@ $clienteLogueado = [
     'aPaterno' => $_SESSION['aPaterno'],
     'idRol' => $_SESSION['idRol']
 ];
+// Crear instancia de la conexión usando el modelo
+require_once '../modelo/Conexion.php';
+$db = new ConexionBD();
+$conexion = $db->getConexion();
 
-
-// Consultar citas pendientes para el cliente
-// Consultar citas pendientes para el cliente desde hoy en adelante
 $query = "SELECT Citas.idCita, Citas.dia, Horarios.hApertura, Horarios.hCierre 
           FROM Citas 
           JOIN Horarios ON Citas.idHorario = Horarios.idHorario
-          WHERE Citas.idUsuario = ? 
+          WHERE Citas.idUsuario = :idUsuario 
           AND Citas.estado = 'pendiente' 
           AND Citas.dia >= CURDATE()";
 $stmt = $conexion->prepare($query);
-$stmt->bind_param("i", $clienteLogueado['id']);
+$stmt->bindParam(':idUsuario', $clienteLogueado['id'], PDO::PARAM_INT);
 $stmt->execute();
-$result = $stmt->get_result();
-
 
 // Guardar resultados en un arreglo
-$citasPendientes = [];
-while ($row = $result->fetch_assoc()) {
-    $citasPendientes[] = $row;
-}
-
-$stmt->close();
-$conexion->close();
+$citasPendientes = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -222,7 +215,7 @@ $conexion->close();
                                     <td><?php echo htmlspecialchars($cita['hApertura']); ?></td>
                                     <td><?php echo htmlspecialchars($cita['hCierre']); ?></td>
                                     <td>
-                                        <form action="logica/eliminarCita.php" method="POST">
+                                        <form action="../controladores/eliminarCita.php" method="POST">
                                             <input type="hidden" name="idCita" value="<?php echo htmlspecialchars($cita['idCita']); ?>">
                                             <button type="submit" class="btn btn-danger">Eliminar</button>
                                         </form>
