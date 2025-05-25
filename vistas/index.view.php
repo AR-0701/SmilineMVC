@@ -96,6 +96,30 @@
         .footer-link:hover {
             text-decoration: underline;
         }
+
+        /* Estilo para el modal */
+        .modal-content {
+            background: white;
+        }
+
+        .texto-opciones {
+            font-size: 25px;
+            color: #6916e5;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        /* Botones con imagen */
+        .image-button img {
+            transition: transform 0.2s;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-button img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 
@@ -118,13 +142,13 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link text-dark px-3" href="casosClinicos.php">Casos Clínicos</a>
+                                <a class="nav-link text-dark px-3" href="public/casosClinicos.php">Casos Clínicos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark px-3" href="promociones.php">Promociones</a>
+                                <a class="nav-link text-dark px-3" href="public/promociones.php">Promociones</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark px-3" href="servicios.php">Servicios</a>
+                                <a class="nav-link text-dark px-3" href="public/servicio.php">Servicios</a>
                             </li>
                         </ul>
                     </div>
@@ -140,7 +164,7 @@
                 <h4 class="text-muted">Transformando sonrisas</h4>
                 <p>El consultorio SMILE LINE ofrece sus servicios de calidad con el objetivo de satisfacer y mantener
                     una buena comunicación con nuestros clientes.</p>
-                <button class="btn btn-custom" onclick="location.href='login.php'">Iniciar Sesión</button>
+                <button class="btn btn-custom" onclick="location.href='public/login.php'">Iniciar Sesión</button>
             </div>
             <!-- Image Section -->
             <div class="col-md-6 text-center">
@@ -188,7 +212,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- iframe para cargar el chatbot sin duplicados -->
-    <iframe src="http://localhost/Chatbot/index.php" style="
+    <iframe src="../chatbot/index.php" style="
 position: fixed;
     display: block;
     bottom: 20px;
@@ -198,7 +222,60 @@ position: fixed;
     height: 550px;
     cursor: pointer;"> </iframe>
     <button onclick=leerTexto()>escucha</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg rounded-4">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="texto-opciones">¿Quieres activar el modo especial para que sea más fácil de navegar?</p>
+                    <div class="row justify-content-center g-3">
+                        <div class="col-6 col-md-5 image-button">
+                            <button type="button" class="btn btn-light p-0 border-0" onclick="accionBoton1()">
+                                <img src="../Imagenes/1.png" alt="Botón 1" class="img-fluid">
+                            </button>
+                        </div>
+                        <div class="col-6 col-md-5 image-button">
+                            <button type="button" class="btn btn-light p-0 border-0" onclick="accionBoton2()">
+                                <img src="../Imagenes/2.png" alt="Botón 2" class="img-fluid">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Mostrar automáticamente el modal si no está ?modal=false en la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('modal') !== 'false') {
+            var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            myModal.show();
+        }
+    });
+
+    function accionBoton1() {
+        // Recarga la misma página con ?modal=false
+        window.location.href = window.location.pathname + "?modal=false";
+    }
+
+    function accionBoton2() {
+        // Redirige a la versión inclusiva
+        window.location.href = "../inclusivo/inclusiva2.html";
+    }
+</script>
+
+
 </body>
+
 <script>
     function leerTexto() {
         let texto = document.body.innerText;

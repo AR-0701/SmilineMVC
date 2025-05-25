@@ -1,1 +1,2 @@
-<?php include '../vistas/index.php'; ?>
+<?php
+require '../SmileLineMVC/vistas/index.view.php';

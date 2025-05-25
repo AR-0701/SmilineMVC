@@ -1,21 +1,26 @@
 <?php
-require_once '../modelo/Conexion.php';
 session_start();
+require_once '../modelo/Usuarios.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $_POST['usuario'];
-    $password = $_POST['password'];
 
-    $con = Conexion::conectar();
-    $sql = "SELECT * FROM usuarios WHERE usuario = ? AND password = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->execute([$usuario, $password]);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-    if ($stmt->rowCount() > 0) {
+    $usuarioModel = new Usuario();
+    $usuario = $usuarioModel->autenticar($email, $password);
+
+    if ($usuario) {
         $_SESSION['usuario'] = $usuario;
-        header("Location: ../vistas/principal.php");
+        header('Location: ../views/dashboard.php'); // O donde vayas después del login
+        exit;
     } else {
-        header("Location: ../vistas/error.php");
+        $_SESSION['error'] = "Correo o contraseña incorrectos.";
+        header('Location: ../views/login.php');
+        exit;
     }
 }
-?>
+else {
+    header('Location: ../public/login.php');
+    exit;
+}
