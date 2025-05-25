@@ -1,6 +1,8 @@
 <?php
-$rolesPermitidos = [1]; // rol Cliente
-include 'logica/validarLogin.php';
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [1]; // Cliente
+include '../controladores/ControladorUsuario.php';
+
 $clienteLogueado = [
     'id' => $_SESSION['idUsuario'],
     'nombre' => $_SESSION['nombre'],
@@ -85,31 +87,34 @@ $clienteLogueado = [
         <div class="card mb-4">
             <div class="card-header"></div>
             <div class="card-body">
-                <form method="POST" action="logica/agendar_cita.php" id="agendarCitaForm">
+                <form method="POST" action="../controladores/controladorClientes.php" id="agendarCitaForm">
+                    <input type="hidden" name="accion" value="agendar"> <!-- 🔴 ESTE CAMPO ES CLAVE -->
+
                     <p><strong>ID Cliente:</strong> <?php echo htmlspecialchars($clienteLogueado['id']); ?></p>
 
-                    <input type="hidden" name="idUsuario" value="<?php echo htmlspecialchars($clienteLogueado['id']); ?>"> <!-- ID oculto -->
+                    <input type="hidden" name="idUsuario" value="<?php echo htmlspecialchars($clienteLogueado['id']); ?>">
 
                     <div class="mb-3">
                         <label for="nombreCliente" class="form-label">Nombre del Cliente:</label>
-                        <input type="text" class="form-control" id="nombreCliente" value="<?php echo htmlspecialchars($clienteLogueado['nombre'] . ' ' . $clienteLogueado['aPaterno'] . ' ' . $clienteLogueado['aMaterno']); ?>" disabled>
+                        <input type="text" class="form-control" id="nombreCliente"
+                            value="<?php echo htmlspecialchars($clienteLogueado['nombre'] . ' ' . $clienteLogueado['aPaterno'] . ' ' . $clienteLogueado['aMaterno']); ?>"
+                            disabled>
                     </div>
 
                     <div class="mb-3">
-                        <div class="mb-3">
-                            <label for="fecha" class="form-label">Fecha:</label>
-                            <?php
-                            $hoy = date('Y-m-d');
-                            $manana = date('Y-m-d', strtotime($hoy . ' +1 day'));
-                            $limite = date('Y-m-d', strtotime($hoy . ' +7 day'));
-                            ?>
-                            <input type="date" class="form-control" id="dia" name="dia" required min="<?php echo $manana; ?>" max="<?php echo $limite; ?>">
-                        </div>
+                        <label for="fecha" class="form-label">Fecha:</label>
+                        <?php
+                        $hoy = date('Y-m-d');
+                        $manana = date('Y-m-d', strtotime($hoy . ' +1 day'));
+                        $limite = date('Y-m-d', strtotime($hoy . ' +7 day'));
+                        ?>
+                        <input type="date" class="form-control" id="dia" name="dia" required
+                            min="<?php echo $manana; ?>" max="<?php echo $limite; ?>">
                     </div>
+
                     <div class="mb-3">
                         <label for="hora" class="form-label">Hora:</label>
                         <select class="form-select" id="hora" name="hora" required>
-                            <!-- Opciones generadas dinámicamente en PHP -->
                             <?php
                             for ($hora = 9; $hora <= 21; $hora++) {
                                 echo "<option value=\"$hora:00:00\">$hora:00</option>";
@@ -117,26 +122,19 @@ $clienteLogueado = [
                             ?>
                         </select>
                     </div>
+
                     <div class="d-flex justify-content-center">
-                        <!-- Botón para redirigir -->
                         <button type="submit" class="btn btn-primary">Agendar</button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<iframe src="http://localhost/Chatbot/index.php" style="
-position: fixed;
-    display: block;
-    bottom: 20px;
-    right: 20px;
-    border: none;
-    width: 350px;
-    height: 550px;
-    cursor: pointer;"> </iframe>
+
 </body>
 
 

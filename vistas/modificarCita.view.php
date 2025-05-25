@@ -1,9 +1,8 @@
 <?php
-$rolesPermitidos = [1,3,4]; // rol Cliente, Asistente y Admin
-include 'logica/validarLogin.php';
-include 'logica/conexion.php';
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [1]; // Cliente
+include '../controladores/ControladorUsuario.php';
 
-// Datos del cliente logueado
 $clienteLogueado = [
     'id' => $_SESSION['idUsuario'],
     'nombre' => $_SESSION['nombre'],
@@ -11,6 +10,7 @@ $clienteLogueado = [
     'aPaterno' => $_SESSION['aPaterno'],
     'idRol' => $_SESSION['idRol']
 ];
+?>
 
 // Consultar citas pendientes para el cliente
 // Consultar citas pendientes para el cliente desde hoy en adelante

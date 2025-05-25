@@ -204,8 +204,8 @@ $clienteLogueado = [
                         <h4 class="text-muted">A Smile Line</h4>
                         <p>Sonríe con confianza, cuidamos de tu salud dental. Agenda tu cita en nuestro consultorio dental.</p>
                         <div class="d-flex gap-3 justify-content-center">
-                            <button class="btn btn-custom" onclick="location.href='agendar.php'">Agendar</button>
-                            <button class="btn btn-custom" onclick="location.href='modificarCita.php'">Consultar</button>
+                            <button class="btn btn-custom" onclick="location.href='../public/agendar.php'">Agendar</button>
+                            <button class="btn btn-custom" onclick="location.href='../public/modificarCita.php'">Consultar</button>
                         </div>
                     </div>
                 </div>
