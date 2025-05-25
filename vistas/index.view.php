@@ -7,9 +7,15 @@
     <title>Index-Principal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
         body {
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(to top, #13cdbd, #5a18ff);
-            padding-top: 30px;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .container {
@@ -20,7 +26,6 @@
             max-width: 1200px;
             margin: 15px auto;
             padding: -4px;
-            /*  ajustar el contenido de abajo*/
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             position: relative;
         }
@@ -30,14 +35,12 @@
             font-weight: bold;
             margin: 0 10px;
             transition: transform 0.3s ease;
-            /* Transición para el color y la transformación */
+          font-size: 1.2rem;
         }
 
         .navbar-nav .nav-link:hover {
             transform: scale(1.1);
-            /* Hace que el enlace crezca ligeramente en hover */
         }
-
         .logo img {
             height: 90px;
         }
@@ -72,19 +75,15 @@
             color: white;
             padding: 15px;
             position: relative;
-            /* O absolute si quieres que esté fijo */
             left: -17px;
             width: 112%;
-            /* 20% más ancho que el contenedor */
             margin-top: -15px;
             border-radius: 0 0 15px 15px;
-            /* Bordes redondeados opcionales */
             text-align: left;
         }
 
         .footer-icon {
             width: 40px;
-            /* Tamaño uniforme para las imágenes */
             height: auto;
         }
 
@@ -206,22 +205,10 @@
                     </div>
                 </div>
             </div>
-        </footer>
     </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- iframe para cargar el chatbot sin duplicados -->
-    <iframe src="../chatbot/index.php" style="
-position: fixed;
-    display: block;
-    bottom: 20px;
-    right: 20px;
-    border: none;
-    width: 350px;
-    height: 550px;
-    cursor: pointer;"> </iframe>
-    <button onclick=leerTexto()>escucha</button>
 
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -250,41 +237,31 @@ position: fixed;
         </div>
     </div>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Mostrar automáticamente el modal si no está ?modal=false en la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('modal') !== 'false') {
-            var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
-                backdrop: 'static',
-                keyboard: false
-            });
-            myModal.show();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar automáticamente el modal si no está ?modal=false en la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('modal') !== 'false') {
+                var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                    backdrop: 'static',
+                    keyboard: false
+                });
+                myModal.show();
+            }
+        });
+
+        function accionBoton1() {
+            // Recarga la misma página con ?modal=false
+            window.location.href = window.location.pathname + "?modal=false";
         }
-    });
 
-    function accionBoton1() {
-        // Recarga la misma página con ?modal=false
-        window.location.href = window.location.pathname + "?modal=false";
-    }
-
-    function accionBoton2() {
-        // Redirige a la versión inclusiva
-        window.location.href = "../inclusivo/inclusiva2.html";
-    }
-</script>
+        function accionBoton2() {
+            // Redirige a la versión inclusiva
+            window.location.href = "../inclusivo/inclusiva2.html";
+        }
+    </script>
 
 
 </body>
 
-<script>
-    function leerTexto() {
-        let texto = document.body.innerText;
-        let voz = new SpeechSynthesisUtterance(texto);
-        voz.lang = "es-ES";
-        voz.text = texto;
-        window.speechSynthesis.speak(voz);
-    }
-</script>
-</script>
 
 </html>

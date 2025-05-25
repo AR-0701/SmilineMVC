@@ -7,9 +7,16 @@
     <title>Casos Clinicos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
         body {
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(to top, #13cdbd, #5a18ff);
-            padding-top: 30px;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .container {
@@ -20,7 +27,6 @@
             max-width: 1200px;
             margin: 15px auto;
             padding: -4px;
-            /*  ajustar el contenido de abajo*/
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             position: relative;
         }
@@ -29,8 +35,7 @@
             color: black;
             font-weight: bold;
             font-size: 30px;
-            text-align: center;
-            margin: 0 15px;
+           
         }
 
         .navbar-nav .nav-link {
@@ -38,12 +43,11 @@
             font-weight: bold;
             margin: 0 10px;
             transition: transform 0.3s ease;
-            /* Transición para el color y la transformación */
+            font-size: 1.2rem; 
         }
 
         .navbar-nav .nav-link:hover {
             transform: scale(1.1);
-            /* Hace que el enlace crezca ligeramente en hover */
         }
 
         .logo img {
@@ -51,7 +55,7 @@
         }
 
         .main-content {
-            margin-top: -30px;
+            margin-top: 30px;
             padding: 10px;
         }
 
@@ -67,19 +71,16 @@
             color: white;
             padding: 15px;
             position: relative;
-            /* O absolute si quieres que esté fijo */
             left: -17px;
             width: 112%;
-            /* 20% más ancho que el contenedor */
-            margin-top: -15px;
+            margin-top: 40px;
             border-radius: 0 0 15px 15px;
-            /* Bordes redondeados opcionales */
             text-align: left;
         }
 
         .footer-icon {
             width: 40px;
-            /* Tamaño uniforme para las imágenes */
+           
             height: auto;
         }
 
@@ -113,13 +114,13 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link text-dark px-3" href="index.php">Principal</a>
+                                <a class="nav-link text-dark px-3" href="../index.php">Principal</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark px-3" href="promociones.php">Promociones</a>
+                                <a class="nav-link text-dark px-3" href="../public/promociones.php">Promociones</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark px-3" href="servicios.php">Servicios</a>
+                                <a class="nav-link text-dark px-3" href="../public/servicio.php">Servicios</a>
                             </li>
                         </ul>
                     </div>
@@ -173,11 +174,11 @@
                 <div class="col-md-4">
                     <h6>Síguenos:</h6>
                     <div class="d-flex align-items-center">
-                        <img src="imagenes/icon3.png" alt="Facebook" class="footer-icon">
+                        <img src="/Imagenes/icon3.png" alt="Facebook" class="footer-icon">
                         <a href="https://www.facebook.com" class="footer-link ms-2">Facebook</a>
                     </div>
                     <div class="d-flex align-items-center mt-2">
-                        <img src="imagenes/icon4.png" alt="Instagram" class="footer-icon">
+                        <img src="/Imagenes/icon4.png" alt="Instagram" class="footer-icon">
                         <a href="https://www.instagram.com" class="footer-link ms-2">Instagram</a>
                     </div>
                 </div>
