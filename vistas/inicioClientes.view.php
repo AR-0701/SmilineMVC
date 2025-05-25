@@ -241,7 +241,7 @@ $clienteLogueado = [
     </script>
 
 </body>
-<iframe src="http://localhost/Chatbot/index.php" style="
+<iframe src="../chatbot/index.php" style="
 position: fixed;
     display: block;
     bottom: 20px;

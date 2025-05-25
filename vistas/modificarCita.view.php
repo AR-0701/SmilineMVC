@@ -10,7 +10,7 @@ $clienteLogueado = [
     'aPaterno' => $_SESSION['aPaterno'],
     'idRol' => $_SESSION['idRol']
 ];
-?>
+
 
 // Consultar citas pendientes para el cliente
 // Consultar citas pendientes para el cliente desde hoy en adelante
