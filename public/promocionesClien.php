@@ -1,2 +1,2 @@
 <?php
-require '../vistas/promocionesClie.view.php';
+require '../vistas/promocionesClien.view.php';

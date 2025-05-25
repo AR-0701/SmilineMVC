@@ -24,9 +24,16 @@ $clienteLogueado = [
 </head>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
     body {
+        font-family: 'Poppins', sans-serif;
         background: linear-gradient(to top, #13cdbd, #5a18ff);
-        padding-top: 50px;
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .container {
@@ -41,27 +48,19 @@ $clienteLogueado = [
         position: relative;
     }
 
+    /* Menu */
+
     .navbar {
         background: linear-gradient(to right, #00C9FF, #00A99D);
-        /* Degradado */
         padding: 10px 0;
-        /* Ajusta el espaciado vertical */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        /* Sombra para resaltar */
     }
 
-    .navbar .nav-link {
-        color: black !important;
-        /* Asegúrate de que los enlaces sean visibles */
-        transition: color 0.3s ease;
-    }
 
     .navbar-nav {
         display: flex;
         justify-content: center;
-        /* Centrar horizontalmente los enlaces */
         width: 100%;
-        /* Asegura que ocupe todo el espacio del contenedor */
     }
 
     .navbar-nav .nav-link {
@@ -77,6 +76,7 @@ $clienteLogueado = [
         transform: scale(1.1);
     }
 
+    /* Icono Login */
 
     .user-menu {
         position: absolute;
@@ -99,7 +99,6 @@ $clienteLogueado = [
         right: 0;
         text-align: center;
         background-color: #06a1a9;
-
     }
 
     .dropdown-menu a {
@@ -109,10 +108,7 @@ $clienteLogueado = [
         color: black;
         font-weight: bold;
         transition: transform 0.3s ease;
-
-
     }
-
     .dropdown-menu a:hover {
         transform: scale(1.1);
     }
@@ -121,9 +117,13 @@ $clienteLogueado = [
         display: block;
     }
 
+    /* Logo */
+
     .logo img {
         height: 120px;
     }
+
+    /* Botones */
 
     .btn-custom {
         background-color: #00A99D;
@@ -139,6 +139,8 @@ $clienteLogueado = [
         color: white;
     }
 
+    /* Imagen */
+
     .image-section {
         width: 100%;
         height: auto;
@@ -147,9 +149,7 @@ $clienteLogueado = [
 
     #animatedImage {
         animation-delay: 0.3s;
-        /* Retraso de 0.5 segundos antes de iniciar */
         animation-duration: 3s;
-        /* Duración de 2 segundos para que sea más suave */
     }
 </style>
 
@@ -184,13 +184,13 @@ $clienteLogueado = [
             <div class="collapse navbar-collapse" id="navbarNav" -bs-navbar-padding-x: 0;>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-dark px-3" href="casosClinicos_C.php">Casos Clínicos</a>
+                        <a class="nav-link text-dark px-3" href="../public/casosClinicosClie.php">Casos Clínicos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark px-3" href="Promociones_C.php">Promociones</a>
+                        <a class="nav-link text-dark px-3" href="../public/promocionesClien.php">Promociones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark px-3" href="Servicios_C.php">Servicios</a>
+                        <a class="nav-link text-dark px-3" href="../public/servicioClien.php">Servicios</a>
                     </li>
                 </ul>
             </div>

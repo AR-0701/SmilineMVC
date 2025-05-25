@@ -91,7 +91,7 @@ session_start();
                             <button type="submit" class="btn btn1 btn-lg">Ingresar</button>
                         </div>
                         <p class="text-center fs-6 mt-3 mb-0">
-                            ¿No tienes cuenta? <a class="link-verde" href="registroClientesPrin.php">Regístrate</a>
+                            ¿No tienes cuenta? <a class="link-verde" href="../public/registroClienPrin.php">Regístrate</a>
                         </p>
                     </form>
                 </div>

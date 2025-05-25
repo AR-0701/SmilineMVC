@@ -9,11 +9,16 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
     <style>
-body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to top, #13cdbd, #5a18ff);
-        padding-top: 3px;
-    }
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to top, #13cdbd, #5a18ff);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
     .container {
         background-color: white;
@@ -36,14 +41,14 @@ body {
 
     .user-menu {
         position: absolute;
-        top: 33px;
+        top: 30px;
         right: 10px;
         display: flex;
         align-items: center;
     }
 
     .user-icon {
-        height: 70px;
+        height: 65px;
         cursor: pointer;
         margin-right: 20px;
     }
@@ -211,11 +216,11 @@ body {
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="#">
-                        <img src="imagenes/loogo.png" alt="Smile Line Odontología">
+                        <img src="/Imagenes/loogo.png" alt="Smile Line Odontología">
                     </a>
                 </div>
                 <div class="user-menu">
-                    <img src="imagenes/User.png" class="user-icon" alt="Usuario">
+                    <img src="/Imagenes/User.png" class="user-icon" alt="Usuario">
                     <div class="dropdown-menu" id="dropdownMenu">
                         <a href="Logica/logout.php">Cerrar sesión</a>
                     </div>

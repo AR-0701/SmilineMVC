@@ -1,6 +1,15 @@
 <?php
-$rolesPermitidos = [1]; // rol Cliente
-include 'logica/validarLogin.php';
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [1]; // Cliente
+include '../controladores/ControladorUsuario.php';
+
+$clienteLogueado = [
+    'id' => $_SESSION['idUsuario'],
+    'nombre' => $_SESSION['nombre'],
+    'aMaterno' => $_SESSION['aMaterno'],
+    'aPaterno' => $_SESSION['aPaterno'],
+    'idRol' => $_SESSION['idRol']
+];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,10 +22,18 @@ include 'logica/validarLogin.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <style>
-    body {
-        background: linear-gradient(to top, #13cdbd, #5a18ff);
-        padding-top: 50px;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to top, #13cdbd, #5a18ff);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
 
     .container {
         background-color: white;
@@ -32,25 +49,14 @@ include 'logica/validarLogin.php';
 
     .navbar {
         background: linear-gradient(to right, #00C9FF, #00A99D);
-        /* Degradado */
         padding: 10px 0;
-        /* Ajusta el espaciado vertical */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        /* Sombra para resaltar */
     }
-
-    .navbar .nav-link {
-        color: black !important;
-        /* Asegúrate de que los enlaces sean visibles */
-        transition: color 0.3s ease;
-    }
-
+    
     .navbar-nav {
         display: flex;
         justify-content: center;
-        /* Centrar horizontalmente los enlaces */
         width: 100%;
-        /* Asegura que ocupe todo el espacio del contenedor */
     }
 
     .navbar-nav .nav-link {
@@ -144,19 +150,15 @@ include 'logica/validarLogin.php';
         color: white;
         padding: 15px;
         position: relative;
-        /* O absolute si quieres que esté fijo */
         left: -20px;
         width: 112%;
-        /* 20% más ancho que el contenedor */
         margin-top: 5px;
         border-radius: 0 0 15px 15px;
-        /* Bordes redondeados opcionales */
         text-align: left;
     }
 
     .footer-icon {
         width: 40px;
-        /* Tamaño uniforme para las imágenes */
         height: auto;
     }
 
@@ -177,11 +179,11 @@ include 'logica/validarLogin.php';
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="#">
-                        <img src="imagenes/loogo.png" alt="Smile Line Odontología">
+                        <img src="/Imagenes/loogo.png" alt="Smile Line Odontología">
                     </a>
                 </div>
                 <div class="user-menu">
-                    <img src="imagenes/User.png" class="user-icon" alt="Usuario">
+                    <img src="../Imagenes/User.png" class="user-icon" alt="Usuario">
                     <div class="dropdown-menu" id="dropdownMenu">
                         <a href="Logica/logout.php">Cerrar sesión</a>
                     </div>
@@ -197,23 +199,21 @@ include 'logica/validarLogin.php';
             <div class="collapse navbar-collapse" id="navbarNav" -bs-navbar-padding-x: 0;>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-dark px-3" href="inicioClientes.php">Principal</a>
+                        <a class="nav-link text-dark px-3" href="../public/inicioClientes.php">Principal</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark px-3" href="CasosClinicos_C.php">Casos Clinicos</a>
+                        <a class="nav-link text-dark px-3" href="../public/casosClinicosClie.php">Casos Clinicos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark px-3" href="Promociones_C.php">Promociones</a>
+                        <a class="nav-link text-dark px-3" href="../public/promocionesClien.php">Promociones</a>
                     </li>
                 </ul>
             </div>
         </nav>
 
         <main>
-
             <!-- Inicio del cuerpo -->
             <!-- Servicios -->
-
             <div class="row text-center">
 
                 <div class="col-md-3">
@@ -298,11 +298,11 @@ include 'logica/validarLogin.php';
                 <div class="col-md-4">
                     <h6>Síguenos:</h6>
                     <div class="d-flex align-items-center">
-                        <img src="imagenes/icon3.png" alt="Facebook" class="footer-icon">
+                        <img src="/Imagenes/icon3.png" alt="Facebook" class="footer-icon">
                         <a href="https://www.facebook.com" class="footer-link ms-2">Facebook</a>
                     </div>
                     <div class="d-flex align-items-center mt-2">
-                        <img src="imagenes/icon4.png" alt="Instagram" class="footer-icon">
+                        <img src="/Imagenes/icon4.png" alt="Instagram" class="footer-icon">
                         <a href="https://www.instagram.com" class="footer-link ms-2">Instagram</a>
                     </div>
                 </div>

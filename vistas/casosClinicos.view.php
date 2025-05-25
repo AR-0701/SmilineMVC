@@ -35,15 +35,17 @@
             color: black;
             font-weight: bold;
             font-size: 30px;
-           
+
         }
+
+        /* Menu */
 
         .navbar-nav .nav-link {
             color: black;
             font-weight: bold;
             margin: 0 10px;
             transition: transform 0.3s ease;
-            font-size: 1.2rem; 
+            font-size: 1.2rem;
         }
 
         .navbar-nav .nav-link:hover {
@@ -80,7 +82,6 @@
 
         .footer-icon {
             width: 40px;
-           
             height: auto;
         }
 

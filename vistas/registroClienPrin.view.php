@@ -9,11 +9,16 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
     <style>
-body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to top, #13cdbd, #5a18ff);
-        padding-top: 3px;
-    }
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to top, #13cdbd, #5a18ff);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
     .container {
         background-color: white;
@@ -119,7 +124,7 @@ body {
         font-size: 16px;
         margin-top: -80px;
         /* Margen superior */
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         /* Margen inferior */
 
     }
@@ -163,19 +168,17 @@ body {
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="#">
-                        <img src="imagenes/loogo.png" alt="Smile Line Odontología">
+                        <img src="/Imagenes/loogo.png" alt="Smile Line Odontología">
                     </a>
                 </div>
                 </div>
         </header>
             <main class="main">
-                <div class="about">
-                    <div class="text-content">
-                        <div class="Titulo modify-title">
+               
+                        <div class="modify-title">
                             <h1>Registrar Clientes</h1>
                         </div>
-                    </div>
-                </div>
+                
 
                 <!-- Mostrar mensaje de error si existe -->
 
