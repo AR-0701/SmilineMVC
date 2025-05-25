@@ -1,2 +1,2 @@
 <?php
-require '../SmileLineMVC/vistas/index.view.php';
+require 'vistas/index.view.php';

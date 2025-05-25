@@ -1,6 +1,8 @@
 <?php
-$rolesPermitidos = [1]; // rol Cliente
-include 'logica/validarLogin.php';
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [1]; // Cliente
+include '../controladores/ControladorUsuario.php';
+
 $clienteLogueado = [
     'id' => $_SESSION['idUsuario'],
     'nombre' => $_SESSION['nombre'],
@@ -19,7 +21,6 @@ $clienteLogueado = [
     <title>Clientes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
 </head>
 
 <style>
@@ -98,7 +99,7 @@ $clienteLogueado = [
         right: 0;
         text-align: center;
         background-color: #06a1a9;
-        
+
     }
 
     .dropdown-menu a {
@@ -108,13 +109,14 @@ $clienteLogueado = [
         color: black;
         font-weight: bold;
         transition: transform 0.3s ease;
-    
+
 
     }
 
     .dropdown-menu a:hover {
         transform: scale(1.1);
     }
+
     .dropdown-menu.show {
         display: block;
     }
@@ -158,13 +160,17 @@ $clienteLogueado = [
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="#">
-                        <img src="imagenes/loogo.png" alt="Smile Line Odontología">
+                        <img src="../Imagenes/loogo.png" alt="Smile Line Odontología">
                     </a>
                 </div>
                 <div class="user-menu">
-                    <img src="imagenes/User.png" class="user-icon" alt="Usuario">
+                    <img src="../Imagenes/User.png" class="user-icon" alt="Usuario">
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="Logica/logout.php">Cerrar sesión</a>
+                        <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
+                            <input type="hidden" name="accion" value="logout">
+                        </form>
+
+                        <a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar sesión</a>
                     </div>
                 </div>
             </div>
@@ -204,7 +210,7 @@ $clienteLogueado = [
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="imagenes/Cliente/Img_Principal.jpg" alt="Dentist with a child" class="img-fluid animate__animated animate__fadeInRight" id="animatedImage">
+                    <img src="../Imagenes/Cliente/Img_Principal.jpg" alt="Dentist with a child" class="img-fluid animate__animated animate__fadeInRight" id="animatedImage">
                 </div>
 
             </section>

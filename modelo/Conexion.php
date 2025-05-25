@@ -18,7 +18,8 @@ class ConexionBD
             $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conexion->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die("Conexión fallida: " . $e->getMessage());   
+            // Lanza excepción para que el controlador pueda manejarla como JSON
+            throw new Exception("Conexión fallida: " . $e->getMessage());
         }
     }
 
@@ -27,5 +28,3 @@ class ConexionBD
         return $this->conexion;
     }
 }
-
-$c = new ConexionBD();

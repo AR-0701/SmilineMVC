@@ -45,9 +45,10 @@ session_start();
             background-color: #007F74;
             color: white;
         }
+
         .link-verde {
-    color: #007F74;
-    font-weight: 600;
+            color: #007F74;
+            font-weight: 600;
         }
 
         h3 {
@@ -65,49 +66,76 @@ session_start();
             <div class="col-md-6 bg-white p-5">
                 <h3 class="text-center mb-4 fw-bold">Iniciar Sesión</h3>
                 <div class="form-container">
-                        <!-- Mostrar mensaje de error si existe -->
-                        <?php if (isset($_SESSION['error'])): ?>
-                            <div class="error-message">
-                                <?php
-                                echo $_SESSION['error'];
-                                ?>
-                            </div>
-                        <?php endif; ?>
-                <form action="/logica/consultaLogin.php" method="POST">
-                    <div class="mb-4">
-                        <label for="email" class="form-label fs-6 fw-semibold">Correo electrónico</label>
-                        <input type="email" class="form-control form-control-lg" name="email" id="email"
-                            placeholder="ejemplo@correo.com" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="password" class="form-label fs-6 fw-semibold">Contraseña</label>
-                        <div class="input-group input-group-lg">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="********" required>
-                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">👁️</button>
+                    <!-- Mostrar mensaje de error si existe -->
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <div class="error-message">
+                            <?php
+                            echo $_SESSION['error'];
+                            ?>
                         </div>
-                    </div>
-                    <div class="d-grid mb-3">
-                        <button type="submit" class="btn btn1 btn-lg">Ingresar</button>
-                    </div>
-                    <p class="text-center fs-6 mt-3 mb-0">
-                        ¿No tienes cuenta? <a  class="link-verde" href="registroClientesPrin.php">Regístrate</a>
-                    </p>
-                </form>
+                    <?php endif; ?>
+                    <form id="loginForm">
+                        <div class="mb-4">
+                            <label for="email" class="form-label fs-6 fw-semibold">Correo electrónico</label>
+                            <input type="email" class="form-control form-control-lg" name="email" id="email"
+                                placeholder="ejemplo@correo.com" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label fs-6 fw-semibold">Contraseña</label>
+                            <div class="input-group input-group-lg">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="********" required>
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">👁️</button>
+                            </div>
+                        </div>
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn1 btn-lg">Ingresar</button>
+                        </div>
+                        <p class="text-center fs-6 mt-3 mb-0">
+                            ¿No tienes cuenta? <a class="link-verde" href="registroClientesPrin.php">Regístrate</a>
+                        </p>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const passwordInput = document.getElementById("password");
-        const togglePassword = document.getElementById("togglePassword");
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            const passwordInput = document.getElementById("password");
+            const togglePassword = document.getElementById("togglePassword");
 
-        togglePassword.addEventListener("click", () => {
-            const type = passwordInput.type === "password" ? "text" : "password";
-            passwordInput.type = type;
-            togglePassword.textContent = type === "password" ? "👁️" : "🙈";
-        });
-    </script>
+            togglePassword.addEventListener("click", () => {
+                const type = passwordInput.type === "password" ? "text" : "password";
+                passwordInput.type = type;
+                togglePassword.textContent = type === "password" ? "👁️" : "🙈";
+            });
+        </script>
 </body>
+<script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        formData.append("accion", "login");
+
+        fetch("../controladores/ControladorUsuario.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(text => {
+                console.log("Respuesta del servidor:", text);
+                let data = JSON.parse(text);
+                if (data.success) {
+                    window.location.href = data.redirect;
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Error al procesar la solicitud.");
+            });
+    });
+</script>
 
 </html>

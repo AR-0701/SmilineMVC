@@ -1,2 +1,2 @@
 <?php
-require '../vistas/inicioClie.view.php';
+require '../vistas/inicioClientes.view.php';
