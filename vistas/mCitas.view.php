@@ -1,7 +1,15 @@
 <?php
-include 'logica/conexion.php';
-$rolesPermitidos = [3]; // rol asistente
-include 'logica/validarLogin.php';
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [3,4]; // asistente y administrador
+include '../controladores/ControladorUsuario.php';
+
+$clienteLogueado = [
+    'id' => $_SESSION['idUsuario'],
+    'nombre' => $_SESSION['nombre'],
+    'aMaterno' => $_SESSION['aMaterno'],
+    'aPaterno' => $_SESSION['aPaterno'],
+    'idRol' => $_SESSION['idRol']
+];
 ?>
 
 <!DOCTYPE html>
@@ -249,7 +257,7 @@ include 'logica/validarLogin.php';
             }
 
             if (confirm('¿Estás seguro de que deseas eliminar esta cita?')) {
-                fetch('logica/eliminarCita.php', {
+                fetch('../controladores/eliminarCita.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
@@ -382,7 +390,7 @@ include 'logica/validarLogin.php';
                 return;
             }
 
-            fetch("filtarCitas.php", {
+            fetch("../controladores/controladorAsistentes.php", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"

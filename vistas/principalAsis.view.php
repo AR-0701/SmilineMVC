@@ -1,6 +1,8 @@
 <?php
-$rolesPermitidos = [3]; // rol asistentes
-include 'logica/validarLogin.php';
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [3]; // asistente
+include '../controladores/ControladorUsuario.php';
+
 $clienteLogueado = [
     'id' => $_SESSION['idUsuario'],
     'nombre' => $_SESSION['nombre'],
@@ -9,6 +11,7 @@ $clienteLogueado = [
     'idRol' => $_SESSION['idRol']
 ];
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -176,10 +179,10 @@ $clienteLogueado = [
     <button class="menu-toggle" id="menuToggle">&#9776;</button>
     <div class="sidebar" id="sidebar">
         <ul>
-            <li><a href="mostrarClientes.PHP">Ver clientes/Agendar</a></li>
-            <li><a href="mCitas.php">Consulta de registro de citas</a></li>
-            <li><a href="Servicio_Asis.php">Servicios</a></li>
-            <li><a href="Promociones_Asis.php">Promociones</a></li>
+            <li><a href="../public/mostrarClientes.php">Ver clientes/Agendar</a></li>
+            <li><a href="../public/mCitas.php">Consulta de registro de citas</a></li>
+            <li><a href="../public/servicioAsis.php">Servicios</a></li>
+            <li><a href="../public/promocionesAsis.php">Promociones</a></li>
         </ul>
     </div>
 
@@ -188,13 +191,17 @@ $clienteLogueado = [
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="#">
-                        <img src="imagenes/loogo.png" alt="Smile Line Odontología">
+                        <img src="../Imagenes/loogo.png" alt="Smile Line Odontología">
                     </a>
                 </div>
                 <div class="user-menu">
-                    <img src="imagenes/User.png" class="user-icon" alt="Usuario">
+                    <img src="../Imagenes/User.png" class="user-icon" alt="Usuario">
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="Logica/logout.php">Cerrar sesión</a>
+                        <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
+                            <input type="hidden" name="accion" value="logout">
+                        </form>
+
+                        <a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar sesión</a>
                     </div>
                 </div>
             </div>
@@ -212,7 +219,7 @@ $clienteLogueado = [
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="Imagenes/Asistentes/Imagen_Principal.png" alt="Dentist with a child" class="img-fluid animate__animated animate__fadeInRight" id="animatedImage">
+                    <img src="../Imagenes/Asistentes/Imagen_Principal.png" alt="Dentist with a child" class="img-fluid animate__animated animate__fadeInRight" id="animatedImage">
                 </div>
 
             </section>
@@ -222,7 +229,7 @@ $clienteLogueado = [
             <div class="row">
                 <!-- Columna 1: Ubicación -->
                 <div class="col-md-4 d-flex align-items-start">
-                    <img src="/Imagenes/icon1.png" alt="Ubicación" class="footer-icon">
+                    <img src="../Imagenes/icon1.png" alt="Ubicación" class="footer-icon">
                     <div class="ms-2">
                         <h6>Ubicación:</h6>
                         <p>Circuito 7 H. Cocoyoc MZ 88 LOTE 8-B, Ex. Hacienda Santa Inés, 55796, México, México.</p>
@@ -230,7 +237,7 @@ $clienteLogueado = [
                 </div>
                 <!-- Columna 2: Contacto -->
                 <div class="col-md-4 d-flex align-items-start">
-                    <img src="/Imagenes/icon2.svg" alt="Contacto" class="footer-icon">
+                    <img src="../Imagenes/icon2.svg" alt="Contacto" class="footer-icon">
                     <div class="ms-2">
                         <h6>Contacto:</h6>
                         <p>Tel: 55-12-47-02-06</p>
@@ -242,11 +249,11 @@ $clienteLogueado = [
                 <div class="col-md-4">
                     <h6>Síguenos:</h6>
                     <div class="d-flex align-items-center">
-                        <img src="imagenes/icon3.png" alt="Facebook" class="footer-icon">
+                        <img src="../Imagenes/icon3.png" alt="Facebook" class="footer-icon">
                         <a href="https://www.facebook.com" class="footer-link ms-2">Facebook</a>
                     </div>
                     <div class="d-flex align-items-center mt-2">
-                        <img src="imagenes/icon4.png" alt="Instagram" class="footer-icon">
+                        <img src="../Imagenes/icon4.png" alt="Instagram" class="footer-icon">
                         <a href="https://www.instagram.com" class="footer-link ms-2">Instagram</a>
                     </div>
                 </div>

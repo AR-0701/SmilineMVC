@@ -1,6 +1,15 @@
 <?php
-$rolesPermitidos = [3, 4]; // rol Cliente
-include 'logica/validarLogin.php';
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [3, 4]; // asistente
+include '../controladores/ControladorUsuario.php';
+
+$clienteLogueado = [
+    'id' => $_SESSION['idUsuario'],
+    'nombre' => $_SESSION['nombre'],
+    'aMaterno' => $_SESSION['aMaterno'],
+    'aPaterno' => $_SESSION['aPaterno'],
+    'idRol' => $_SESSION['idRol']
+];
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +90,8 @@ $idCliente = isset($_GET['id']) ? htmlspecialchars($_GET['id']) : '';
         <div class="card mb-4">
             <div class="card-header"></div>
             <div class="card-body">
-                <form method="POST" action="logica/agendar_cita.php">
+                <form method="POST" action="../controladores/controladorClientes.php" id="agendarCitaForm">
+                    <input type="hidden" name="accion" value="agendar"> <!-- 🔴 ESTE CAMPO ES CLAVE -->
 
                     <p><strong>ID Cliente:</strong> <?php echo $idCliente; ?></p>
                     <input type="hidden" name="idUsuario" value="<?php echo $idCliente; ?>"> <!-- ID oculto -->

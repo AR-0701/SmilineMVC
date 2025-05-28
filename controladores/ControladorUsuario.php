@@ -51,11 +51,11 @@ function validarRol() {
 function redirigirPorRol() {
     switch ($_SESSION['idRol']) {
         case 1:
-            header("Location: ../inicioClientes.php");
+            header("Location: ../public/inicioClientes.php");
             break;
         case 2:
         case 3:
-            header("Location: ../principalAsistentes.php");
+            header("Location: ../public/principalAsis.php");
             break;
         case 4:
             header("Location: ../principalAdmin.php");

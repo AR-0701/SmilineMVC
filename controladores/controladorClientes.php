@@ -2,8 +2,8 @@
 session_start();
 
 // Validar que el usuario está logueado
-if (!isset($_SESSION['idUsuario']) || $_SESSION['idRol'] != 1) {
-    header('Location: ../login.php');
+if (!isset($_SESSION['idUsuario']) || !in_array($_SESSION['idRol'], [1, 3])) {
+    header('Location: ../public/login.php');
     exit();
 }
 

@@ -1,7 +1,17 @@
 <?php
-$rolesPermitidos = [3]; // rol Admin
-include 'logica/validarLogin.php';
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [3]; // asistente
+include '../controladores/ControladorUsuario.php';
+
+$clienteLogueado = [
+    'id' => $_SESSION['idUsuario'],
+    'nombre' => $_SESSION['nombre'],
+    'aMaterno' => $_SESSION['aMaterno'],
+    'aPaterno' => $_SESSION['aPaterno'],
+    'idRol' => $_SESSION['idRol']
+];
 $clientes = [];
+include '../controladores/controladorVerClientes.php';
 
 ?>
 <!DOCTYPE html>
@@ -279,13 +289,17 @@ $clientes = [];
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="#">
-                        <img src="imagenes/loogo.png" alt="Smile Line Odontología">
+                        <img src="../Imagenes/loogo.png" alt="Smile Line Odontología">
                     </a>
                 </div>
                 <div class="user-menu">
-                    <img src="imagenes/User.png" class="user-icon" alt="Usuario">
+                    <img src="../Imagenes/User.png" class="user-icon" alt="Usuario">
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="Logica/logout.php">Cerrar sesión</a>
+                        <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
+                            <input type="hidden" name="accion" value="logout">
+                        </form>
+
+                        <a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar sesión</a>
                     </div>
                 </div>
             </div>
@@ -320,20 +334,21 @@ $clientes = [];
                         </tr>
                     </thead>
                     <tbody id="clientTableBody">
-                        <?php
-                        include 'logica/verClie.php';
-                        foreach ($clientes as $cliente) { ?>
+                        <?php foreach ($clientes as $cliente) { ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($cliente['idc']); ?></td>
+                                <td><?php echo htmlspecialchars($cliente['idUsuario']); ?></td>
                                 <td><?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?></td>
-                                <td><?php echo htmlspecialchars($cliente['correo']); ?></td>
-                                <button class="agendarCitaBtn btn btn-primary"
-                                    data-id="<?php echo htmlspecialchars($cliente['idc']); ?>"
-                                    data-nombre="<?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?>">
-                                    Agendar Cita
-                                </button>
+                                <td><?php echo htmlspecialchars($cliente['email']); ?></td>
+                                <td>
+                                    <button class="agendarCitaBtn btn btn-primary"
+                                        data-id="<?php echo htmlspecialchars($cliente['idUsuario']); ?>"
+                                        data-nombre="<?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?>">
+                                        Agendar Cita
+                                    </button>
+                                </td>
                             </tr>
                         <?php } ?>
+
                     </tbody>
                 </table>
             </div>
@@ -364,8 +379,8 @@ $clientes = [];
             button.addEventListener('click', function() {
                 var idCli = this.getAttribute('data-id');
                 console.log('ID Cliente: ', idCli); // Depuración
-                if (idCli ) {
-                    var url = `agendaradyasis.php?id=${idCli}`;
+                if (idCli) {
+                    var url = `../public/agendarAdminAsis.php?id=${idCli}`;
                     window.location.href = url;
                 } else {
                     console.error("ID Cliente o Nombre no encontrado.");

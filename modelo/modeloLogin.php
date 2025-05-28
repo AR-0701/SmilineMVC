@@ -32,10 +32,10 @@ try {
                 break;
             case 2:
             case 3:
-                $redirect = '../principalAsistentes.php';
+                $redirect = '../public/principalAsis.php';
                 break;
             case 4:
-                $redirect = '../principalAdmin.php';
+                $redirect = '../public/principalAdmin.php';
                 break;
             default:
                 throw new Exception("Rol no reconocido.");
