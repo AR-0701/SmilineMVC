@@ -27,16 +27,15 @@ try {
                     // Redireccionar según el rol
                     switch ($clienteLogueado['idRol']) {
                         case 1:
-                            header("Location: ../vistas/inicioClientes");
+                            header("Location: ../public/inicioClientes.php?msg=eliminada");
                             break;
                         case 2:
-                            header("Location: ../vistas/inicioAsistentes.php?msg=eliminada");
                             break;
                         case 3:
-                            header("Location: ../vistas/inicioAdmin.php?msg=eliminada");
+                            header("Location: ../public/principalAsis.php?msg=eliminada");
                             break;
                         default:
-                            header("Location: ../login.php");
+                            header("Location: ../public/login.php");
                             break;
                     }
                     exit();

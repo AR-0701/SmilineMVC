@@ -37,7 +37,7 @@ function validarRol() {
     $rolesPermitidos = $_POST['roles'] ?? [];
 
     if (!isset($_SESSION['idRol'])) {
-        header("Location: ../login.php");
+        header("Location: ../public/login.php");
         exit;
     }
 

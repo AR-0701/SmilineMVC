@@ -1,7 +1,15 @@
 <?php
-$rolesPermitidos = [3]; // rol asistente
-include 'logica/validarLogin.php';
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [3]; // asistente y administrador
+include '../controladores/ControladorUsuario.php';
 
+$clienteLogueado = [
+    'id' => $_SESSION['idUsuario'],
+    'nombre' => $_SESSION['nombre'],
+    'aMaterno' => $_SESSION['aMaterno'],
+    'aPaterno' => $_SESSION['aPaterno'],
+    'idRol' => $_SESSION['idRol']
+];
 ?>
 <!DOCTYPE html>
 <html lang="es">

@@ -1,6 +1,6 @@
 <?php
 $_POST['accion'] = 'validarRol';
-$_POST['roles'] = [3,4]; // asistente y administrador
+$_POST['roles'] = [3, 4]; // asistente y administrador
 include '../controladores/ControladorUsuario.php';
 
 $clienteLogueado = [
@@ -265,14 +265,18 @@ $clienteLogueado = [
                         body: `idCita=${encodeURIComponent(idCita)}`
                     })
                     .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Error en la solicitud al servidor.');
+                        // Aunque haya redirección, muchos servidores devuelven 200 con contenido HTML
+                        if (response.redirected) {
+                            // Si hubo redirección, la eliminación fue exitosa
+                            window.location.href = response.url; // Redirige a la página final
+                            return;
                         }
-                        return response.text();
+                        return response.text(); // Si no hubo redirección, analiza el texto
                     })
                     .then(data => {
-                        alert(data);
-                        location.reload(); // Recargar la página para reflejar los cambios
+                        if (data && !data.includes('<')) { // Si devuelve texto plano (sin HTML)
+                            alert(data); // Podría ser: "Error al eliminar la cita."
+                        }
                     })
                     .catch(error => {
                         console.error('Error:', error);
@@ -300,13 +304,16 @@ $clienteLogueado = [
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="#">
-                        <img src="imagenes/loogo.png" alt="Smile Line Odontología">
+                        <img src="../Imagenes/loogo.png" alt="Smile Line Odontología">
                     </a>
                 </div>
                 <div class="user-menu">
-                    <img src="imagenes/User.png" class="user-icon" alt="Usuario">
+                    <img src="../Imagenes/User.png" class="user-icon" alt="Usuario">
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="Logica/logout.php">Cerrar sesión</a>
+                        <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
+                            <input type="hidden" name="accion" value="logout">
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -404,7 +411,7 @@ $clienteLogueado = [
                 .then(html => {
                     document.getElementById("citasTable").innerHTML = html; // Actualiza la tabla.
                 })
-                .catch(error => {   
+                .catch(error => {
                     console.error("Error:", error);
                     alert("Hubo un problema al cargar las citas.");
                 });
