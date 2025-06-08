@@ -1,6 +1,8 @@
 <?php
-$rolesPermitidos = [4]; // rol Admin
-include 'logica/validarLogin.php';
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [4]; // admin
+include '../controladores/ControladorUsuario.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -502,6 +504,8 @@ include 'logica/validarLogin.php';
             });
         });
     </script>
+    <?php include 'chatbot/index.php'; ?>
+
 </body>
 
 </html>

@@ -239,18 +239,11 @@ $clienteLogueado = [
             });
         });
     </script>
+    <?php include 'chatbot/index.php'; ?>
+
 
 </body>
-<iframe src="../chatbot/index.php" style="
-position: fixed;
-    display: block;
-    bottom: 20px;
-    right: 20px;
-    border: none;
-    width: 350px;
-    height: 550px;
-    cursor: pointer;"> </iframe>
-</body>
+
 
 
 </html>

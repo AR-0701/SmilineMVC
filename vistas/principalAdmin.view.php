@@ -1,6 +1,8 @@
 <?php
-$rolesPermitidos = [4]; // rol Admin
-include 'logica/validarLogin.php';
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [4]; // asistente
+include '../controladores/ControladorUsuario.php';
+
 $clienteLogueado = [
     'id' => $_SESSION['idUsuario'],
     'nombre' => $_SESSION['nombre'],
@@ -176,13 +178,12 @@ $clienteLogueado = [
     <button class="menu-toggle" id="menuToggle">&#9776;</button>
     <div class="sidebar" id="sidebar">
         <ul>
-            <li><a href="mostrarClientesAd.php">Ver clientes/Agendar</a></li>
-            <li><a href="mCitasAd.php">Consulta del registro de citas</a></li>
-            <li><a href="mHorario.php">Modificar Horarios</a></li>
-            <li><a href="registroAsistentes.php">Registrar Asistentes</a></li>
-            <li><a href="verAsistentes.php">Ver Asistentes</a></li>
-            <li><a href="ServicioAdmin.php">Servicios</a></li>
-            <li><a href="PromocionesAdmin.php">Promociones</a></li>
+            <li><a href="../public/mCitasAdmin.php">Consulta del registro de citas</a></li>
+            <li><a href="../public/mHorario.php">Modificar Horarios</a></li>
+            <li><a href="../public/registroAsis.php">Registrar Asistentes</a></li>
+            <li><a href="../public/verAsistentes.php"></a></li>
+            <li><a href="../public/ServicioAdmin.php">Servicios</a></li>
+            <li><a href="../public/PromocionesAdmin.php">Promociones</a></li>
         </ul>
     </div>
 
@@ -195,9 +196,13 @@ $clienteLogueado = [
                     </a>
                 </div>
                 <div class="user-menu">
-                    <img src="imagenes/User.png" class="user-icon" alt="Usuario">
+                    <img src="../Imagenes/User.png" class="user-icon" alt="Usuario">
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="logica/logout.php">Cerrar sesión</a>
+                        <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
+                            <input type="hidden" name="accion" value="logout">
+                        </form>
+
+                        <a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar sesión</a>
                     </div>
                 </div>
             </div>
@@ -300,6 +305,7 @@ $clienteLogueado = [
             });
         });
     </script>
+    <?php include 'chatbot/index.php'; ?>
 </body>
 
 </html>

@@ -262,6 +262,7 @@
 
 
 </body>
+<?php include 'chatbot/index.php'; ?>
 
 
 </html>

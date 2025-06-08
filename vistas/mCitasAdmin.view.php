@@ -1,7 +1,15 @@
 <?php
-include 'logica/conexion.php';
-$rolesPermitidos = [4]; // rol Admin
-include 'logica/validarLogin.php';
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [4]; // asistente y administrador
+include '../controladores/ControladorUsuario.php';
+
+$clienteLogueado = [
+    'id' => $_SESSION['idUsuario'],
+    'nombre' => $_SESSION['nombre'],
+    'aMaterno' => $_SESSION['aMaterno'],
+    'aPaterno' => $_SESSION['aPaterno'],
+    'idRol' => $_SESSION['idRol']
+];
 ?>
 
 <!DOCTYPE html>
@@ -30,13 +38,6 @@ include 'logica/validarLogin.php';
             position: relative;
         }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 2px solid #00b3b3;
-        }
 
         .sidebar {
             position: fixed;
@@ -89,7 +90,7 @@ include 'logica/validarLogin.php';
 
         .user-menu {
             position: absolute;
-            top: 33px;
+            top: 24px;
             right: 10px;
             display: flex;
             align-items: center;
@@ -256,7 +257,7 @@ include 'logica/validarLogin.php';
             }
 
             if (confirm('¿Estás seguro de que deseas eliminar esta cita?')) {
-                fetch('logica/eliminarCita.php', {
+                fetch('../controladores/eliminarCita.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
@@ -264,14 +265,18 @@ include 'logica/validarLogin.php';
                         body: `idCita=${encodeURIComponent(idCita)}`
                     })
                     .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Error en la solicitud al servidor.');
+                        // Aunque haya redirección, muchos servidores devuelven 200 con contenido HTML
+                        if (response.redirected) {
+                            // Si hubo redirección, la eliminación fue exitosa
+                            window.location.href = response.url; // Redirige a la página final
+                            return;
                         }
-                        return response.text();
+                        return response.text(); // Si no hubo redirección, analiza el texto
                     })
                     .then(data => {
-                        alert(data);
-                        location.reload(); // Recargar la página para reflejar los cambios
+                        if (data && !data.includes('<')) { // Si devuelve texto plano (sin HTML)
+                            alert(data); // Podría ser: "Error al eliminar la cita."
+                        }
                     })
                     .catch(error => {
                         console.error('Error:', error);
@@ -287,13 +292,10 @@ include 'logica/validarLogin.php';
     <button class="menu-toggle" id="menuToggle">&#9776;</button>
     <div class="sidebar" id="sidebar">
         <ul>
-            <li><a href="principalAdmin.php">Principal</a></li>
-            <li><a href="mostrarClientesAd.php">Ver clientes/Agendar</a></li>
-            <li><a href="mHorario.php">Modificar Horarios</a></li>
-            <li><a href="registroAsistentes.php">Registrar Asistentes</a></li>
-            <li><a href="verAsistentes.php">Ver Asistentes</a></li>
-            <li><a href="ServicioAdmin.php">Servicios</a></li>
-            <li><a href="PromocionesAdmin.php">Promociones</a></li>
+            <li><a href="principalAsistentes.php">Principal</a></li>
+            <li><a href="mostrarClientes.PHP">Ver clientes/Agendar</a></li>
+            <li><a href="Servicio_Asis.php">Servicios</a></li>
+            <li><a href="Promociones_Asis.php">Promociones</a></li>
         </ul>
     </div>
 
@@ -302,13 +304,16 @@ include 'logica/validarLogin.php';
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="#">
-                        <img src="imagenes/loogo.png" alt="Smile Line Odontología">
+                        <img src="../Imagenes/loogo.png" alt="Smile Line Odontología">
                     </a>
                 </div>
                 <div class="user-menu">
-                    <img src="imagenes/User.png" class="user-icon" alt="Usuario">
+                    <img src="../Imagenes/User.png" class="user-icon" alt="Usuario">
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="Logica/logout.php">Cerrar sesión</a>
+                        <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
+                            <input type="hidden" name="accion" value="logout">
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -348,7 +353,8 @@ include 'logica/validarLogin.php';
                     </tbody>
                 </table>
             </div>
-        </main>
+    </div>
+    </main>
 
     </div>
     <script>
@@ -381,7 +387,7 @@ include 'logica/validarLogin.php';
             });
         });
     </script>
-       <script>
+    <script>
         document.getElementById("dateForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Evita que el formulario recargue la página.
 
@@ -391,7 +397,7 @@ include 'logica/validarLogin.php';
                 return;
             }
 
-            fetch("filtarCitas.php", {
+            fetch("../controladores/controladorAsistentes.php", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
@@ -405,13 +411,12 @@ include 'logica/validarLogin.php';
                 .then(html => {
                     document.getElementById("citasTable").innerHTML = html; // Actualiza la tabla.
                 })
-                .catch(error => {   
+                .catch(error => {
                     console.error("Error:", error);
                     alert("Hubo un problema al cargar las citas.");
                 });
         });
     </script>
-
 
 </body>
 

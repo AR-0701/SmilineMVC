@@ -415,6 +415,8 @@ body {
             });
         });
     </script>
+    <?php include 'chatbot/index.php'; ?>
+
 
     </body>
 

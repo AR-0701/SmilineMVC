@@ -109,6 +109,8 @@ session_start();
                 togglePassword.textContent = type === "password" ? "👁️" : "🙈";
             });
         </script>
+        <?php include 'chatbot/index.php'; ?>
+
 </body>
 <script>
     document.getElementById("loginForm").addEventListener("submit", function(e) {

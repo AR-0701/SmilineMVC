@@ -420,6 +420,7 @@ include '../controladores/controladorVerClientes.php';
             });
         });
     </script>
+    <?php include 'chatbot/index.php'; ?>
 </body>
 
 </html>

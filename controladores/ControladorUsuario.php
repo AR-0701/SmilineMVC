@@ -58,7 +58,7 @@ function redirigirPorRol() {
             header("Location: ../public/principalAsis.php");
             break;
         case 4:
-            header("Location: ../principalAdmin.php");
+            header("Location: ../public/principalAdmin.php");
             break;
         default:
             header("Location: ../login.php");
