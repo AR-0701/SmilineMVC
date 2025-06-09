@@ -54,7 +54,6 @@ function filtrarCitasPorFecha($fecha) {
                 if ($fila['tipo_cita'] == 'temporal') {
                     echo "<td>
                             <button class='button1' onclick='eliminarCitaTemporal(" . htmlspecialchars($fila['idCita']) . ")'>Eliminar</button>
-                            <button class='button2' onclick='registrarCitaTemporal(" . htmlspecialchars($fila['idCita']) . ")'>Registrar</button>
                           </td>";
                 } else {
                     echo "<td><button class='button1' onclick='eliminarCita(" . htmlspecialchars($fila['idCita']) . ")'>Eliminar</button></td>";
