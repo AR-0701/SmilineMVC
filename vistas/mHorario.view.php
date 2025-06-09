@@ -485,8 +485,8 @@
             $(document).ready(function() {
                 $("#datepicker").datepicker();
             });
-            
         </script>
+        <?php include 'chatbot/index.php'; ?>
 
     </body>
 

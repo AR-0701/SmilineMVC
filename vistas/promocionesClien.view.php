@@ -319,7 +319,6 @@ $clienteLogueado = [
     </script>
     <?php include 'chatbot/index.php'; ?>
 
-
 </body>
 
 </html>
