@@ -1,11 +1,8 @@
 <?php
 include '../modelo/Conexion.php';
+ $_SESSION['idRol']="1";
 
 $clienteLogueado = [
-    'id' => $_SESSION['idUsuario'],
-    'nombre' => $_SESSION['nombre'],
-    'aMaterno' => $_SESSION['aMaterno'],
-    'aPaterno' => $_SESSION['aPaterno'],
     'idRol' => $_SESSION['idRol']
 ];
 
