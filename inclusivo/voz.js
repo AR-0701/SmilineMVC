@@ -47,6 +47,7 @@ function hablar(texto) {
 
 
 recognition.onresult = function (event) {
+
     let texto = event.results[0][0].transcript.toLowerCase().trim();
     texto = texto.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // quita acentos
 
@@ -56,6 +57,7 @@ recognition.onresult = function (event) {
 
     if (estado === "bienvenida") {
         nombreCliente = texto;
+        console.log("Nombre del cliente:", nombreCliente);
         hablar(`¿Confirmas que tu nombre es ${nombreCliente}? Responde sí o no.`);
         estado = "confirmarNombre";
 
