@@ -627,6 +627,10 @@
                 });
         });
 
+        function verExpediente(idCita) {
+            window.location.href = 'expediente.php?id=' + idCita;
+        }
+
         function eliminarCita(idCita) {
             if (!idCita || isNaN(idCita)) {
                 alert('ID de cita no válido.');
@@ -661,8 +665,6 @@
                     });
             }
         }
-
-
     </script>
 </body>
 

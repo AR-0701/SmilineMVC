@@ -343,12 +343,15 @@ include '../controladores/controladorVerClientes.php';
                                     <button class="agendarCitaBtn btn btn-primary"
                                         data-id="<?php echo htmlspecialchars($cliente['idUsuario']); ?>"
                                         data-nombre="<?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?>">
-                                        Agendar Cita
+                                        <i class="fas fa-calendar-plus"></i> Agendar
+                                    </button>
+                                    <button class="btn btn-info verHistorial"
+                                        data-id="<?php echo htmlspecialchars($cliente['idUsuario']); ?>">
+                                        <i class="fas fa-history"></i> Historial
                                     </button>
                                 </td>
                             </tr>
                         <?php } ?>
-
                     </tbody>
                 </table>
             </div>
@@ -408,6 +411,13 @@ include '../controladores/controladorVerClientes.php';
             });
 
         });
+        // Manejar clic en botones de historial
+        document.querySelectorAll('.verHistorial').forEach(button => {
+            button.addEventListener('click', function() {
+                const idUsuario = this.getAttribute('data-id');
+                window.location.href = `../vistas/pruebaVer.php?id=${idUsuario}`;
+            });
+        });
     </script>
 
     <script>
@@ -420,6 +430,7 @@ include '../controladores/controladorVerClientes.php';
             });
         });
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <?php include 'chatbot/index.php'; ?>
 </body>
 
