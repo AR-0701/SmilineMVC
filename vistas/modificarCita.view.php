@@ -234,7 +234,7 @@ $citasPendientes = $stmt->fetchAll();
         <footer>
         </footer>
     </div>
-    <?php include 'chatbot/index.php'; ?>
+    <?php include '../chatbot/index.php'; ?>
 
 </body>
 

@@ -52,16 +52,13 @@ function filtrarCitasPorFecha($fecha)
                 echo "<td>" . htmlspecialchars($fila['dia']) . "</td>";
                 echo "<td>" . htmlspecialchars($fila['hora']) . "</td>";
 
-                if ($fila['tipo_cita'] == 'temporal') {
-                    echo "<td>
-            <button class='button1' onclick='eliminarCitaTemporal(" . htmlspecialchars($fila['idCita']) . ")'>Eliminar</button>
-          </td>";
-                } else {
-                    echo "<td>
-            <button class='button1' onclick='eliminarCita(" . htmlspecialchars($fila['idCita']) . ")'>Eliminar</button>
-            <button class='button2' onclick='verExpediente(" . htmlspecialchars($fila['idCita']) . ")'>Expediente</button>
-          </td>";
-                }
+                echo "<td>
+                                        <button class='action-btn btn-schedule' data-bs-toggle='modal' data-bs-target='#historialModal' title='Agregar Historial'>
+                                            <i class='fa-solid fa-file-medical'></i>
+                                        </button>
+                                    </td>";
+
+
 
                 echo "</tr>";
             }
