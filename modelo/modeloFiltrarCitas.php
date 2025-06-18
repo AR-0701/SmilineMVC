@@ -52,6 +52,7 @@ function filtrarCitasPorFecha($fecha)
                 echo "<td>" . htmlspecialchars($fila['dia']) . "</td>";
                 echo "<td>" . htmlspecialchars($fila['hora']) . "</td>";
 
+<<<<<<< HEAD
                 echo "<td>
                                         <button class='action-btn btn-schedule' data-bs-toggle='modal' data-bs-target='#historialModal' title='Agregar Historial'>
                                             <i class='fa-solid fa-file-medical'></i>
@@ -59,11 +60,20 @@ function filtrarCitasPorFecha($fecha)
                                     </td>";
 
 
+=======
+                if ($fila['tipo_cita'] == 'temporal') {
+                    echo "<td>
+            <button class='button1' onclick='eliminarCitaTemporal(" . htmlspecialchars($fila['idCita']) . ")'>Eliminar</button>
+          </td>";
+                } else {
+                 
+                }
+>>>>>>> 16e36cc0eeb5924bba12addb4473b8da315631c2
 
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='5'>No hay citas para esta fecha.</td></tr>";
+            echo "<tr><td colspan='4'>No hay citas para esta fecha.</td></tr>";
         }
     } catch (PDOException $e) {
         error_log("Error al consultar citas: " . $e->getMessage());

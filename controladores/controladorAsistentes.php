@@ -3,7 +3,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha = $_POST['fecha'] ?? null;
 
     if (!$fecha) {
-        echo "<tr><td colspan='5'>Fecha no válida.</td></tr>";
+        echo "<tr><td colspan='4'>Fecha no válida.</td></tr>";
         exit;
     }
 

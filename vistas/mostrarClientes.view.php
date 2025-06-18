@@ -21,347 +21,579 @@ include '../controladores/controladorVerClientes.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Clientes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            background: linear-gradient(to top, #13cdbd, #5a18ff);
-            padding-top: 50px;
+            font-family: 'Poppins', sans-serif;
+            background-color: #e0f7fa;
+            overflow-x: hidden;
         }
 
-        .container {
-            background-color: white;
-            border-radius: 10px;
+        /* Sidebar Styles */
+
+        .sidebar {
+            width: 80px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: #00A99D;
+            color: white;
+            transition: width 0.3s;
             overflow: hidden;
-            width: 80%;
-            max-width: 1200px;
-            margin: 15px auto;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            position: relative;
+            z-index: 1000;
         }
 
-        header {
+        .sidebar:hover {
+            width: 220px;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .sidebar-logo-text {
+            margin-left: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+            display: none;
+        }
+
+        .sidebar:hover .sidebar-logo-text {
+            display: block;
+        }
+
+        .sidebar-menu {
+            flex: 1;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+
+        .sidebar-menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-menu-item.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar-menu-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-menu-text {
+            display: none;
+        }
+
+        .sidebar:hover .sidebar-menu-text {
+            display: block;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .sidebar.collapsed .logout-btn {
+            width: 45px;
+            height: 45px;
+        }
+
+
+        .content-wrapper {
+            margin-left: 80px;
+            width: calc(100% - 80px);
+            transition: margin-left 0.3s;
+        }
+
+        .sidebar:hover~.content-wrapper {
+            margin-left: 220px;
+            width: calc(100% - 220px);
+        }
+
+        .sidebar-menu-item img {
+            width: 29px;
+            height: 29px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-menu-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 100px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+
+        /* Header */
+        .page-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 2px solid #00b3b3;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #E9ECEF;
         }
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -270px;
-            width: 250px;
-            height: 100%;
-            background: linear-gradient(to bottom, #00C9FF, #00A99D);
-            transition: all 0.3s ease;
-            z-index: 9999;
-            color: #000;
-            padding: 10px;
+        .page-title h1 {
+            color: #00A99D;
+            font-weight: 600;
+            margin: 0;
+            position: relative;
+            display: inline-block;
         }
 
-        .sidebar ul {
-            padding: 0;
+        .page-title h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(90deg, #00A99D, #5a18ff);
+            border-radius: 2px;
         }
 
-        .sidebar ul li {
-            list-style-type: none;
-            padding: 20px 10px;
-            border-bottom: 5px solid #00A99D;
-        }
-
-        .sidebar ul li a {
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-        }
-
-
-        .menu-toggle {
-            position: fixed;
-            top: 0px;
-            left: 1px;
-            cursor: pointer;
-            z-index: 10000;
-            background: linear-gradient(to bottom, #00C9FF, #00A99D);
+        .card {
             border: none;
-            padding: 10px 15px;
-            color: black;
-            font-size: 20px;
-
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            margin-bottom: 30px;
+            overflow: hidden;
         }
 
-        .menu-toggle:hover {
-            background: linear-gradient(to bottom, #662D91, #00C9FF, #00A99D);
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .user-menu {
+        .card-header {
+            background-color: #00A99D;
+            color: white;
+            padding: 15px 25px;
+            border-bottom: none;
+            position: relative;
+        }
+
+        .card-header::after {
+            content: '';
             position: absolute;
-            top: 33px;
-            right: 10px;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #00A99D, #5a18ff);
+        }
+
+        .card-title {
+            font-weight: 500;
+            margin: 0;
             display: flex;
             align-items: center;
         }
 
-        .user-icon {
-            height: 70px;
-            cursor: pointer;
-            margin-right: 20px;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 70px;
-            right: 0;
-            text-align: center;
-            background-color: #06a1a9;
-
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 2px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-
-
-        }
-
-        .dropdown-menu a:hover {
-            transform: scale(1.1);
-        }
-
-        .dropdown-menu.show {
-            display: block;
-        }
-
-
-
-        .logo img {
-            height: 120px;
-        }
-
-        .main {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-        }
-
-        .main .about {
-            margin-bottom: 20px;
-        }
-
-        .main .delete-form {
-            margin-bottom: 20px;
-        }
-
-        .main .delete-form-group {
-            display: flex;
-            flex-direction: row;
-            /* Cambiado a 'row' para alinear horizontalmente */
-            align-items: center;
-            /* Alinea verticalmente en el centro */
-            margin-bottom: 10px;
-        }
-
-        .main .delete-form-group label {
-            margin-bottom: 0;
-            /* Remueve el margen inferior para alinear con el input */
-            font-size: 20px;
+        .card-title i {
             margin-right: 10px;
-            /* Añade un margen derecho para separar el label del input */
         }
 
-        .main .delete-form-group input {
-            padding: 8px;
-            width: 100px;
-            max-width: 100%;
-        }
-
-        .main button {
-            padding: 10px 20px;
-            background-color: #00A99D;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-left: 70px;
-            margin-top: 12px;
-            margin-bottom: 15px;
-        }
-
-        .main button:hover {
-            background-color: #008f8f;
-        }
-
-        input[type="date"] {
-            width: 40%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 15px;
-        }
-
-        /* Estilo de la tabla */
+        /* Table Styles */
         .table-container {
-            width: 100%;
             overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table th,
-        table td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #00A99D;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
             text-align: center;
         }
 
-        table th {
-            background-color: #00A99D;
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
         }
 
-        tr.selected {
-            background-color: #00A99D;
+        .table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 800px;
+            border-bottom: #008f8f 2px solid;
         }
 
-        .button1 button {
-            padding: 10px 20px;
+        .table thead th {
+            background: #00A99D;
+            color: rgb(6, 6, 6);
+            padding: 15px;
+            font-weight: 500;
+            border: #f6fafa 1px solid;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            font-weight: bold;
+        }
+
+        .table tbody tr {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            ;
+        }
+
+        .table tbody tr:hover {
+            background-color: rgba(0, 201, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .table td {
+            padding: 15px;
+            border-bottom: 1px solid #000;
+            vertical-align: middle;
+        }
+
+        .table tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        /* Button Styles */
+        .btn-primary {
+            background-color: #00A99D;
+            border-color: #00A99D;
+        }
+
+        .btn-primary:hover {
+            background-color: #008f8f;
+            border-color: #008f8f;
+        }
+
+        .btn-outline-primary {
+            color: #00A99D;
+            border-color: #00A99D;
+        }
+
+        .btn-outline-primary:hover {
             background-color: #00A99D;
             color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-left: 2px;
-            margin-top: -80px;
-            margin-bottom: 15px;
-            border-radius: 4px;
         }
 
-        .button1 button:hover {
-            background-color: #008f8f;
-        }
-
-        /* Estilos para la barra de búsqueda */
-        .search-container {
+        /* Search Box */
+        .search-box {
+            position: relative;
             margin-bottom: 20px;
-
         }
 
-        .search-input {
-            width: 100%;
-            padding: 10px;
-            font-size: 18px;
-            border: 1px solid #008f8f;
-            border-radius: 4px;
-            text-align: center;
+        .search-box input {
+            padding-left: 45px;
+            border-radius: 8px;
+            border: 3px solid #008f8f;
+            height: 45px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.03);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         }
+
+        .search-box input:focus {
+            border-color: #5a18ff;
+            border: 3px solid #5a18ff;
+            box-shadow: 0 20px 20px rgba(0, 201, 255, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            color: #00A99D;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+                /* más pequeño */
+            }
+
+            .content-wrapper {
+                margin-left: 60px;
+                width: calc(100% - 60px);
+            }
+
+            .main-content {
+                margin-left: 60px;
+            }
+
+            .sidebar:hover {
+                width: 180px;
+            }
+
+            .sidebar:hover~.content-wrapper {
+                margin-left: 180px;
+                width: calc(100% - 180px);
+            }
+        }
+
+
+        /* Action Buttons */
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 169, 157, 0.1);
+            color: #00A99D;
+            border: none;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+
+        .action-btn:hover {
+            background: #00A99D;
+            color: white;
+        }
+         /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+    
+#historialModal .table thead th {
+  text-align: center;
+  vertical-align: middle;
+}
+
     </style>
 </head>
 
 <body>
-    <button class="menu-toggle" id="menuToggle">&#9776;</button>
-    <div class="sidebar" id="sidebar">
-        <ul>
-            <li><a href="principalAdmin.php">Principal</a></li>
-            <li><a href="mCitasAd.php">Consulta del registro de citas</a></li>
-            <li><a href="mHorario.php">Modificar Horarios</a></li>
-            <li><a href="registroAsistentes.php">Registrar Asistentes</a></li>
-            <li><a href="verAsistentes.php">Ver Asistentes</a></li>
-            <li><a href="ServicioAdmin.php">Servicios</a></li>
-            <li><a href="PromocionesAdmin.php">Promociones</a></li>
-        </ul>
-    </div>
 
-    <div class="container">
-        <header>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="logo">
-                    <a href="#">
-                        <img src="../Imagenes/loogo.png" alt="Smile Line Odontología">
-                    </a>
-                </div>
-                <div class="user-menu">
-                    <img src="../Imagenes/User.png" class="user-icon" alt="Usuario">
-                    <div class="dropdown-menu" id="dropdownMenu">
-                        <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
-                            <input type="hidden" name="accion" value="logout">
-                        </form>
-
-                        <a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar sesión</a>
-                    </div>
-                </div>
+    <!-- Menú lateral -->
+    <nav class="sidebar">
+        <div class="sidebar-nav">
+            <div class="sidebar-header">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABM0lEQVR4nO2WTW7CMBSELc5RCLBMt2VbFSFR6DJt7oBQL9nCAlqOVPShV3kRGZM4fuZnwUjexB577PiNx5hbAtABHoECKJ0m33IZEzhXH3izLQsh9IA1zVgB3Zp5JsDOw/sBxnU7XwcsXhVxdBLAJ7Cv4f0BS5+AnPYYeXZet3hVxIsroIgQ8O7M8duCu3UFlBECygp/GMHvpxQwj+C/phQwi+BPUwoYRPCz1JdQ6jwUm3OU4diWWBNkzLPPiFYtFv86YUTLBhHSt3B5/xB7DRTxDTyYExCTkTr38DZHO3dhT+LJ8xBJ+7B9oY9RZqtDWi+Ec4fR5gEVH2UeUPFR5gF1nkBpRGojQ2nFaitH/xip+OYugBv4BcW1L2F+7TLsaPJAkjyBMg8kyRMo80DKPHExHAB+w2OBcnDq2wAAAABJRU5ErkJggg=="
+                    alt="external-application-user-interface-basic-anggara-glyph-anggara-putra">
+                <span class="sidebar-logo-text">Smile Line</span>
             </div>
-        </header>
 
-        <main class="main">
-            <div class="about">
-                <div class="text-content">
-                    <div class="Titulo modify-title">
-                        <h1>Ver Clientes</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="button1">
-                <a href="registroClientess.php">
-                    <button type="button">Registrar Nuevo Cliente</button>
+            <div class="sidebar-menu">
+                <a href="../public/principalAsis.php" class="sidebar-menu-item">
+                    <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <span class="sidebar-menu-text">Inicio</span>
+                </a>
+
+                <a href="../public/mostrarClientes.php" class="sidebar-menu-item active">
+                    <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span class="sidebar-menu-text">Pacientes</span>
+                </a>
+
+                <a href="../public/mCitas.php" class="sidebar-menu-item">
+                    <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2m-4-4H9m4 0h4m-4 0v4m0 0H9m4 0h4" />
+                    </svg>
+                    <span class="sidebar-menu-text">Citas</span>
+                </a>
+
+                <a href="../public/servicioAsis.php" class="sidebar-menu-item">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB90lEQVR4nO3WT4hNYRjH8WNMItGUjSQkpVlZzIiloklNQ7GwUJqVPwuJBTUShaRIFrKQhQzFDqVsUBZiWAwWNv4M+VeSKH/jo9e8J+9c0x3vGd2F/Da3nuf8ft97zj33ed6i+JeES9jYSGC7QXU0EjodOzEm1zgN+9GPZ7iDM9iNbTiKK3iCxziH5cPktGEzZo0EXIQ3eIUT6MHhGF7qHk7hGF4k9dNojjlLYi1kLa4HnIG3OI9JNb3m+K0/hn5Sn4jeBHww1seiNXyOdJdHMIAJda4JQV01tQC4FaFfws9TF1RjfoS9f2wY6l2X3G13jvFrluH3d6HUjhzjB2yqCO1IoFtzjA9xqCK0O4GuyTFeCP+5itADCbQtx7gdr9FUAVq+ve8xrsrcbM8ETsG36M17UmiKk6gn07cqebQbsqAx4CT6Mj1nE+jsKtCuaG5NanPwNNZfYl7Sa4mjMehmNjCZsc/TyRQ3TKkHuJz01ia99UVVGVxrA3GmTsanGNqHTnzHzHjt9dgLg6VlNNC5MWgFliZ3sgvjIyAMg/lJr7cysOacczXu01KdsXcj7tiwU0stLEYrv5bw3ST45wkAx3Efn2P92qiBpXA7Ab4rzz3YYqiWFX9LWJkEX0zqC5J6f5WxWVdYjX2YOswU2hNOf/UT/qtonH4Arg46sVPur4QAAAAASUVORK5CYII="
+                        alt="toothache--v1">
+                    <span class="sidebar-menu-text">Servicios</span>
+                </a>
+
+                <a href="../public/promocionesAsis.php" class="sidebar-menu-item">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAnklEQVR4nO2TsQ2EMAxFGZGCEwXDQHlzHWIRGAOkhyJRpDgT25gCiS+liv1eYiVV9SYywAdYKeRWeMpVeH9SZxeghLsEQJvBhz/7EzC6BCV4SoIDP7PAMpY8KoEXrhJoxiIl1R99q1RQR8CBVipaboN7BWjhnhFhgWdNTSb5KuAb0KngWglX4CUJEXDpT+CZufEmMScXXtd8rDoU/ojsdG8Oel19OK4AAAAASUVORK5CYII="
+                        alt="price-tag">
+                    <span class="sidebar-menu-text">Promociones</span>
                 </a>
             </div>
 
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Buscar por nombre...">
-            </div>
 
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre Completo</th>
-                            <th>Correo</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody id="clientTableBody">
-                        <?php foreach ($clientes as $cliente) { ?>
+            <div class="sidebar-footer">
+                <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post">
+                    <input type="hidden" name="accion" value="logout">
+                    <button type="submit" class="logout-btn" title="Cerrar sesión">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header fade-in">
+            <div class="page-title">
+                <h1>Gestión de Clientes</h1>
+            </div>
+        </div>
+
+        <div class="card fade-in delay-1">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-list"></i> Listado de Clientes</h3>
+                <a href="../public/registroClien.php" class="btn btn-primary btn-sm float-end">
+                    <i class="fas fa-plus"></i> Nuevo Cliente
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="search-box fade-in delay-2">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" class="form-control" placeholder="Buscar por nombre, correo...">
+                </div>
+
+                <div class="table-container fade-in delay-3">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre Completo</th>
+                                <th>Correo Electrónico</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clientTableBody">
+                            <?php
+                            foreach ($clientes as $cliente) { ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($cliente['idUsuario']); ?></td>
                                 <td><?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?></td>
                                 <td><?php echo htmlspecialchars($cliente['email']); ?></td>
                                 <td>
-                                    <button class="agendarCitaBtn btn btn-primary"
+                                    <button class="action-btn btn-schedule agendarCitaBtn"
                                         data-id="<?php echo htmlspecialchars($cliente['idUsuario']); ?>"
                                         data-nombre="<?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?>">
-                                        <i class="fas fa-calendar-plus"></i> Agendar
+                                        <i class="fas fa-calendar-plus"></i>
                                     </button>
-                                    <button class="btn btn-info verHistorial"
+                                    <button class="action-btn btn-schedule" data-bs-toggle="modal" data-bs-target="#historialModal" title="Ver Historial"
                                         data-id="<?php echo htmlspecialchars($cliente['idUsuario']); ?>">
-                                        <i class="fas fa-history"></i> Historial
+                                        <i class="fa-solid fa-book-medical"></i> 
                                     </button>
                                 </td>
                             </tr>
                         <?php } ?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </main>
-        <footer>
-            <!-- Contenido del pie de página -->
-        </footer>
-    </div>
+        </div>
+    </main>
 
+    <!-- Modal -->
+<div class="modal fade" id="historialModal" tabindex="-1" aria-labelledby="historialModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content p-3">
+      
+      <!-- Encabezado estilo "page-header" -->
+      <div class="page-header">
+        <div class="page-title">
+          <h1 id="historialModalLabel"><i class="fas fa-list me-2"></i>Historial odontologico</h1>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Motivo</th>
+                <th>Diagnostico</th>
+                <th>Tratamiento</th>
+                <th>Observación</th>
+              </tr>
+            </thead>
+            <tbody id="historialTableBody">
+              <!-- Aquí se cargarán los datos del historial -->
+              <?php
+              // Aquí deberías incluir la lógica para obtener el historial del cliente
+              // Por ejemplo, podrías usar una consulta a la base de datos para obtener los registros del historial
+              ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+
         // Funcionalidad de búsqueda
         var searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', function() {
@@ -382,7 +614,7 @@ include '../controladores/controladorVerClientes.php';
             button.addEventListener('click', function() {
                 var idCli = this.getAttribute('data-id');
                 console.log('ID Cliente: ', idCli); // Depuración
-                if (idCli) {
+                if (idCli ) {
                     var url = `../public/agendarAdminAsis.php?id=${idCli}`;
                     window.location.href = url;
                 } else {
@@ -390,48 +622,9 @@ include '../controladores/controladorVerClientes.php';
                 }
             });
         });
+
+        
     </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var menuToggle = document.getElementById("menuToggle");
-            var sidebar = document.getElementById("sidebar");
-            var menuVisible = false;
-
-            menuToggle.addEventListener("click", function() {
-                if (!menuVisible) {
-                    sidebar.style.left = "0";
-                    menuToggle.style.left = "250px";
-                    menuVisible = true;
-                } else {
-                    sidebar.style.left = "-250px";
-                    menuToggle.style.left = "1px";
-                    menuVisible = false;
-                }
-            });
-
-        });
-        // Manejar clic en botones de historial
-        document.querySelectorAll('.verHistorial').forEach(button => {
-            button.addEventListener('click', function() {
-                const idUsuario = this.getAttribute('data-id');
-                window.location.href = `../vistas/pruebaVer.php?id=${idUsuario}`;
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const userIcon = document.querySelector(".user-icon");
-            const dropdownMenu = document.getElementById("dropdownMenu");
-
-            userIcon.addEventListener("click", function() {
-                dropdownMenu.classList.toggle("show");
-            });
-        });
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <?php include 'chatbot/index.php'; ?>
 </body>
 
 </html>
