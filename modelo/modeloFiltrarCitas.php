@@ -57,16 +57,13 @@ function filtrarCitasPorFecha($fecha)
             <button class='button1' onclick='eliminarCitaTemporal(" . htmlspecialchars($fila['idCita']) . ")'>Eliminar</button>
           </td>";
                 } else {
-                    echo "<td>
-            <button class='button1' onclick='eliminarCita(" . htmlspecialchars($fila['idCita']) . ")'>Eliminar</button>
-            <button class='button2' onclick='verExpediente(" . htmlspecialchars($fila['idCita']) . ")'>Expediente</button>
-          </td>";
+                 
                 }
 
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='5'>No hay citas para esta fecha.</td></tr>";
+            echo "<tr><td colspan='4'>No hay citas para esta fecha.</td></tr>";
         }
     } catch (PDOException $e) {
         error_log("Error al consultar citas: " . $e->getMessage());

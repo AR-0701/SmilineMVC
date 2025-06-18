@@ -11,7 +11,6 @@ const btnIniciar = document.getElementById("iniciarAsistente");
 
 btnIniciar.addEventListener("click", () => {
     hablar("Bienvenido. Por favor, dime tu nombre.");
-    recognition.start();
     btnIniciar.style.display = "none";
 });
 
@@ -249,6 +248,8 @@ recognition.onresult = function (event) {
         } else if (negaciones.some(p => texto.includes(p))) {
             hablar("Cita no agendada. Puedes intentarlo más tarde.");
             estado = "finalizado";
+            const modalNoAgendada = new bootstrap.Modal(document.getElementById('modalCitaNoAgendada'));
+                modalNoAgendada.show();
         } else {
             hablar("No entendí tu respuesta. ¿Podrías repetir?");
         }

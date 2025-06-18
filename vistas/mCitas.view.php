@@ -480,13 +480,13 @@
     <nav class="sidebar">
         <div class="sidebar-nav">
             <div class="sidebar-header">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABM0lEQVR4nO2WTW7CMBSELc5RCLBMt2VbFSFR6DJt7oBQL9nCAlqOVPShV3kRGZM4fuZnwUjexB577PiNx5hbAtABHoECKJ0m33IZEzhXH3izLQsh9IA1zVgB3Zp5JsDOw/sBxnU7XwcsXhVxdBLAJ7Cv4f0BS5+AnPYYeXZet3hVxIsroIgQ8O7M8duCu3UFlBECygp/GMHvpxQwj+C/phQwi+CPKQUMIvjTlAIGEfw09SVUOg/F5hxlOLYl1gQZ8+wzolWLxb9OGNGyQYT0LVzeP8Rew0V8Aw/mBMQkpM49vM3Rzl3Yk3jyPEzSPmwf6WOU2eqQ1gvh3GG0eUDFR5kHVHyUeUCdJ1AakdrIUFqx2srRP0YqvrgL4AZ+QXHtS5hfuww7mjyQJE+gzANJ8gTKPJAyD6TMAynzxMVwAPgNjwXKwalvAwAAAABJRU5ErkJggg=="
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABM0lEQVR4nO2WTW7CMBSELc5RCLBMt2VbFSFR6DJt7oBQL9nCAlqOVPShV3kRGZM4fuZnwUjexB577PiNx5hbAtABHoECKJ0m33IZEzhXH3izLQsh9IA1zVgB3Zp5JsDOw/sBxnU7XwcsXhVxdBLAJ7Cv4f0BS5+AnPYYeXZet3hVxIsroIgQ8O7M8duCu3UFlBECygp/GMHvpxQwj+C/phQwi+BPUwoYRPCz1JdQ6jwUm3OU4diWWBNkzLPPiFYtFv86YUTLBhHSt3B5/xB7DRTxDTyYExCTkTr38DZHO3dhT+LJ8xBJ+7B9oY9RZqtDWi+Ec4fR5gEVH2UeUPFR5gF1nkBpRGojQ2nFaitH/xip+OYugBv4BcW1L2F+7TLsaPJAkjyBMg8kyRMo80DKPHExHAB+w2OBcnDq2wAAAABJRU5ErkJggg=="
                     alt="external-application-user-interface-basic-anggara-glyph-anggara-putra">
                 <span class="sidebar-logo-text">Smile Line</span>
             </div>
 
             <div class="sidebar-menu">
-                <a href="principalAsistentes.php" class="sidebar-menu-item">
+                <a href="../public/principalAsis.php" class="sidebar-menu-item active">
                     <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -495,7 +495,7 @@
                     <span class="sidebar-menu-text">Inicio</span>
                 </a>
 
-                <a href="mostrarClientes.php" class="sidebar-menu-item">
+                <a href="../public/mostrarClientes.php" class="sidebar-menu-item">
                     <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -504,7 +504,7 @@
                     <span class="sidebar-menu-text">Pacientes</span>
                 </a>
 
-                <a href="mCitas.php" class="sidebar-menu-item active">
+                <a href="../public/mCitas.php" class="sidebar-menu-item">
                     <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -513,30 +513,22 @@
                     <span class="sidebar-menu-text">Citas</span>
                 </a>
 
-                <a href="" class="sidebar-menu-item">
-                    <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                    </svg>
-                    <span class="sidebar-menu-text">Historiales</span>
-                </a>
-
-                <a href="Servicio_Asis.php" class="sidebar-menu-item">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB90lEQVR4nO3WT4hNYRjH8WNMItGUjSQkpVlZzIiloklNQ7GwUJqVPwuJBTUShaRIFrKQhQzFDqVsUBZiWAwWNv4M+VeSKH/jo9e8J+9c0x3vGd2F/Da3nuf8ft97zj33ed6i+JeES9jYSGC7QXU0EjodOzEm1zgN+9GPZ7iDM9iNbTiKK3iCxziH5cPktGEzZo0EXIQ3eIUT6MHhGF7qHk7hGF4k9dNojjlLYi1kLa4HnIG3OI9JNb3m+K0/hn5Sn4jeBHww1seiNXyOdJdHMIAJda4JQV01tQC4FaFfws9TF1RjfoS9f2wY6l2X3G13jvFrluH3d6HUjhzjB2yqCO1IoFtzjA9xqCK0O4GuyTHeCP+5itADCbQtx7gdr9FUAVq+ve8xrsrcbM8ETsG36M17UmiKk6gn07cqebQbsqAx4CT6Mj1nE+jsKtCuaG5NanPwNNZfYl7Sa4mjMehmNjCZsc/TyRQ3TKkHuJz01ia99UVVGVxrQ3GmTsanGNqHTnzHzHjt9dgLg6VlNNC5MWgFliZ3sgvjIyAMg/lJr7cysOacczXu01KdsXcj7tiwU0stLEYrv5bw3ST45wkAx3Efn2P92qiBpXA7Ab4rzz3YYqiWFX9LWJkEX0zqC5J6f5WxWVdYjX2YOswU2hNOP/UT/qtonH4Arg46sVPur4QAAAAASUVORK5CYII="
+                <a href="../public/servicioAsis.php" class="sidebar-menu-item">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB90lEQVR4nO3WT4hNYRjH8WNMItGUjSQkpVlZzIiloklNQ7GwUJqVPwuJBTUShaRIFrKQhQzFDqVsUBZiWAwWNv4M+VeSKH/jo9e8J+9c0x3vGd2F/Da3nuf8ft97zj33ed6i+JeES9jYSGC7QXU0EjodOzEm1zgN+9GPZ7iDM9iNbTiKK3iCxziH5cPktGEzZo0EXIQ3eIUT6MHhGF7qHk7hGF4k9dNojjlLYi1kLa4HnIG3OI9JNb3m+K0/hn5Sn4jeBHww1seiNXyOdJdHMIAJda4JQV01tQC4FaFfws9TF1RjfoS9f2wY6l2X3G13jvFrluH3d6HUjhzjB2yqCO1IoFtzjA9xqCK0O4GuyTFeCP+5itADCbQtx7gdr9FUAVq+ve8xrsrcbM8ETsG36M17UmiKk6gn07cqebQbsqAx4CT6Mj1nE+jsKtCuaG5NanPwNNZfYl7Sa4mjMehmNjCZsc/TyRQ3TKkHuJz01ia99UVVGVxrA3GmTsanGNqHTnzHzHjt9dgLg6VlNNC5MWgFliZ3sgvjIyAMg/lJr7cysOacczXu01KdsXcj7tiwU0stLEYrv5bw3ST45wkAx3Efn2P92qiBpXA7Ab4rzz3YYqiWFX9LWJkEX0zqC5J6f5WxWVdYjX2YOswU2hNOf/UT/qtonH4Arg46sVPur4QAAAAASUVORK5CYII="
                         alt="toothache--v1">
                     <span class="sidebar-menu-text">Servicios</span>
                 </a>
 
-                <a href="Promociones_Asis.php" class="sidebar-menu-item">
+                <a href="../public/promocionesAsis.php" class="sidebar-menu-item">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAnklEQVR4nO2TsQ2EMAxFGZGCEwXDQHlzHWIRGAOkhyJRpDgT25gCiS+liv1eYiVV9SYywAdYKeRWeMpVeH9SZxeghLsEQJvBhz/7EzC6BCV4SoIDP7PAMpY8KoEXrhJoxiIl1R99q1RQR8CBVipaboN7BWjhnhFhgWdNTSb5KuAb0KngWglX4CUJEXDpT+CZufEmMScXXtd8rDoU/ojsdG8Oel19OK4AAAAASUVORK5CYII="
                         alt="price-tag">
                     <span class="sidebar-menu-text">Promociones</span>
                 </a>
             </div>
 
+
             <div class="sidebar-footer">
-                <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post">
+               <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post">
                     <input type="hidden" name="accion" value="logout">
                     <button type="submit" class="logout-btn" title="Cerrar sesión">
                         <i class="fas fa-sign-out-alt"></i>
@@ -558,8 +550,6 @@
             <div class="card fade-in delay-1">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Listado de Citas</h3>
-                    <a href="registroClien.php" class="btn btn-primary btn-sm float-end">
-                        <i class="fas fa-plus"></i> Nuevo Cliente
                     </a>
                 </div>
                 <div class="card-body">
@@ -581,12 +571,11 @@
                                     <th>Nombre del Cliente</th>
                                     <th>Fecha</th>
                                     <th>Hora</th>
-                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody id="citasTable">
                                 <tr>
-                                    <td colspan="5">Seleccione una fecha para ver las citas.</td>
+                                    <td colspan="4">Seleccione una fecha para ver las citas.</td>
                                 </tr>
                             </tbody>
                         </table>
