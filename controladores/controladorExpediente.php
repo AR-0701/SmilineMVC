@@ -11,27 +11,45 @@ try {
     switch ($action) {
         case 'getCitaData':
             $idCita = $_GET['idCita'] ?? 0;
-            error_log("Solicitando datos para cita ID: " . $idCita);
-            $citaData = $model->obtenerDatosCita($idCita);
-            $expediente = $model->obtenerPorCita($idCita);
-
-            echo json_encode([
-                'fecha' => $citaData['fecha'],
-                'expediente' => $expediente ?: null
-            ]);
+            try {
+                $citaData = $model->obtenerDatosCita($idCita);
+                if ($citaData['success']) {
+                    $expediente = $model->obtenerPorCita($idCita);
+                    echo json_encode([
+                        'success' => true,
+                        'fecha' => $citaData['fecha'],
+                        'expediente' => $expediente ?: null
+                    ]);
+                } else {
+                    echo json_encode($citaData);
+                }
+            } catch (Exception $e) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => $e->getMessage()
+                ]);
+            }
+            exit;
             break;
 
         case 'guardarExpediente':
             $data = json_decode(file_get_contents('php://input'), true);
-            $idCita = $data['idCita'];
-            $datosExpediente = $data['datos'];
+            $idCita = $data['idCita'] ?? 0;
+            $datosExpediente = $data['datos'] ?? [];
 
-            $success = $model->guardar($idCita, $datosExpediente);
-
-            echo json_encode([
-                'success' => $success,
-                'message' => $success ? 'Guardado correctamente' : 'Error al guardar'
-            ]);
+            try {
+                $success = $model->guardar($idCita, $datosExpediente);
+                echo json_encode([
+                    'success' => $success,
+                    'message' => $success ? 'Guardado correctamente' : 'Error al guardar'
+                ]);
+            } catch (Exception $e) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Error: ' . $e->getMessage()
+                ]);
+            }
+            exit;
             break;
 
         default:

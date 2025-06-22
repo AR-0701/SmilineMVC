@@ -1,3 +1,16 @@
+<?php
+$_POST['accion'] = 'validarRol';
+$_POST['roles'] = [3, 4]; // asistente y administrador
+include '../controladores/ControladorUsuario.php';
+
+$clienteLogueado = [
+    'id' => $_SESSION['idUsuario'],
+    'nombre' => $_SESSION['nombre'],
+    'aMaterno' => $_SESSION['aMaterno'],
+    'aPaterno' => $_SESSION['aPaterno'],
+    'idRol' => $_SESSION['idRol']
+];
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -361,8 +374,26 @@
             transform: translateY(-2px);
         }
 
-        /* Action Buttons */
 
+        /* Action Buttons */
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 169, 157, 0.1);
+            color: #00A99D;
+            border: none;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+
+        .action-btn:hover {
+            background: #00A99D;
+            color: white;
+        }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -431,62 +462,195 @@
         }
 
 
-
-        /* citas temporales */
-
-
-        .cita-temporal {
-            background-color: #fffacd;
-            /* Amarillo claro para diferenciar */
+        /* Header */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #E9ECEF;
         }
 
-        .button1 {
-            background-color: #f44336;
-            /* Rojo para eliminar */
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .page-title h1 {
+            color: #00A99D;
+            font-weight: 600;
+            margin: 0;
+            position: relative;
+            display: inline-block;
         }
 
-        .button2 {
-            background-color: #4CAF50;
-            /* Verde para registrar */
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 5px;
+        .page-title h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(90deg, #00A99D, #5a18ff);
+            border-radius: 2px;
         }
 
-        .button3 {
-            background-color: #2196F3;
-            /* Azul para registrar todas */
-            color: white;
-            padding: 8px 16px;
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #343a40;
+            font-size: 22px;
+        }
+
+        .input-group-custom {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            color: #00A99D;
+            font-size: 1.6rem;
+            z-index: 4;
+        }
+
+        .form-control-custom {
+            width: 100%;
+            padding: 12px 15px 12px 50px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control-custom:focus {
+            border-color: #00A99D;
+            box-shadow: 0 0 0 0.25rem rgba(0, 169, 157, 0.25);
+            outline: none;
+        }
+
+        .form-select-custom {
+            width: 100%;
+            padding: 12px 15px 12px 50px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-color: white;
+        }
+
+        .form-select-custom:focus {
+            border-color: #00A99D;
+            box-shadow: 0 0 0 0.25rem rgba(0, 169, 157, 0.25);
+            outline: none;
+        }
+
+        .password-checklist {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
+        }
+
+        .password-checklist p {
+            font-weight: 600;
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+
+        .password-checklist ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .password-checklist li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .password-checklist li i {
+            margin-right: 8px;
+            font-size: 0.8rem;
+        }
+
+        .password-checklist li.valid {
+            color: #00A99D;
+        }
+
+        .password-checklist li.valid i {
+            color: #00A99D;
+        }
+
+        .btn-primary-custom {
+            background-color: #00A99D;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #008f8f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 169, 157, 0.3);
+            color: white;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
             cursor: pointer;
-            font-weight: bold;
+            color: #6c757d;
+            z-index: 5;
+        }
+
+        .is-invalid {
+            border-color: #00756d !important;
+        }
+
+        .invalid-feedback {
+            color: #00756d;
+            font-size: 1.0rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Ajuste específico cuando el ícono está con textarea */
+        .textarea-icon .input-icon {
+            top: 15px;
         }
     </style>
 </head>
 
 <body>
-
     <!-- Menú lateral -->
     <nav class="sidebar">
         <div class="sidebar-nav">
             <div class="sidebar-header">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABM0lEQVR4nO2WTW7CMBSELc5RCLBMt2VbFSFR6DJt7oBQL9nCAlqOVPShV3kRGZM4fuZnwUjexB577PiNx5hbAtABHoECKJ0m33IZEzhXH3izLQsh9IA1zVgB3Zp5JsDOw/sBxnU7XwcsXhVxdBLAJ7Cv4f0BS5+AnPYYeXZet3hVxIsroIgQ8O7M8duCu3UFlBECygp/GMHvpxQwj+C/phQwi+BPUwoYRPCz1JdQ6jwUm3OU4diWWBNkzLPPiFYtFv86YUTLBhHSt3B5/xB7DRTxDTyYExCTkTr38DZHO3dhT+LJ8xBJ+7B9oY9RZqtDWi+Ec4fR5gEVH2UeUPFR5gF1nkBpRGojQ2nFaitH/xip+OYugBv4BcW1L2F+7TLsaPJAkjyBMg8kyRMo80DKPHExHAB+w2OBcnDq2wAAAABJRU5ErkJggg=="
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABM0lEQVR4nO2WTW7CMBSELc5RCLBMt2VbFSFR6DJt7oBQL9nCAlqOVPShV3kRGZM4fuZnwUjexB577PiNx5hbAtABHoECKJ0m33IZEzhXH3izLQsh9IA1zVgB3Zp5JsDOw/sBxnU7XwcsXhVxdBLAJ7Cv4f0BS5+AnPYYeXZet3hVxIsroIgQ8O7M8duCu3UFlBECygp/GMHvpxQwj+C/phQwi+CPUwoYRPCz1JdQ6jwUm3OU4diWWBNkzLPPiFYtFv86YUTLBhHSt3B5/xB7DRTxDTyYExCTkTr38DZHO3dhT+LJ8xBJ+7B9oY9RZqtDWi+Ec4fR5gEVH2UeUPFR5gF1nkBpRGojQ2nFaitH/xip+OYugBv4BcW1L2F+7TLsaPJAkjyBMg8kyRMo80DKPHExHAB+w2OBcnDq2wAAAABJRU5ErkJggg=="
                     alt="external-application-user-interface-basic-anggara-glyph-anggara-putra">
                 <span class="sidebar-logo-text">Smile Line</span>
             </div>
 
             <div class="sidebar-menu">
-                <a href="../public/principalAsis.php" class="sidebar-menu-item active">
+                <a href="../public/principalAdmin.php" class="sidebar-menu-item active">
                     <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -513,14 +677,9 @@
                     <span class="sidebar-menu-text">Citas</span>
                 </a>
 
-<<<<<<< HEAD
-                <a href="Servicio_Asis.php" class="sidebar-menu-item">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB90lEQVR4nO3WT4hNYRjH8WNMItGUjSQkpVlZzIiloklNQ7GwUJqVPwuJBTUShaRIFrKQhQzFDqVsUBZiWAwWNv4M+VeSKH/jo9e8J+9c0x3vGd2F/Da3nuf8ft97zj33ed6i+JeES9jYSGC7QXU0EjodOzEm1zgN+9GPZ7iDM9iNbTiKK3iCxziH5cPktGEzZo0EXIQ3eIUT6MHhGF7qHk7hGF4k9dNojjlLYi1kLa4HnIG3OI9JNb3m+K0/hn5Sn4jeBHww1seiNXyOdJdHMIAJda4JQV01tQC4FaFfws9TF1RjfoS9f2wY6l2X3G13jvFrluH3d6HUjhzjB2yqCO1IoFtzjA9xqCK0O4GuyTHeCP+5itADCbQtx7gdr9FUAVq+ve8xrsrcbM8ETsG36M17UmiKk6gn07cqebQbsqAx4CT6Mj1nE+jsKtCuaG5NanPwNNZfYl7Sa4mjMehmNjCZsc/TyRQ3TKkHuJz01ia99UVVGVxrQ3GmTsanGNqHTnzHzHjt9dgLg6VlNNC5MWgFliZ3sgvjIyAMg/lJr7cysOacczXu01KdsXcj7tiwU0stLEYrv5bw3ST45wkAx3Efn2P92qiBpXA7Ab4rzz3YYqiWFX9LWJkEX0zqC5J6f5WxWVdYjX2YOswU2hNOP/UT/qtonH4Arg46sVPur4QAAAAASUVORK5CYII="
-=======
                 <a href="../public/servicioAsis.php" class="sidebar-menu-item">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB90lEQVR4nO3WT4hNYRjH8WNMItGUjSQkpVlZzIiloklNQ7GwUJqVPwuJBTUShaRIFrKQhQzFDqVsUBZiWAwWNv4M+VeSKH/jo9e8J+9c0x3vGd2F/Da3nuf8ft97zj33ed6i+JeES9jYSGC7QXU0EjodOzEm1zgN+9GPZ7iDM9iNbTiKK3iCxziH5cPktGEzZo0EXIQ3eIUT6MHhGF7qHk7hGF4k9dNojjlLYi1kLa4HnIG3OI9JNb3m+K0/hn5Sn4jeBHww1seiNXyOdJdHMIAJda4JQV01tQC4FaFfws9TF1RjfoS9f2wY6l2X3G13jvFrluH3d6HUjhzjB2yqCO1IoFtzjA9xqCK0O4GuyTFeCP+5itADCbQtx7gdr9FUAVq+ve8xrsrcbM8ETsG36M17UmiKk6gn07cqebQbsqAx4CT6Mj1nE+jsKtCuaG5NanPwNNZfYl7Sa4mjMehmNjCZsc/TyRQ3TKkHuJz01ia99UVVGVxrA3GmTsanGNqHTnzHzHjt9dgLg6VlNNC5MWgFliZ3sgvjIyAMg/lJr7cysOacczXu01KdsXcj7tiwU0stLEYrv5bw3ST45wkAx3Efn2P92qiBpXA7Ab4rzz3YYqiWFX9LWJkEX0zqC5J6f5WxWVdYjX2YOswU2hNOf/UT/qtonH4Arg46sVPur4QAAAAASUVORK5CYII="
->>>>>>> 16e36cc0eeb5924bba12addb4473b8da315631c2
-                        alt="toothache--v1">
+                    alt="toothache--v1">
                     <span class="sidebar-menu-text">Servicios</span>
                 </a>
 
@@ -529,33 +688,32 @@
                         alt="price-tag">
                     <span class="sidebar-menu-text">Promociones</span>
                 </a>
-            </div>
 
-
-            <div class="sidebar-footer">
-               <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post">
-                    <input type="hidden" name="accion" value="logout">
-                    <button type="submit" class="logout-btn" title="Cerrar sesión">
+                <div class="sidebar-footer">
+                    <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
+                        <input type="hidden" name="accion" value="logout">
+                    </form>
+                    <a href="#" onclick="document.getElementById('logoutForm').submit();" class="logout-btn" title="Cerrar sesión">
                         <i class="fas fa-sign-out-alt"></i>
-                    </button>
-                </form>
+                    </a>
+                </div>
             </div>
-        </div>
     </nav>
+
+
 
     <!-- Main Content -->
     <div class="content-wrapper">
         <main class="main-content">
             <div class="page-header fade-in">
                 <div class="page-title">
-                    <h1>Gestión de Citas</h1>
+                    <h1>Consultar Citas</h1>
                 </div>
             </div>
 
             <div class="card fade-in delay-1">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Listado de Citas</h3>
-                    </a>
                 </div>
                 <div class="card-body">
                     <div class="date-form-container fade-in delay-2">
@@ -576,11 +734,12 @@
                                     <th>Nombre del Cliente</th>
                                     <th>Fecha</th>
                                     <th>Hora</th>
+                                    <th>Acción</th>
                                 </tr>
                             </thead>
                             <tbody id="citasTable">
                                 <tr>
-                                    <td colspan="4">Seleccione una fecha para ver las citas.</td>
+                                    <td colspan="5">Seleccione una fecha para ver las citas.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -589,6 +748,93 @@
             </div>
         </main>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="historialModal" tabindex="-1" aria-labelledby="historialModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content p-3">
+
+                <!-- Encabezado estilo "page-header" -->
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1 id="historialModalLabel"><i class="fas fa-list me-2"></i>Formulario de Identificación</h1>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label">ID de Cita (para pruebas)</label>
+                            <input type="text" class="form-control-custom" id="idCitaDebug" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="form-label">Fecha</label>
+                            <div class="input-group-custom">
+                                <i class="fa-solid fa-calendar-days input-icon"></i>
+                                <input type="text" class="form-control-custom" id="Fecha" name="Fecha" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group textarea-icon">
+                            <label class="form-label">Motivo de la cita</label>
+                            <div class="input-group-custom">
+                                <i class="fa-solid fa-calendar-check input-icon"></i>
+                                <textarea id="motivo" name="motivo" rows="4" class="form-control-custom"
+                                    placeholder="Escriba el motivo..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group textarea-icon">
+                            <label class="form-label">Diagnóstico</label>
+                            <div class="input-group-custom">
+                                <i class="fa-solid fa-person-dots-from-line input-icon"></i>
+                                <textarea id="diagnostico" name="diagnostico" rows="4" class="form-control-custom"
+                                    placeholder="Escriba el diagnóstico..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tratamiento" class="form-label">Tratamiento</label>
+                            <div class="input-group-custom">
+                                <i class="fa-solid fa-notes-medical input-icon"></i>
+                                <select class="form-select-custom" id="tratamiento" name="tratamiento" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option>Tratamientos Preventivos</option>
+                                    <option>Tratamientos Restaurativos</option>
+                                    <option>Endodoncia</option>
+                                    <option>Tratamientos Periodontales</option>
+                                    <option>Ortodoncia</option>
+                                    <option>Cirugía Oral</option>
+                                    <option>Implantología</option>
+                                    <option>Prótesis Dental</option>
+                                    <option>Odontopediatría</option>
+                                    <option>Estética Dental</option>
+                                    <option>Odontología General</option>
+                                    <option>Otros</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group textarea-icon">
+                            <label class="form-label">Observación</label>
+                            <div class="input-group-custom">
+                                <i class="fa-solid fa-magnifying-glass input-icon"></i>
+                                <textarea id="observacion" name="observacion" rows="4" class="form-control-custom"
+                                    placeholder="Escriba una observación..."></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary-custom">
+                            <i class="fa-solid fa-floppy-disk me-2"></i>Guardar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cierre de Modal -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -621,44 +867,82 @@
                 });
         });
 
-        function verExpediente(idCita) {
-            window.location.href = 'expediente.php?id=' + idCita;
+        // En tu script existente, añade esto:
+
+        // Función para abrir el modal con los datos de la cita
+        function abrirModalExpediente(idCita) {
+            console.log("ID de cita recibido:", idCita); // Debug
+
+            document.getElementById('idCitaDebug').value = idCita;
+
+            // Primero obtener los datos de la cita
+            fetch(`../controladores/controladorExpediente.php?action=getCitaData&idCita=${idCita}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        console.error("Error del servidor:", data.message);
+                        alert("Error: " + data.message);
+                        return;
+                    }
+
+                    console.log("Datos de la cita:", data);
+                    document.getElementById('Fecha').value = data.fecha;
+
+                    if (data.expediente) {
+                        document.getElementById('motivo').value = data.expediente.motivo || '';
+                        document.getElementById('diagnostico').value = data.expediente.diagnostico || '';
+                        document.getElementById('tratamiento').value = data.expediente.tratamiento || '';
+                        document.getElementById('observacion').value = data.expediente.observacion || '';
+                    }
+
+                    const modal = new bootstrap.Modal(document.getElementById('historialModal'));
+                    modal.show();
+                    document.querySelector('#historialModal form').dataset.idCita = idCita;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al cargar los datos de la cita');
+                });
         }
 
-        function eliminarCita(idCita) {
-            if (!idCita || isNaN(idCita)) {
-                alert('ID de cita no válido.');
-                return;
-            }
+        // Manejar el envío del formulario del expediente
+        document.querySelector('#historialModal form').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-            if (confirm('¿Estás seguro de que deseas eliminar esta cita?')) {
-                fetch("../controladores/eliminarCita.php", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `idCita=${encodeURIComponent(idCita)}`
+            const idCita = this.dataset.idCita;
+            const formData = {
+                motivo: document.getElementById('motivo').value,
+                diagnostico: document.getElementById('diagnostico').value,
+                tratamiento: document.getElementById('tratamiento').value,
+                observacion: document.getElementById('observacion').value
+            };
+
+            fetch('../controladores/controladorExpediente.php?action=guardarExpediente', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        idCita: idCita,
+                        datos: formData
                     })
-                    .then(response => {
-                        // Aunque haya redirección, muchos servidores devuelven 200 con contenido HTML
-                        if (response.redirected) {
-                            // Si hubo redirección, la eliminación fue exitosa
-                            window.location.href = response.url; // Redirige a la página final
-                            return;
-                        }
-                        return response.text(); // Si no hubo redirección, analiza el texto
-                    })
-                    .then(data => {
-                        if (data && !data.includes('<')) { // Si devuelve texto plano (sin HTML)
-                            alert(data); // Podría ser: "Error al eliminar la cita."
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('Hubo un problema al eliminar la cita.');
-                    });
-            }
-        }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Expediente guardado correctamente');
+                        // Cerrar el modal
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('historialModal'));
+                        modal.hide();
+                    } else {
+                        alert('Error al guardar: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al guardar el expediente');
+                });
+        });
     </script>
 </body>
 

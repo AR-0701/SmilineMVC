@@ -409,25 +409,40 @@ include '../controladores/controladorVerClientes.php';
             background: #00A99D;
             color: white;
         }
-         /* Animations */
+
+        /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .fade-in {
             animation: fadeIn 0.6s ease forwards;
         }
 
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-    
-#historialModal .table thead th {
-  text-align: center;
-  vertical-align: middle;
-}
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
 
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        #historialModal .table thead th {
+            text-align: center;
+            vertical-align: middle;
+        }
     </style>
 </head>
 
@@ -529,23 +544,23 @@ include '../controladores/controladorVerClientes.php';
                         <tbody id="clientTableBody">
                             <?php
                             foreach ($clientes as $cliente) { ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($cliente['idUsuario']); ?></td>
-                                <td><?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?></td>
-                                <td><?php echo htmlspecialchars($cliente['email']); ?></td>
-                                <td>
-                                    <button class="action-btn btn-schedule agendarCitaBtn"
-                                        data-id="<?php echo htmlspecialchars($cliente['idUsuario']); ?>"
-                                        data-nombre="<?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?>">
-                                        <i class="fas fa-calendar-plus"></i>
-                                    </button>
-                                    <button class="action-btn btn-schedule" data-bs-toggle="modal" data-bs-target="#historialModal" title="Ver Historial"
-                                        data-id="<?php echo htmlspecialchars($cliente['idUsuario']); ?>">
-                                        <i class="fa-solid fa-book-medical"></i> 
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($cliente['idUsuario']); ?></td>
+                                    <td><?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?></td>
+                                    <td><?php echo htmlspecialchars($cliente['email']); ?></td>
+                                    <td>
+                                        <button class="action-btn btn-schedule agendarCitaBtn"
+                                            data-id="<?php echo htmlspecialchars($cliente['idUsuario']); ?>"
+                                            data-nombre="<?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?>">
+                                            <i class="fas fa-calendar-plus"></i>
+                                        </button>
+                                        <button class="action-btn btn-schedule" data-bs-toggle="modal" data-bs-target="#historialModal" title="Ver Historial"
+                                            data-id="<?php echo htmlspecialchars($cliente['idUsuario']); ?>">
+                                            <i class="fa-solid fa-book-medical"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -554,46 +569,41 @@ include '../controladores/controladorVerClientes.php';
     </main>
 
     <!-- Modal -->
-<div class="modal fade" id="historialModal" tabindex="-1" aria-labelledby="historialModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content p-3">
-      
-      <!-- Encabezado estilo "page-header" -->
-      <div class="page-header">
-        <div class="page-title">
-          <h1 id="historialModalLabel"><i class="fas fa-list me-2"></i>Historial odontologico</h1>
-        </div>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
+    <div class="modal fade" id="historialModal" tabindex="-1" aria-labelledby="historialModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content p-3">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1 id="historialModalLabel"><i class="fas fa-list me-2"></i>Historial odontologico</h1>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
 
-      <div class="modal-body">
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Fecha</th>
-                <th>Motivo</th>
-                <th>Diagnostico</th>
-                <th>Tratamiento</th>
-                <th>Observación</th>
-              </tr>
-            </thead>
-            <tbody id="historialTableBody">
-              <!-- Aquí se cargarán los datos del historial -->
-              <?php
-              // Aquí deberías incluir la lógica para obtener el historial del cliente
-              // Por ejemplo, podrías usar una consulta a la base de datos para obtener los registros del historial
-              ?>
-            </tbody>
-          </table>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Motivo</th>
+                                    <th>Diagnóstico</th>
+                                    <th>Tratamiento</th>
+                                    <th>Observación</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historialTableBody">
+                                <tr>
+                                    <td colspan="5">Cargando historial...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-
         // Funcionalidad de búsqueda
         var searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', function() {
@@ -614,7 +624,7 @@ include '../controladores/controladorVerClientes.php';
             button.addEventListener('click', function() {
                 var idCli = this.getAttribute('data-id');
                 console.log('ID Cliente: ', idCli); // Depuración
-                if (idCli ) {
+                if (idCli) {
                     var url = `../public/agendarAdminAsis.php?id=${idCli}`;
                     window.location.href = url;
                 } else {
@@ -623,7 +633,56 @@ include '../controladores/controladorVerClientes.php';
             });
         });
 
-        
+        // Manejar clic en botón de historial
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('[data-bs-target="#historialModal"]')) {
+                const button = e.target.closest('[data-bs-target="#historialModal"]');
+                const idUsuario = button.dataset.id;
+                cargarHistorial(idUsuario);
+            }
+        });
+
+        function cargarHistorial(idUsuario) {
+            fetch(`../controladores/controladorHistorial.php?action=obtenerHistorial&idUsuario=${idUsuario}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        throw new Error(data.message);
+                    }
+
+                    const tbody = document.getElementById('historialTableBody');
+                    tbody.innerHTML = '';
+
+                    if (data.data.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="5">No hay registros de historial</td></tr>';
+                        return;
+                    }
+
+                    data.data.forEach(registro => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                    <td>${registro.fecha || ''}</td>
+                    <td>${registro.motivo || ''}</td>
+                    <td>${registro.diagnostico || ''}</td>
+                    <td>${registro.tratamiento || ''}</td>
+                    <td>${registro.observacion || ''}</td>
+                `;
+                        tbody.appendChild(row);
+                    });
+
+                    // Actualizar botón de descarga PDF
+                    const modalTitle = document.getElementById('historialModalLabel');
+                    modalTitle.innerHTML = `<i class="fas fa-list me-2"></i>Historial odontológico 
+                                  <a href="../controladores/controladorHistorial.php?action=generarPDF&idUsuario=${idUsuario}" 
+                                     class="btn btn-primary btn-sm ms-3">
+                                     <i class="fas fa-file-pdf"></i> Descargar PDF
+                                  </a>`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al cargar el historial: ' + error.message);
+                });
+        }
     </script>
 </body>
 
