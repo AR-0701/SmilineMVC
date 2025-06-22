@@ -33,6 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
+        // Verificar si el correo ya existe
+        $consulta = $conexion->prepare("SELECT idUsuario FROM Usuarios WHERE email = :email");
+        $consulta->bindParam(':email', $email);
+        $consulta->execute();
+
+        if ($consulta->rowCount() > 0) {
+            throw new Exception("El correo electrónico ya está registrado.");
+        }
         // Preparar consulta
         $sql = "INSERT INTO Usuarios (nombre, aPaterno, aMaterno, fNacimiento, genero, email, password, idRol, estado)
                 VALUES (?, ?, ?, ?, ?, ?, ?, 1, 'activo')";
@@ -67,6 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         exit;
     } catch (Exception $e) {
-        echo "<script>alert('Error al registrar: " . $e->getMessage() . "');</script>";
+        echo "<script>
+        alert('Error al registrar: " . $e->getMessage() . "');
+        window.location.href = '../public/registroClienPrin.php';
+    </script>";
     }
 }
