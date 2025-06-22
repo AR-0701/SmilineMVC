@@ -182,12 +182,13 @@ $clienteLogueado = [
                         <img src="/Imagenes/loogo.png" alt="Smile Line Odontología">
                     </a>
                 </div>
-                <div class="user-menu">
-                    <img src="../Imagenes/User.png" class="user-icon" alt="Usuario">
+                <img src="../Imagenes/User.png" class="user-icon" alt="Usuario">
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="Logica/logout.php">Cerrar sesión</a>
+                        <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
+                            <input type="hidden" name="accion" value="logout">
+                        </form>
+                        <a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar sesión</a>
                     </div>
-                </div>
             </div>
         </header>
 
