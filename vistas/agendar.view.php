@@ -25,11 +25,7 @@ $clienteLogueado = [
    body {
         background: linear-gradient(to top, #13cdbd, #5a18ff);
         padding-top: 30px;
-<<<<<<< HEAD
         min-height: 100vh;
-=======
-          min-height: 100vh;
->>>>>>> a1a8e061878c769eac87d82318941f4888ccc76b
         margin: 0;
     }
 
