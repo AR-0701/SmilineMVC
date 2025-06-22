@@ -41,7 +41,7 @@ $citasPendientes = $stmt->fetchAll();
 <style>
     body {
         background: linear-gradient(to top, #13cdbd, #5a18ff);
-        padding-top: 30px;
+        padding-top: 50px;
         min-height: 100vh;
         margin: 0;
     }
@@ -236,7 +236,7 @@ $citasPendientes = $stmt->fetchAll();
         <footer>
         </footer>
     </div>
-    <?php include '../chatbot/index.php'; ?>
+                <?php include '../chatbot/index.php'; ?>
 
 </body>
 
