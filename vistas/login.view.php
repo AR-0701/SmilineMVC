@@ -91,7 +91,10 @@ session_start();
                             <button type="submit" class="btn btn1 btn-lg">Ingresar</button>
                         </div>
                         <p class="text-center fs-6 mt-3 mb-0">
-                            ¿No tienes cuenta? <a class="link-verde" href="../public/registroClienPrin.php">Regístrate</a>
+                            <a href="#" class="link-verde" data-bs-toggle="modal" data-bs-target="#modalRecuperar">¿Olvidaste tu contraseña?</a>
+                            <br>
+                            ¿No tienes cuenta?
+                            <a class="link-verde" href="../public/registroClienPrin.php">Regístrate</a>
                         </p>
                     </form>
                 </div>
@@ -109,6 +112,30 @@ session_start();
                 togglePassword.textContent = type === "password" ? "👁️" : "🙈";
             });
         </script>
+
+        <!-- Modal Recuperar Contraseña -->
+        <div class="modal fade" id="modalRecuperar" tabindex="-1" aria-labelledby="modalRecuperarLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content rounded-4">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold" id="modalRecuperarLabel">Recuperar Contraseña</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formRecuperar">
+                            <div class="mb-3">
+                                <label for="emailRec" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="emailRec" name="email" placeholder="tu@email.com" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn1 btn-lg">Enviar enlace</button>
+                            </div>
+                        </form>
+                        <div id="mensajeRecuperacion" class="text-success text-center mt-3 fw-semibold"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </body>
 <script>
@@ -138,5 +165,26 @@ session_start();
             });
     });
 </script>
+<script>
+    document.getElementById("formRecuperar").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        formData.append("solicitar", "true");
+
+        fetch("../controladores/RecuperarHandler.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(res => {
+                document.getElementById("mensajeRecuperacion").innerText = res;
+            })
+            .catch(error => {
+                document.getElementById("mensajeRecuperacion").innerText = "Hubo un error al enviar el correo.";
+                console.error("Error:", error);
+            });
+    });
+</script>
+
 
 </html>

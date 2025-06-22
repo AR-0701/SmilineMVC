@@ -235,10 +235,10 @@
                         <div class="form-group">
                             <i class="fa-solid fa-venus-mars" style="color: #00b3b3; font-size: 30px;"></i>
                             <select id="gender" name="gender" required>
-                                <option value="" disabled selected></option>
-                                <option value="male">Masculino</option>
-                                <option value="female">Femenino</option>
-                                <option value="other">Otro</option>
+                                <option value="" selected disabled>Seleccione una opción</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                                <option value="O">Otro</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -358,7 +358,6 @@
             return true;
         }
         <?php include 'chatbot/index.php'; ?>
-
     </script>
 
 

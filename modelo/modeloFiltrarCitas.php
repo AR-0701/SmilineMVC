@@ -53,10 +53,14 @@ function filtrarCitasPorFecha($fecha)
                 echo "<td>" . htmlspecialchars($fila['hora']) . "</td>";
 
                 echo "<td>
-                                        <button class='action-btn btn-schedule' data-bs-toggle='modal' data-bs-target='#historialModal' title='Agregar Historial'>
-                                            <i class='fa-solid fa-file-medical'></i>
-                                        </button>
-                                    </td>";
+                    <button class='action-btn btn-schedule' 
+                    onclick='abrirModalExpediente(" . $fila['idCita'] . ")'
+                    data-bs-toggle='modal' 
+                    data-bs-target='#historialModal' 
+                    title='Agregar Historial'>
+                    <i class='fa-solid fa-file-medical'></i>
+                    </button>
+                    </td>";
                 echo "</tr>";
             }
         } else {

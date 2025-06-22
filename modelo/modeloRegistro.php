@@ -1,6 +1,6 @@
 <?php
 include '../modelo/Conexion.php';
- $_SESSION['idRol']="1";
+$_SESSION['idRol'] = "1";
 
 $clienteLogueado = [
     'idRol' => $_SESSION['idRol']
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $birthdate = $_POST['birthdate'];
 
         // Validaciones básicas
-        if (empty($gender) || !in_array($gender, ['male', 'female', 'other'])) {
+        if (!in_array($gender, ['M', 'F', 'Otro'])) {
             throw new Exception("El valor del género es inválido.");
         }
 
@@ -51,16 +51,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<script>alert('Cliente registrado exitosamente');</script>";
 
         switch ($clienteLogueado['idRol']) {
-            case 1: header("Location: ../public/login.php"); break;
+            case 1:
+                header("Location: ../public/login.php");
+                break;
             case 2:
-            case 3: header("Location: ../public/mostrarClientes.php"); break;
-            case 4: header("Location: ../public/mostrarClientesAd.php"); break;
-            default: header("Location: ../public/login.php"); break;
+            case 3:
+                header("Location: ../public/mostrarClientes.php");
+                break;
+            case 4:
+                header("Location: ../public/mostrarClientesAd.php");
+                break;
+            default:
+                header("Location: ../public/login.php");
+                break;
         }
         exit;
-
     } catch (Exception $e) {
         echo "<script>alert('Error al registrar: " . $e->getMessage() . "');</script>";
     }
 }
-?>

@@ -640,7 +640,7 @@ $clienteLogueado = [
 </head>
 
 <body>
-   <!-- Menú lateral -->
+    <!-- Menú lateral -->
     <nav class="sidebar">
         <div class="sidebar-nav">
             <div class="sidebar-header">
@@ -797,6 +797,10 @@ $clienteLogueado = [
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
+                            <label class="form-label">ID de Cita (para pruebas)</label>
+                            <input type="text" class="form-control-custom" id="idCitaDebug" readonly>
+                        </div>
+                        <div class="form-group">
                             <label for="lastName" class="form-label">Fecha</label>
                             <div class="input-group-custom">
                                 <i class="fa-solid fa-calendar-days input-icon"></i>
@@ -894,6 +898,81 @@ $clienteLogueado = [
                     alert("Hubo un problema al cargar las citas.");
                 });
         });
+
+        // En tu script existente, añade esto:
+
+        // Función para abrir el modal con los datos de la cita
+        function abrirModalExpediente(idCita) {
+            console.log("ID de cita recibido:", idCita); // Debug
+
+            document.getElementById('idCitaDebug').value = idCita;
+
+            // Primero obtener los datos de la cita
+            fetch(`../controladores/controladorExpediente.php?action=getCitaData&idCita=${idCita}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Llenar los campos del formulario
+                    document.getElementById('Fecha').value = data.fecha;
+                    // Si ya existe expediente, llenar los demás campos
+                    if (data.expediente) {
+                        document.getElementById('motivo').value = data.expediente.motivo || '';
+                        document.getElementById('diagnostico').value = data.expediente.diagnostico || '';
+                        document.getElementById('tratamiento').value = data.expediente.tratamiento || '';
+                        document.getElementById('observacion').value = data.expediente.observacion || '';
+                    }
+
+                    // Mostrar el modal
+                    const modal = new bootstrap.Modal(document.getElementById('historialModal'));
+                    modal.show();
+
+                    // Guardar el idCita en el formulario para usarlo al guardar
+                    document.querySelector('#historialModal form').dataset.idCita = idCita;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al cargar los datos de la cita');
+                });
+        }
+
+        // Manejar el envío del formulario del expediente
+        document.querySelector('#historialModal form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const idCita = this.dataset.idCita;
+            const formData = {
+                motivo: document.getElementById('motivo').value,
+                diagnostico: document.getElementById('diagnostico').value,
+                tratamiento: document.getElementById('tratamiento').value,
+                observacion: document.getElementById('observacion').value
+            };
+
+            fetch('../controladores/controladorExpediente.php?action=guardarExpediente', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        idCita: idCita,
+                        datos: formData
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Expediente guardado correctamente');
+                        // Cerrar el modal
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('historialModal'));
+                        modal.hide();
+                    } else {
+                        alert('Error al guardar: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al guardar el expediente');
+                });
+        });
+
     </script>
 </body>
 
