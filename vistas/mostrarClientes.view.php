@@ -452,7 +452,7 @@ include '../controladores/controladorVerClientes.php';
                     <span class="sidebar-menu-text">Inicio</span>
                 </a>
 
-                <a href="../public/mostrarClientes.php" class="sidebar-menu-item active">
+                <a href="../public/mostrarClientes.php" class="sidebar-menu-item">
                     <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -461,7 +461,7 @@ include '../controladores/controladorVerClientes.php';
                     <span class="sidebar-menu-text">Pacientes</span>
                 </a>
 
-                <a href="../public/mCitas.php" class="sidebar-menu-item">
+                <a href="../public/mCitas.php" class="sidebar-menu-item active">
                     <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

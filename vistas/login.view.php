@@ -54,6 +54,17 @@ session_start();
         h3 {
             color: #007F74;
         }
+
+        .modal-title {
+            text-align: center;
+            font-size: 25px;
+            color: #007F74;
+        }
+
+
+        .label .form-label {
+            font-size: 18px;
+        }
     </style>
 </head>
 
@@ -115,15 +126,15 @@ session_start();
 
         <!-- Modal Recuperar Contraseña -->
         <div class="modal fade" id="modalRecuperar" tabindex="-1" aria-labelledby="modalRecuperarLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content rounded-4">
-                    <div class="modal-header">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content shadow-lg rounded-4">
+                    <div class="modal-header text-center">
                         <h5 class="modal-title fw-bold" id="modalRecuperarLabel">Recuperar Contraseña</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body">
                         <form id="formRecuperar">
-                            <div class="mb-3">
+                            <div class="label mb-3">
                                 <label for="emailRec" class="form-label">Correo electrónico</label>
                                 <input type="email" class="form-control" id="emailRec" name="email" placeholder="tu@email.com" required>
                             </div>

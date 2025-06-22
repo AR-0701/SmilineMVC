@@ -5,20 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Clientes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-
     body {
-        font-family: 'Poppins', sans-serif;
+        font-family: Arial, sans-serif;
         background: linear-gradient(to top, #13cdbd, #5a18ff);
-        min-height: 100vh;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        overflow-x: hidden;
     }
 
     .container {
@@ -35,130 +29,158 @@
 
     .logo img {
         height: 110px;
-    }
-
-
-    .form-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        padding: 50px;
-        /* Agrega un poco de espacio interno alrededor del formulario */
-        border-radius: 5px;
-        /* Agrega un borde redondeado al formulario */
-        font-family: Calibri, sans-serif;
-        /* Aplica la fuente Calibri al formulario */
-
-    }
-
-    .form-left,
-    .form-right {
-        flex: 1 1 45%;
-        margin-bottom: 10px;
-        padding: 30px;
-        border-radius: 5px;
-        font-family: Calibri, sans-serif;
+        margin-bottom: -20px;
     }
 
     .form-group {
+        margin-bottom: 1.5rem;
         position: relative;
     }
 
-    .form-group i {
-        position: absolute;
-        left: -45px;
-        top: 40%;
-        transform: translateY(-50%);
-        font-size: 20px;
-        /* Ajusta el tamaño del ícono según sea necesario */
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #343a40;
+        font-size: 22px;
     }
 
-    .form-group input {
-        width: calc(100% - 20px);
-        padding-left: 20%;
-        /* Puedes ajustar este valor según tus necesidades */
-        padding-right: 10%;
-        /* Puedes ajustar este valor según tus necesidades */
-    }
-
-
-    .form-group input[type="text"],
-    .form-group input[type="email"],
-    .form-group input[type="password"],
-    .form-group input[type="tel"],
-    .form-group select,
-    .form-group input[type="date"] {
-        width: 100%;
-        /* Ancho del 100% del contenedor */
-        max-width: 480px;
-        /* Longitud máxima de 300px */
-        padding: 10px;
-        margin-bottom: 10px;
-        /* Agrega un poco de espacio entre los campos de entrada */
-        border-radius: 5px;
-        border: 2px solid #00b3b3;
-        /* Agregar borde alrededor de los campos de entrada */
-    }
-
-    .form-group select {
-        appearance: none;
-        /* Para eliminar los estilos de selección del navegador */
-        -webkit-appearance: none;
-        /* Para navegadores WebKit (Chrome, Safari, etc.) */
-        -moz-appearance: none;
-        /* Para navegadores basados en Mozilla (Firefox) */
-    }
-
-    .button-modify {
+    .input-group-custom {
+        position: relative;
         display: flex;
-        justify-content: center;
-        margin-top: 20px;
+        align-items: center;
     }
 
-    .button-modify button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        background-color: #00A99D;
-        color: white;
-        font-size: 16px;
-        margin-top: -80px;
-        /* Margen superior */
-        margin-bottom: 30px;
-        /* Margen inferior */
-
+    .input-icon {
+        position: absolute;
+        left: 15px;
+        color: #00A99D;
+        font-size: 1.6rem;
+        z-index: 4;
     }
 
-    .button-modify button:hover {
-        background-color: #008f8f;
+    .form-control-custom {
+        width: 100%;
+        padding: 12px 15px 12px 50px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-control-custom:focus {
+        border-color: #00A99D;
+        box-shadow: 0 0 0 0.25rem rgba(0, 169, 157, 0.25);
+        outline: none;
+    }
+
+    .form-select-custom {
+        width: 100%;
+        padding: 12px 15px 12px 50px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        appearance: none;
+        background-color: white;
+    }
+
+    .form-select-custom:focus {
+        border-color: #00A99D;
+        box-shadow: 0 0 0 0.25rem rgba(0, 169, 157, 0.25);
+        outline: none;
     }
 
     .password-checklist {
-        margin-top: 2px;
-        font-size: 15px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px 0;
+        border: 1px solid #e9ecef;
+    }
+
+    .password-checklist p {
+        font-weight: 600;
+        color: #343a40;
+        margin-bottom: 10px;
     }
 
     .password-checklist ul {
         list-style: none;
-        padding: 0;
+        padding-left: 0;
+        margin-bottom: 0;
     }
 
-    .password-checklist .valid {
-        color: gray;
+    .password-checklist li {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        color: #6c757d;
+        font-size: 0.9rem;
     }
 
-    .password-checklist .valid.checked {
-        color: #008f8f;
-        font-weight: bold;
+    .password-checklist li i {
+        margin-right: 8px;
+        font-size: 0.8rem;
     }
+
+    .password-checklist li.valid {
+        color: #00A99D;
+    }
+
+    .password-checklist li.valid i {
+        color: #00A99D;
+    }
+
+    .btn-primary-custom {
+        background-color: #00A99D;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 30px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        color: white;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .btn-primary-custom:hover {
+        background-color: #008f8f;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 169, 157, 0.3);
+        color: white;
+    }
+
+    .password-toggle {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6c757d;
+        z-index: 5;
+    }
+
+    .is-invalid {
+        border-color: #00756d !important;
+    }
+
+    .invalid-feedback {
+        color: #00756d;
+        font-size: 1.0rem;
+        margin-top: 0.25rem;
+    }
+
 
     .modify-title {
         text-align: center;
-        font-size: 30px;
+        font-size: 3rem;
         font-weight: bold;
-        margin: 20px 0;
         color: #008f8f;
+        margin-bottom: 30px;
     }
 </style>
 
@@ -169,195 +191,330 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="#">
-                        <img src="/Imagenes/loogo.png" alt="Smile Line Odontología">
+                        <img src="../Imagenes/loogo.png" alt="Smile Line Odontología">
                     </a>
-                </div>
-            </div>
         </header>
-        <main class="main">
 
-            <div class="modify-title">
-                <h1>Registrar Clientes</h1>
-            </div>
+        <h1 class="modify-title">Registro</h1>
+        <!-- Mostrar mensaje de error si existe -->
 
+        <div style="color:#008f8f; text-align: center; margin-bottom: 10px;">
+        </div>
 
-            <!-- Mostrar mensaje de error si existe -->
-
-            <div style="color: red; text-align: center; margin-bottom: 10px;">
-            </div>
-
-            <form id="registrationForm" method="POST" action="../controladores/controladorRegistros.php" onsubmit="return validarFormulario()">
-                <div class="form-container">
-                    <!-- Lado izquierdo -->
-                    <div class="form-left">
-                        <div class="form-group">
-                            <i class="fa-solid fa-envelope" style="color: #00b3b3; font-size: 30px;"></i>
-                            <input type="email" id="email" name="email" placeholder="Correo Electronico" required>
-                        </div>
-                        <div class="form-group">
-                            <i class="fa-solid fa-lock" style="color: #00b3b3; font-size: 30px;"></i>
-                            <input type="password" id="password" name="password" placeholder="Contraseña" required>
-                        </div>
-                        <div class="password-checklist">
-                            <p>La contraseña debe cumplir con:</p>
-                            <ul>
-                                <li id="check-length" class="valid"> Al menos 8 caracteres</li>
-                                <li id="check-uppercase" class="valid"> Al menos una letra mayúscula</li>
-                                <li id="check-number" class="valid"> Al menos un número</li>
-                                <li id="check-symbol" class="valid"> Al menos un símbolo</li>
-                            </ul>
-                        </div>
-
-                        <div class="form-group">
-                            <i class="fa-solid fa-lock" style="color: #00b3b3; font-size: 30px;"></i>
-                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirmar Contraseña" required>
-                        </div>
-                        <div id="passwordError" style="color: red; text-align: center; margin-bottom: 10px;"></div>
-                        <div class="form-group">
-                            <i class="fa-solid fa-phone" style="color: #00b3b3; font-size: 30px;"></i>
-                            <input type="tel" id="phone" name="phone" placeholder="Telefono" required>
+        <form id="registrationForm" method="POST" action="../controladores/controladorRegistros.php"
+            onsubmit="return validarFormulario()">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Información de contacto -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <div class="input-group-custom">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" class="form-control-custom" id="email" name="email"
+                                placeholder="ejemplo@dominio.com" required>
                         </div>
                     </div>
-                    <!-- Lado derecho -->
-                    <div class="form-right">
-                        <div class="form-group">
-                            <i class="fa-solid fa-user" style="color: #00b3b3; font-size: 30px;"></i>
-                            <input type="text" id="firstName" name="firstName" placeholder="Nombre" required>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Teléfono</label>
+                        <div class="input-group-custom">
+                            <i class="fas fa-phone input-icon"></i>
+                            <input type="tel" class="form-control-custom" id="phone" name="phone"
+                                placeholder="Número de teléfono (10 dígitos)" pattern="[0-9]{10}" maxlength="10"
+                                required>
                         </div>
-                        <div class="form-group">
-                            <i class="fa-solid fa-user" style="color: #00b3b3; font-size: 30px;"></i>
-                            <input type="text" id="lastName" name="lastName" placeholder="Apellido Paterno" required>
+                        <div id="phoneError" class="invalid-feedback d-block"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <div class="input-group-custom">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" class="form-control-custom" id="password" name="password"
+                                placeholder="Crea una contraseña" required>
+                            <i class="fas fa-eye password-toggle" id="togglePassword"></i>
                         </div>
-                        <div class="form-group">
-                            <i class="fa-solid fa-user" style="color: #00b3b3; font-size: 30px;"></i>
-                            <input type="text" id="motherLastName" name="motherLastName" placeholder="Apellido Materno" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+                        <div class="input-group-custom">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" class="form-control-custom" id="confirmPassword"
+                                name="confirmPassword" placeholder="Repite tu contraseña" required>
+                            <i class="fas fa-eye password-toggle" id="toggleConfirmPassword"></i>
                         </div>
-                        <div class="form-group">
-                            <i class="fa-solid fa-venus-mars" style="color: #00b3b3; font-size: 30px;"></i>
-                            <select id="gender" name="gender" required>
+                        <div id="passwordError" class="invalid-feedback d-block"></div>
+                    </div>
+                    <!-- Checklist de contraseña -->
+                    <div class="password-checklist">
+                        <p>La contraseña debe cumplir con:</p>
+                        <ul>
+                            <li id="check-length"><i class="far fa-circle valid"></i> Al menos 8 caracteres</li>
+                            <li id="check-uppercase"><i class="far fa-circle valid"></i> Al menos una letra mayúscula</li>
+                            <li id="check-number"><i class="far fa-circle valid"></i> Al menos un número</li>
+                            <li id="check-symbol"><i class="far fa-circle valid"></i> Al menos un símbolo</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- Información personal -->
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">Nombre</label>
+                        <div class="input-group-custom">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" class="form-control-custom" id="firstName" name="firstName"
+                                placeholder="Nombre(s)" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">Apellido Paterno</label>
+                        <div class="input-group-custom">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" class="form-control-custom" id="lastName" name="lastName"
+                                placeholder="Apellido paterno" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="motherLastName" class="form-label">Apellido Materno</label>
+                        <div class="input-group-custom">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" class="form-control-custom" id="motherLastName" name="motherLastName"
+                                placeholder="Apellido materno" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender" class="form-label">Género</label>
+                        <div class="input-group-custom">
+                            <i class="fas fa-venus-mars input-icon"></i>
+                            <select class="form-select-custom" id="gender" name="gender" required>
                                 <option value="" selected disabled>Seleccione una opción</option>
                                 <option value="M">Masculino</option>
                                 <option value="F">Femenino</option>
                                 <option value="O">Otro</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <i class="fa-solid fa-cake-candles" style="color: #00b3b3; font-size: 30px;"></i>
-                            <input type="date" id="birthdate" name="birthdate" required>
-                        </div>
-                        <div id="birthdateError" style="color: red; text-align: center; margin-bottom: 10px;"></div>
                     </div>
-                </div>
-                <!-- Campo oculto para indicar tipo de registro -->
-                <input type="hidden" name="tipoFormulario" value="cliente">
 
-                <!-- Button modify -->
-                <div class="button-modify">
-                    <button id="Registrar" type="submit">Registrar</button>
+                    <div class="form-group">
+                        <label for="birthdate" class="form-label">Fecha de Nacimiento</label>
+                        <div class="input-group-custom">
+                            <i class="fas fa-birthday-cake input-icon"></i>
+                            <input type="date" class="form-control-custom" id="birthdate" name="birthdate" required>
+                        </div>
+                        <div id="birthdateError" class="invalid-feedback d-block"></div>
+                    </div>
+                    <!-- Campo oculto para indicar tipo de registro -->
+                    <input type="hidden" name="tipoFormulario" value="cliente">
+
+                    <!-- Botón de registro -->
+                    <button type="submit" class="btn-primary-custom" id="Registrar">
+                        <i class="fas fa-user-plus me-2"></i>Registrar
+                    </button>
                 </div>
-            </form>
-        </main>
-        <footer>
-            <!-- Footer content -->
-        </footer>
+            </div>
+        </form>
     </div>
     <script>
-        // Mostrar/Ocultar contraseña
-        document.addEventListener('DOMContentLoaded', function() {
-            const togglePassword = document.querySelector('.toggle-password');
-            const passwordInput = document.getElementById('password');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mostrar/ocultar contraseña
+            const togglePassword = document.querySelector('#togglePassword');
+            const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+            const password = document.querySelector('#password');
+            const confirmPassword = document.querySelector('#confirmPassword');
+
             if (togglePassword) {
-                togglePassword.addEventListener('click', function() {
-                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                    passwordInput.setAttribute('type', type);
+                togglePassword.addEventListener('click', function () {
+                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                    password.setAttribute('type', type);
+                    this.classList.toggle('fa-eye-slash');
+                });
+            }
+
+            if (toggleConfirmPassword) {
+                toggleConfirmPassword.addEventListener('click', function () {
+                    const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                    confirmPassword.setAttribute('type', type);
                     this.classList.toggle('fa-eye-slash');
                 });
             }
 
             // Validar criterios de la contraseña
-            const passwordInputField = document.getElementById('password');
+            const passwordInput = document.getElementById('password');
             const criteria = {
                 length: document.getElementById('check-length'),
                 uppercase: document.getElementById('check-uppercase'),
                 number: document.getElementById('check-number'),
-                symbol: document.getElementById('check-symbol'),
+                symbol: document.getElementById('check-symbol')
             };
 
-            passwordInputField.addEventListener('input', function() {
-                const value = passwordInputField.value;
+            passwordInput.addEventListener('input', function () {
+                const value = passwordInput.value;
 
-                // Validar longitud mínima de 8 caracteres
+                // Validar longitud
                 if (value.length >= 8) {
-                    criteria.length.classList.add('checked');
+                    criteria.length.querySelector('i').className = 'fas fa-check-circle';
+                    criteria.length.classList.add('valid');
                 } else {
-                    criteria.length.classList.remove('checked');
+                    criteria.length.querySelector('i').className = 'far fa-circle';
+                    criteria.length.classList.remove('valid');
                 }
 
-                // Validar al menos una letra mayúscula
+                // Validar mayúscula
                 if (/[A-Z]/.test(value)) {
-                    criteria.uppercase.classList.add('checked');
+                    criteria.uppercase.querySelector('i').className = 'fas fa-check-circle';
+                    criteria.uppercase.classList.add('valid');
                 } else {
-                    criteria.uppercase.classList.remove('checked');
+                    criteria.uppercase.querySelector('i').className = 'far fa-circle';
+                    criteria.uppercase.classList.remove('valid');
                 }
 
-                // Validar al menos un número
+                // Validar número
                 if (/\d/.test(value)) {
-                    criteria.number.classList.add('checked');
+                    criteria.number.querySelector('i').className = 'fas fa-check-circle';
+                    criteria.number.classList.add('valid');
                 } else {
-                    criteria.number.classList.remove('checked');
+                    criteria.number.querySelector('i').className = 'far fa-circle';
+                    criteria.number.classList.remove('valid');
                 }
 
-                // Validar al menos un símbolo
+                // Validar símbolo
                 if (/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
-                    criteria.symbol.classList.add('checked');
+                    criteria.symbol.querySelector('i').className = 'fas fa-check-circle';
+                    criteria.symbol.classList.add('valid');
                 } else {
-                    criteria.symbol.classList.remove('checked');
+                    criteria.symbol.querySelector('i').className = 'far fa-circle';
+                    criteria.symbol.classList.remove('valid');
+                }
+            });
+
+            // Validar que las contraseñas coincidan
+            confirmPassword.addEventListener('input', function () {
+                if (password.value !== confirmPassword.value) {
+                    document.getElementById('passwordError').textContent = 'Las contraseñas no coinciden';
+                    confirmPassword.classList.add('is-invalid');
+                } else {
+                    document.getElementById('passwordError').textContent = '';
+                    confirmPassword.classList.remove('is-invalid');
+                }
+            });
+
+            // Validar fecha de nacimiento
+            document.getElementById('birthdate').addEventListener('change', function () {
+                const birthdate = new Date(this.value);
+                const today = new Date();
+                let age = today.getFullYear() - birthdate.getFullYear();
+                const monthDiff = today.getMonth() - birthdate.getMonth();
+
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdate.getDate())) {
+                    age--;
+                }
+
+                if (age < 18) {
+                    document.getElementById('birthdateError').textContent = 'El cliente debe ser mayor de 18 años';
+                    this.classList.add('is-invalid');
+                } else {
+                    document.getElementById('birthdateError').textContent = '';
+                    this.classList.remove('is-invalid');
+                }
+            });
+
+            // Validar campo de teléfono (solo números y exactamente 10 dígitos)
+            const phoneInput = document.getElementById('phone');
+            const phoneError = document.getElementById('phoneError');
+
+            // Evitar que se ingresen caracteres no numéricos
+            phoneInput.addEventListener('input', function (e) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+
+                // Validar longitud exacta de 10 dígitos
+                if (this.value.length > 10) {
+                    this.value = this.value.slice(0, 10);
+                }
+
+                // Mostrar/ocultar mensaje de error
+                if (this.value.length !== 10 && this.value.length > 0) {
+                    phoneError.textContent = 'El teléfono debe tener 10 dígitos';
+                    this.classList.add('is-invalid');
+                } else {
+                    phoneError.textContent = '';
+                    this.classList.remove('is-invalid');
+                }
+            });
+
+            // Validar al perder el foco
+            phoneInput.addEventListener('blur', function () {
+                if (this.value.length !== 10 && this.value.length > 0) {
+                    phoneError.textContent = 'El teléfono debe tener 10 dígitos';
+                    this.classList.add('is-invalid');
                 }
             });
         });
+
         // Validación final del formulario
         function validarFormulario() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
+            const phone = document.getElementById('phone').value;
             const birthdate = document.getElementById('birthdate').value;
+            const errorMessage = document.getElementById('errorMessage');
 
-            // Validar el formato del email
+            // Validar email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                alert("Por favor, ingresa un correo electrónico válido.");
-                return false; // Cancelar el envío
+                errorMessage.textContent = 'Por favor, ingrese un correo electrónico válido.';
+                errorMessage.classList.remove('d-none');
+                return false;
             }
 
-            // Validar que el usuario sea mayor de 18 años
+            // Validar teléfono
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(phone)) {
+                errorMessage.textContent = 'El teléfono debe tener exactamente 10 dígitos numéricos.';
+                errorMessage.classList.remove('d-none');
+                document.getElementById('phoneError').textContent = 'El teléfono debe tener 10 dígitos';
+                document.getElementById('phone').classList.add('is-invalid');
+                return false;
+            }
+
+            // Validar contraseñas coincidan
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Las contraseñas no coinciden.';
+                errorMessage.classList.remove('d-none');
+                return false;
+            }
+
+            // Validar criterios de contraseña
+            const passwordChecklist = document.querySelectorAll('.password-checklist li.valid');
+            if (passwordChecklist.length < 4) {
+                errorMessage.textContent = 'La contraseña no cumple con todos los requisitos.';
+                errorMessage.classList.remove('d-none');
+                return false;
+            }
+
+            // Validar edad
             const birthdateObj = new Date(birthdate);
             const today = new Date();
-            const age = today.getFullYear() - birthdateObj.getFullYear();
-            const monthDifference = today.getMonth() - birthdateObj.getMonth();
-            if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthdateObj.getDate())) {
+            let age = today.getFullYear() - birthdateObj.getFullYear();
+            const monthDiff = today.getMonth() - birthdateObj.getMonth();
+
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdateObj.getDate())) {
                 age--;
             }
+
             if (age < 18) {
-                alert("Debes ser mayor de 18 años para registrarte.");
-                return false; // Cancelar el envío
-            }
-
-            // Validar que las contraseñas coincidan
-            if (password !== confirmPassword) {
-                alert("Las contraseñas no coinciden.");
+                errorMessage.textContent = 'El cliente debe ser mayor de 18 años.';
+                errorMessage.classList.remove('d-none');
                 return false;
             }
 
-            // Validar que se cumplan todos los criterios de la contraseña
-            const passwordChecklist = document.querySelectorAll('.password-checklist .valid');
-            const allCriteriaMet = Array.from(passwordChecklist).every(item => item.classList.contains('checked'));
-            if (!allCriteriaMet) {
-                alert("Por favor, cumple con todos los criterios de la contraseña.");
-                return false;
-            }
+            errorMessage.classList.add('d-none');
             return true;
         }
-        <?php include 'chatbot/index.php'; ?>
     </script>
 
 
