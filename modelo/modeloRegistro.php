@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             alert('Cliente registrado exitosamente');
             window.location.href = '" . getRedirectPage($idRol) . "';
         </script>";
-        
+            
         exit;
     } catch (Exception $e) {
         $redirectPage = getRedirectPage($idRol);

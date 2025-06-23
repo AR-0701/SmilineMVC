@@ -4,8 +4,8 @@
     {
         require_once '../modelo/Conexion.php';
         if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+            session_start();
+        }
 
         try {
             $conexionBD = new ConexionBD();
@@ -58,13 +58,16 @@
 
                     //si es administrador, mostrar botón de eliminar
                     if (isset($_SESSION['idRol']) && $_SESSION['idRol'] == 4) {
-                        echo "<td>
-                            <button class='action-btn btn-delete' 
-                            onclick='eliminarCita(" . $fila['idCita'] . ")' 
-                            title='Eliminar Cita'>
-                            <i class='fa-solid fa-trash'></i>
-                            </button>
-                        </td>";
+                        echo "<td>Add commentMore actions
+                    <button class='action-btn btn-schedule' 
+                    onclick='abrirModalExpediente(" . $fila['idCita'] . ")'
+                    data-bs-toggle='modal' 
+                    data-bs-target='#historialModal' 
+                    title='Agregar Historial'>
+                    <i class='fa-solid fa-file-medical'></i>
+                    </button>
+                    </td>";
+                        echo "</tr>";
                     } else {
                         echo "<td></td>"; // Espacio vacío si no es administrador
                     }
