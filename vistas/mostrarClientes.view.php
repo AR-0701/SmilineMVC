@@ -443,6 +443,34 @@ include '../controladores/controladorVerClientes.php';
             text-align: center;
             vertical-align: middle;
         }
+
+        /* Modal Agendar Cita */
+        .boton {
+            background-color: #00A99D;
+            border-color: #00A99D;
+            color: white;
+            padding: 0.70rem 1.2rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .boton:hover {
+            background-color: #00837A;
+            border-color: #00837A;
+            color: white;
+        }
+
+        .boton:focus,
+        .boton:active,
+        .boton:focus:active {
+            outline: none !important;
+            box-shadow: none !important;
+            background-color: #00837A !important;
+            /* mismo color del hover */
+            border-color: #00837A !important;
+            color: white !important;
+        }
     </style>
 </head>
 
@@ -545,16 +573,25 @@ include '../controladores/controladorVerClientes.php';
                             <?php
                             foreach ($clientes as $cliente) { ?>
                                 <tr>
-                                    <td><?php echo htmlspecialchars($cliente['idUsuario']); ?></td>
-                                    <td><?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?></td>
-                                    <td><?php echo htmlspecialchars($cliente['email']); ?></td>
                                     <td>
-                                        <button class="action-btn btn-schedule agendarCitaBtn"
+                                        <?php echo htmlspecialchars($cliente['idUsuario']); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo htmlspecialchars($cliente['email']); ?>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="action-btn btn-schedule agendarCitaBtn"
                                             data-id="<?php echo htmlspecialchars($cliente['idUsuario']); ?>"
-                                            data-nombre="<?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?>">
+                                            data-nombre="<?php echo htmlspecialchars($cliente['nombre'] . ' ' . $cliente['aPaterno'] . ' ' . $cliente['aMaterno']); ?>"
+                                            data-bs-toggle="modal" data-bs-target="#modalAgendarCita">
                                             <i class="fas fa-calendar-plus"></i>
                                         </button>
-                                        <button class="action-btn btn-schedule" data-bs-toggle="modal" data-bs-target="#historialModal" title="Ver Historial"
+
+                                        <button class="action-btn btn-schedule" data-bs-toggle="modal"
+                                            data-bs-target="#historialModal" title="Ver Historial"
                                             data-id="<?php echo htmlspecialchars($cliente['idUsuario']); ?>">
                                             <i class="fa-solid fa-book-medical"></i>
                                         </button>
@@ -568,7 +605,59 @@ include '../controladores/controladorVerClientes.php';
         </div>
     </main>
 
-    <!-- Modal -->
+    <!-- Modal Agendar Cita -->
+    <div class="modal fade" id="modalAgendarCita" tabindex="-1" aria-labelledby="modalAgendarCitaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content p-3">
+                <!-- Estilo de encabezado personalizado -->
+                <div class="page-header d-flex justify-content-between align-items-center">
+                    <div class="page-title">
+                        <h1 id="modalAgendarCitaLabel" class="m-0">
+                            <i class="fas fa-calendar-plus me-2"></i>Agendar cita
+                        </h1>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <!-- Cuerpo del modal con el formulario -->
+                <div class="modal-body">
+                    <form method="POST" action="../controladores/controladorClientes.php" id="agendarCitaForm">
+                        <input type="hidden" name="accion" value="agendar">
+                        <input type="hidden" id="idUsuario" name="idUsuario">
+
+                        <div class="mb-3">
+                            <label for="dia" class="form-label">Fecha:</label>
+                            <?php
+                            $hoy = date('Y-m-d');
+                            $manana = date('Y-m-d', strtotime($hoy . ' +1 day'));
+                            $limite = date('Y-m-d', strtotime($hoy . ' +7 day'));
+                            ?>
+                            <input type="date" class="form-control" id="dia" name="dia" required min="<?php echo $manana; ?>" max="<?php echo $limite; ?>">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="hora" class="form-label">Hora:</label>
+                            <select class="form-select" id="hora" name="hora" required>
+                                <?php
+                                for ($hora = 9; $hora <= 21; $hora++) {
+                                    echo "<option value=\"$hora:00:00\">$hora:00</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+                            <button type="button" class="btn boton" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn boton">Agendar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Historial-->
     <div class="modal fade" id="historialModal" tabindex="-1" aria-labelledby="historialModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content p-3">
@@ -620,16 +709,14 @@ include '../controladores/controladorVerClientes.php';
         });
 
         // Redirigir al hacer clic en el botón "Agendar Cita"
-        document.querySelectorAll('.agendarCitaBtn').forEach(button => {
-            button.addEventListener('click', function() {
-                var idCli = this.getAttribute('data-id');
-                console.log('ID Cliente: ', idCli); // Depuración
-                if (idCli) {
-                    var url = `../public/agendarAdminAsis.php?id=${idCli}`;
-                    window.location.href = url;
-                } else {
-                    console.error("ID Cliente o Nombre no encontrado.");
-                }
+        document.querySelectorAll('.agendarCitaBtn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const nombre = this.getAttribute('data-nombre');
+
+                // Insertar en el formulario del modal
+                document.getElementById('idUsuario').value = id;
+                document.getElementById('modalAgendarCitaLabel').textContent = `Agendar cita para ${nombre}`;
             });
         });
 
