@@ -109,6 +109,7 @@ $clienteLogueado = [
         font-weight: bold;
         transition: transform 0.3s ease;
     }
+
     .dropdown-menu a:hover {
         transform: scale(1.1);
     }
@@ -169,7 +170,6 @@ $clienteLogueado = [
                         <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
                             <input type="hidden" name="accion" value="logout">
                         </form>
-
                         <a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar sesión</a>
                     </div>
                 </div>

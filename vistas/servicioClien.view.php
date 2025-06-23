@@ -188,7 +188,7 @@ $clienteLogueado = [
                             <input type="hidden" name="accion" value="logout">
                         </form>
                         <a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar sesión</a>
-                    </div>
+                    </div>  
             </div>
         </header>
 
