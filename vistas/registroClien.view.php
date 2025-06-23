@@ -553,9 +553,9 @@
                                         <i class="fas fa-venus-mars input-icon"></i>
                                         <select class="form-select-custom" id="gender" name="gender" required>
                                             <option value="" selected disabled>Seleccione una opción</option>
-                                            <option value="male">Masculino</option>
-                                            <option value="female">Femenino</option>
-                                            <option value="other">Otro</option>
+                                            <option value="M">Masculino</option>
+                                            <option value="F">Femenino</option>
+                                            <option value="O">Otro</option>
                                         </select>
                                     </div>
                                 </div>
@@ -569,10 +569,11 @@
                                     </div>
                                     <div id="birthdateError" class="invalid-feedback d-block"></div>
                                 </div>
-
+                                <!-- Campo oculto para indicar tipo de registro -->
+                                <input type="hidden" name="tipoFormulario" value="cliente">
                                 <!-- Botón de registro -->
                                 <button type="submit" class="btn-primary-custom" id="Registrar">
-                                    <i class="fas fa-user-plus me-2"></i>Registrar Cliente
+                                    <i class="fas fa-user-plus me-2"></i>Registrar
                                 </button>
                             </div>
                         </div>
@@ -584,7 +585,7 @@
                     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
                 <script>
-                    document.addEventListener('DOMContentLoaded', function () {
+                    document.addEventListener('DOMContentLoaded', function() {
                         // Mostrar/ocultar contraseña
                         const togglePassword = document.querySelector('#togglePassword');
                         const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
@@ -592,7 +593,7 @@
                         const confirmPassword = document.querySelector('#confirmPassword');
 
                         if (togglePassword) {
-                            togglePassword.addEventListener('click', function () {
+                            togglePassword.addEventListener('click', function() {
                                 const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
                                 password.setAttribute('type', type);
                                 this.classList.toggle('fa-eye-slash');
@@ -600,7 +601,7 @@
                         }
 
                         if (toggleConfirmPassword) {
-                            toggleConfirmPassword.addEventListener('click', function () {
+                            toggleConfirmPassword.addEventListener('click', function() {
                                 const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
                                 confirmPassword.setAttribute('type', type);
                                 this.classList.toggle('fa-eye-slash');
@@ -616,7 +617,7 @@
                             symbol: document.getElementById('check-symbol')
                         };
 
-                        passwordInput.addEventListener('input', function () {
+                        passwordInput.addEventListener('input', function() {
                             const value = passwordInput.value;
 
                             // Validar longitud
@@ -657,7 +658,7 @@
                         });
 
                         // Validar que las contraseñas coincidan
-                        confirmPassword.addEventListener('input', function () {
+                        confirmPassword.addEventListener('input', function() {
                             if (password.value !== confirmPassword.value) {
                                 document.getElementById('passwordError').textContent = 'Las contraseñas no coinciden';
                                 confirmPassword.classList.add('is-invalid');
@@ -668,7 +669,7 @@
                         });
 
                         // Validar fecha de nacimiento
-                        document.getElementById('birthdate').addEventListener('change', function () {
+                        document.getElementById('birthdate').addEventListener('change', function() {
                             const birthdate = new Date(this.value);
                             const today = new Date();
                             let age = today.getFullYear() - birthdate.getFullYear();
@@ -692,7 +693,7 @@
                         const phoneError = document.getElementById('phoneError');
 
                         // Evitar que se ingresen caracteres no numéricos
-                        phoneInput.addEventListener('input', function (e) {
+                        phoneInput.addEventListener('input', function(e) {
                             this.value = this.value.replace(/[^0-9]/g, '');
 
                             // Validar longitud exacta de 10 dígitos
@@ -711,7 +712,7 @@
                         });
 
                         // Validar al perder el foco
-                        phoneInput.addEventListener('blur', function () {
+                        phoneInput.addEventListener('blur', function() {
                             if (this.value.length !== 10 && this.value.length > 0) {
                                 phoneError.textContent = 'El teléfono debe tener 10 dígitos';
                                 this.classList.add('is-invalid');

@@ -1,10 +1,20 @@
 <?php
 include '../modelo/Conexion.php';
-$_SESSION['idRol'] = "1";
 
-$clienteLogueado = [
-    'idRol' => $_SESSION['idRol']
-];
+session_start();
+$idRol = isset($_SESSION['idRol']) ? $_SESSION['idRol'] : null;
+
+// Función para determinar la página de redirección según el rol
+function getRedirectPage($idRol)
+{
+    if ($idRol == 3) { // Asistente
+        return '../public/principalAsis.php';
+    } elseif ($idRol == 4) { // Administrador
+        return '../public/mostrarClientesAd.php';
+    } else { // Usuario no autenticado u otros roles
+        return '../public/login.php';
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
@@ -41,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($consulta->rowCount() > 0) {
             throw new Exception("El correo electrónico ya está registrado.");
         }
-        // Preparar consulta
+
+        // Insertar nuevo usuario
         $sql = "INSERT INTO Usuarios (nombre, aPaterno, aMaterno, fNacimiento, genero, email, password, idRol, estado)
                 VALUES (?, ?, ?, ?, ?, ?, ?, 1, 'activo')";
 
@@ -56,28 +67,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $hashedPassword
         ]);
 
-        echo "<script>alert('Cliente registrado exitosamente');</script>";
-
-        switch ($clienteLogueado['idRol']) {
-            case 1:
-                header("Location: ../public/login.php");
-                break;
-            case 2:
-            case 3:
-                header("Location: ../public/mostrarClientes.php");
-                break;
-            case 4:
-                header("Location: ../public/mostrarClientesAd.php");
-                break;
-            default:
-                header("Location: ../public/login.php");
-                break;
-        }
+        echo "<script>
+            alert('Cliente registrado exitosamente');
+            window.location.href = '" . getRedirectPage($idRol) . "';
+        </script>";
+        
         exit;
     } catch (Exception $e) {
+        $redirectPage = getRedirectPage($idRol);
         echo "<script>
-        alert('Error al registrar: " . $e->getMessage() . "');
-        window.location.href = '../public/registroClienPrin.php';
-    </script>";
+        alert('Error al registrar: " . addslashes($e->getMessage()) . "');
+        window.location.href = '$redirectPage';
+        </script>";
     }
 }
