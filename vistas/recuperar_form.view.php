@@ -273,6 +273,7 @@
             <h1 class="modify-title">Recuperar Contraseña</h1>
         </header>
         <form action="../controladores/RecuperarHandler.php" method="POST">
+    <input type="hidden" name="token" value="<?= $token ?>">
             <div class="form-group">
                 <label for="password" class="form-label">Nueva Contraseña</label>
                 <div class="input-group-custom">
