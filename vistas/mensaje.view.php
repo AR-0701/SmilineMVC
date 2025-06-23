@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
             padding: 0;
             background-color: #f4f4f4;
         }
+
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -23,6 +25,7 @@
             align-items: center;
             z-index: 1000;
         }
+
         .modal {
             background-color: #fff;
             padding: 20px;
@@ -31,14 +34,17 @@
             max-width: 400px;
             text-align: center;
         }
+
         .modal h2 {
             margin-top: 0;
             color: #333;
         }
+
         .modal p {
             color: #555;
             margin: 10px 0 20px;
         }
+
         .modal button {
             background-color: #13cdbd;
             color: #fff;
@@ -49,11 +55,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         .modal button:hover {
             background-color: #10b2a5;
         }
     </style>
 </head>
+
 <body>
 
     <!-- Modal Overlay -->
@@ -79,12 +87,11 @@
             modalOverlay.style.display = 'flex';
 
             // Redireccionar al hacer clic en el botón
-            modalButton.onclick = function () {
+            modalButton.onclick = function() {
                 window.location.href = redirectUrl;
             };
         }
 
-        // Ejemplo de cómo llamar a la función desde PHP
         <?php if (isset($_GET['msg'])): ?>
             <?php if ($_GET['msg'] == 'no_horarios'): ?>
                 showModal('Sin horarios disponibles', 'No hay horarios habilitados para el día seleccionado.', '../public/agendar.php');
@@ -95,6 +102,6 @@
             <?php endif; ?>
         <?php endif; ?>
     </script>
-
 </body>
+
 </html>

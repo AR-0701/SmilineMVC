@@ -133,106 +133,107 @@ $clienteLogueado = [
             </div>
         </div>
     </div>
-   <!-- Reemplaza tu modal y estilos actuales con este código -->
-<div id="modalOverlay" class="modal-overlay">
-    <div class="modal-content">
-        <h2 id="modalTitle"></h2>
-        <p id="modalMessage"></p>
-        <button id="modalButton" class="btn btn-primary">Aceptar</button>
+    <!-- Reemplaza tu modal y estilos actuales con este código -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="modalTitle"></h2>
+            <p id="modalMessage"></p>
+            <button id="modalButton" class="btn btn-primary">Aceptar</button>
+        </div>
     </div>
-</div>
 
-<style>
-    .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999; /* Mayor z-index para asegurar que esté encima de todo */
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .modal-overlay.active {
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .modal-content {
-        background-color: #fff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        max-width: 400px;
-        width: 90%;
-        text-align: center;
-        transform: translateY(-20px);
-        transition: transform 0.3s ease;
-    }
-
-    .modal-overlay.active .modal-content {
-        transform: translateY(0);
-    }
-
-    .modal-content h2 {
-        margin-top: 0;
-        color: #333;
-        font-size: 1.5rem;
-    }
-
-    .modal-content p {
-        color: #555;
-        margin: 15px 0 25px;
-        font-size: 1rem;
-    }
-</style>
-
-<script>
-    function showModal(title, message, redirectUrl = null) {
-        const modalOverlay = document.getElementById('modalOverlay');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalMessage = document.getElementById('modalMessage');
-        const modalButton = document.getElementById('modalButton');
-
-        modalTitle.textContent = title;
-        modalMessage.textContent = message;
-        
-        // Mostrar modal con animación
-        modalOverlay.classList.add('active');
-
-        modalButton.onclick = function() {
-            // Ocultar modal con animación
-            modalOverlay.classList.remove('active');
-            
-            // Esperar a que termine la animación antes de redirigir
-            setTimeout(() => {
-                if (redirectUrl) {
-                    window.location.href = redirectUrl;
-                }
-            }, 300);
-        };
-    }
-
-    // Manejar mensajes de la URL
-    document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const msg = urlParams.get('msg');
-
-        if (msg === 'no_horarios') {
-            showModal('Sin horarios disponibles', 'No hay horarios habilitados para el día seleccionado.');
-        } else if (msg === 'cita_agendada') {
-            showModal('Cita agendada', 'Tu cita ha sido agendada exitosamente.', '../public/inicioClientes.php');
-        } else if (msg === 'horario_ocupado') {
-            showModal('Horario ocupado', 'El horario seleccionado ya está ocupado. Por favor, elige otro.');
+    <style>
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* Mayor z-index para asegurar que esté encima de todo */
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-    });
-</script>
+
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .modal-content p {
+            color: #555;
+            margin: 15px 0 25px;
+            font-size: 1rem;
+        }
+    </style>
+
+    <script>
+        function showModal(title, message, redirectUrl = null) {
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            const modalButton = document.getElementById('modalButton');
+
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+
+            // Mostrar modal con animación
+            modalOverlay.classList.add('active');
+
+            modalButton.onclick = function() {
+                // Ocultar modal con animación
+                modalOverlay.classList.remove('active');
+
+                // Esperar a que termine la animación antes de redirigir
+                setTimeout(() => {
+                    if (redirectUrl) {
+                        window.location.href = redirectUrl;
+                    }
+                }, 300);
+            };
+        }
+
+        // Manejar mensajes de la URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const msg = urlParams.get('msg');
+
+            if (msg === 'no_horarios') {
+                showModal('Sin horarios disponibles', 'No hay horarios habilitados para el día seleccionado.');
+            } else if (msg === 'cita_agendada') {
+                showModal('Cita agendada', 'Tu cita ha sido agendada exitosamente.', '../public/inicioClientes.php');
+            } else if (msg === 'horario_ocupado') {
+                showModal('Horario ocupado', 'El horario seleccionado ya está ocupado. Por favor, elige otro.');
+            }
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <?php include '../chatbot/index.php'; ?>
