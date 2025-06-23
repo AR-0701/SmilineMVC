@@ -58,7 +58,7 @@
 
                     //si es administrador, mostrar botón de eliminar
                     if (isset($_SESSION['idRol']) && $_SESSION['idRol'] == 4) {
-                        echo "<td>Add commentMore actions
+                        echo "<td>
                     <button class='action-btn btn-schedule' 
                     onclick='abrirModalExpediente(" . $fila['idCita'] . ")'
                     data-bs-toggle='modal' 
