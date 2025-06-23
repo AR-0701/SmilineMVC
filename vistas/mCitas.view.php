@@ -765,7 +765,7 @@ $clienteLogueado = [
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label class="form-label">ID de Cita (para pruebas)</label>
+                            <label class="form-label">ID de Cita</label>
                             <input type="text" class="form-control-custom" id="idCitaDebug" readonly>
                         </div>
                         <div class="form-group">
@@ -837,113 +837,133 @@ $clienteLogueado = [
     <!-- Cierre de Modal -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById("dateForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Evita que el formulario recargue la página.
+<script>
+    // Manejo del envío de formulario para buscar citas por fecha
+    document.getElementById("dateForm").addEventListener("submit", function(event) {
+        event.preventDefault();
 
-            const fecha = document.getElementById("fecha").value;
-            if (!fecha) {
-                alert("Por favor, selecciona una fecha.");
-                return;
-            }
-
-            fetch("../controladores/controladorAsistentes.php", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    body: `fecha=${encodeURIComponent(fecha)}`
-                })
-                .then(response => {
-                    if (!response.ok) throw new Error("Error en la respuesta del servidor.");
-                    return response.text();
-                })
-                .then(html => {
-                    document.getElementById("citasTable").innerHTML = html; // Actualiza la tabla.
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    alert("Hubo un problema al cargar las citas.");
-                });
-        });
-
-        // En tu script existente, añade esto:
-
-        // Función para abrir el modal con los datos de la cita
-        function abrirModalExpediente(idCita) {
-            console.log("ID de cita recibido:", idCita); // Debug
-
-            document.getElementById('idCitaDebug').value = idCita;
-
-            // Primero obtener los datos de la cita
-            fetch(`../controladores/controladorExpediente.php?action=getCitaData&idCita=${idCita}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (!data.success) {
-                        console.error("Error del servidor:", data.message);
-                        alert("Error: " + data.message);
-                        return;
-                    }
-
-                    console.log("Datos de la cita:", data);
-                    document.getElementById('Fecha').value = data.fecha;
-
-                    if (data.expediente) {
-                        document.getElementById('motivo').value = data.expediente.motivo || '';
-                        document.getElementById('diagnostico').value = data.expediente.diagnostico || '';
-                        document.getElementById('tratamiento').value = data.expediente.tratamiento || '';
-                        document.getElementById('observacion').value = data.expediente.observacion || '';
-                    }
-
-                    const modal = new bootstrap.Modal(document.getElementById('historialModal'));
-                    modal.show();
-                    document.querySelector('#historialModal form').dataset.idCita = idCita;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error al cargar los datos de la cita');
-                });
+        const fecha = document.getElementById("fecha").value;
+        if (!fecha) {
+            alert("Por favor, selecciona una fecha.");
+            return;
         }
 
-        // Manejar el envío del formulario del expediente
-        document.querySelector('#historialModal form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const idCita = this.dataset.idCita;
-            const formData = {
-                motivo: document.getElementById('motivo').value,
-                diagnostico: document.getElementById('diagnostico').value,
-                tratamiento: document.getElementById('tratamiento').value,
-                observacion: document.getElementById('observacion').value
-            };
-
-            fetch('../controladores/controladorExpediente.php?action=guardarExpediente', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        idCita: idCita,
-                        datos: formData
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Expediente guardado correctamente');
-                        // Cerrar el modal
-                        const modal = bootstrap.Modal.getInstance(document.getElementById('historialModal'));
-                        modal.hide();
-                    } else {
-                        alert('Error al guardar: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error al guardar el expediente');
-                });
+        fetch("../controladores/controladorAsistentes.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `fecha=${encodeURIComponent(fecha)}`
+        })
+        .then(response => {
+            if (!response.ok) throw new Error("Error en la respuesta del servidor.");
+            return response.text();
+        })
+        .then(html => {
+            document.getElementById("citasTable").innerHTML = html;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Hubo un problema al cargar las citas.");
         });
-    </script>
+    });
+
+    // Función para abrir el modal y precargar datos
+    function abrirModalExpediente(idCita) {
+        console.log("ID de cita recibido:", idCita);
+        document.getElementById('idCitaDebug').value = idCita;
+
+        fetch(`../controladores/controladorExpediente.php?action=getCitaData&idCita=${idCita}`)
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    console.error("Error del servidor:", data.message);
+                    alert("Error: " + data.message);
+                    return;
+                }
+
+                console.log("Datos de la cita:", data);
+                document.getElementById('Fecha').value = data.fecha;
+
+                if (data.expediente) {
+                    document.getElementById('motivo').value = data.expediente.motivo || '';
+                    document.getElementById('diagnostico').value = data.expediente.diagnostico || '';
+                    document.getElementById('tratamiento').value = data.expediente.tratamiento || '';
+                    document.getElementById('observacion').value = data.expediente.observacion || '';
+                } else {
+                    // Limpia el formulario si no hay expediente
+                    document.getElementById('motivo').value = '';
+                    document.getElementById('diagnostico').value = '';
+                    document.getElementById('tratamiento').value = '';
+                    document.getElementById('observacion').value = '';
+                }
+
+                const modal = new bootstrap.Modal(document.getElementById('historialModal'));
+                modal.show();
+                document.querySelector('#historialModal form').dataset.idCita = idCita;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al cargar los datos de la cita');
+            });
+    }
+
+    // Guardar datos del expediente al enviar formulario
+    document.querySelector('#historialModal form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const idCita = this.dataset.idCita;
+        const formData = {
+            motivo: document.getElementById('motivo').value,
+            diagnostico: document.getElementById('diagnostico').value,
+            tratamiento: document.getElementById('tratamiento').value,
+            observacion: document.getElementById('observacion').value
+        };
+
+        fetch('../controladores/controladorExpediente.php?action=guardarExpediente', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                idCita: idCita,
+                datos: formData
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Expediente guardado correctamente');
+
+                // Cerrar el modal de forma segura
+                const modalEl = document.getElementById('historialModal');
+                const modal = bootstrap.Modal.getInstance(modalEl);
+                modal.hide();
+
+                //  Solución: eliminar backdrop manualmente
+                document.body.classList.remove('modal-open');
+                document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+
+                // (Opcional) Limpiar el formulario
+                modalEl.querySelector('form').reset();
+
+            } else {
+                alert('Error al guardar: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al guardar el expediente');
+        });
+    });
+
+    // También asegura limpieza del backdrop al cerrar cualquier modal
+    document.addEventListener('hidden.bs.modal', function (event) {
+        document.body.classList.remove('modal-open');
+        document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+    });
+</script>
+    
 </body>
 
 </html>
