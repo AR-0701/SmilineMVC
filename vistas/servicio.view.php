@@ -15,9 +15,6 @@
             background: linear-gradient(to top, #13cdbd, #5a18ff);
             min-height: 100vh;
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .container {
