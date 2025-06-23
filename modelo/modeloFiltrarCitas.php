@@ -68,9 +68,7 @@
                     </button>
                     </td>";
                         echo "</tr>";
-                    } else {
-                        echo "<td></td>"; // Espacio vacío si no es administrador
-                    }
+                    } 
                     echo "</tr>";
                 }
             } else {

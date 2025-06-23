@@ -650,7 +650,7 @@ $clienteLogueado = [
             </div>
 
             <div class="sidebar-menu">
-                <a href="../public/principalAdmin.php" class="sidebar-menu-item active">
+                <a href="../public/principalAdmin.php" class="sidebar-menu-item">
                     <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -659,7 +659,7 @@ $clienteLogueado = [
                     <span class="sidebar-menu-text">Inicio</span>
                 </a>
 
-                <a href="../public/mCitasAdmin.php" class="sidebar-menu-item">
+                <a href="../public/mCitasAdmin.php" class="sidebar-menu-item active">
                     <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -695,19 +695,6 @@ $clienteLogueado = [
                     <span class="sidebar-menu-text">Registrar Asistentes</span>
                 </a>
 
-                <a href="../chatbot/revisar_preguntas.php" class="sidebar-menu-item">
-                    <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                        viewBox="0 0 24 24" fill="none" stroke="#f3f1f1" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path
-                            d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" />
-                        <path d="M9.5 9h.01" />
-                        <path d="M14.5 9h.01" />
-                        <path d="M9.5 13a3.5 3.5 0 0 0 5 0" />
-                    </svg>
-                    <span class="sidebar-menu-text">ChatBot</span>
-                </a>
-
                 <a href="../public/servicioAdmin.php" class="sidebar-menu-item">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB90lEQVR4nO3WT4hNYRjH8WNMItGUjSQkpVlZzIiloklNQ7GwUJqVPwuJBTUShaRIFrKQhQzFDqVsUBZiWAwWNv4M+VeSKH/jo9e8J+9c0x3vGd2F/Da3nuf8ft97zj33ed6i+JeES9jYSGC7QXU0EjodOzEm1zgN+9GPZ7iDM9iNbTiKK3iCxziH5cPktGEzZo0EXIQ3eIUT6MHhGF7qHk7hGF4k9dNojjlLYi1kLa4HnIG3OI9JNb3m+K0/hn5Sn4jeBHww1seiNXyOdJdHMIAJda4JQV01tQC4FaFfws9TF1RjfoS9f2wY6l2X3G13jvFrluH3d6HUjhzjB2yqCO1IoFtzjA9xqCK0O4EuyTFeCP+5itCDCbQtx7gdr9FUAVq+ve8xrsrcbM8ETsG36M17UmiKk6gn07cqebQbsqAx4CT6Mj1nE+jsKtCuaG5NanPwNNZfYl7Sa4mjMehmNjCZsc/TyRQ3TKkHuJz01ia99UVVGVxrA3GmTsanGNqHTnzHzHjt9dgLg6VlNNC5MWgFliZ3sgvjIyAMg/lJr7cysOacczXu01KdsXcj7tiwU0stLEarv5bw3ST45wkAx3Efn2P92qiBpXA7Ab4rzz3YYqiWFX9LWJkEX0zqC5J6f5WxWVdYjX2YOswU2hNOf/UT/qtonH4Arg46sVPur4QAAAAASUVORK5CYII="
                         alt="toothache--v1">
@@ -722,12 +709,12 @@ $clienteLogueado = [
             </div>
 
             <div class="sidebar-footer">
-                <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
+               <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post">
                     <input type="hidden" name="accion" value="logout">
+                    <button type="submit" class="logout-btn" title="Cerrar sesión">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
                 </form>
-                <a href="#" onclick="document.getElementById('logoutForm').submit();" class="logout-btn" title="Cerrar sesión">
-                    <i class="fas fa-sign-out-alt"></i>
-                </a>
             </div>
         </div>
     </nav>
@@ -797,7 +784,7 @@ $clienteLogueado = [
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label class="form-label">ID de Cita (para pruebas)</label>
+                            <label class="form-label">ID de Cita</label>
                             <input type="text" class="form-control-custom" id="idCitaDebug" readonly>
                         </div>
                         <div class="form-group">
@@ -869,125 +856,133 @@ $clienteLogueado = [
     <!-- Cierre de Modal -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById("dateForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Evita que el formulario recargue la página.
+   <script>
+    // Manejo del envío de formulario para buscar citas por fecha
+    document.getElementById("dateForm").addEventListener("submit", function(event) {
+        event.preventDefault();
 
-            const fecha = document.getElementById("fecha").value;
-            if (!fecha) {
-                alert("Por favor, selecciona una fecha.");
-                return;
-            }
-
-            fetch("../controladores/controladorAsistentes.php", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    body: `fecha=${encodeURIComponent(fecha)}`
-                })
-                .then(response => {
-                    if (!response.ok) throw new Error("Error en la respuesta del servidor.");
-                    return response.text();
-                })
-                .then(html => {
-                    document.getElementById("citasTable").innerHTML = html; // Actualiza la tabla.
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    alert("Hubo un problema al cargar las citas.");
-                });
-        });
-
-        // Variable global para la instancia del modal
-        let expedienteModal = null;
-
-        // Función para inicializar el modal una sola vez
-        function inicializarModal() {
-            if (!expedienteModal) {
-                const modalElement = document.getElementById('historialModal');
-                expedienteModal = new bootstrap.Modal(modalElement, {
-                    backdrop: true, // Fondo oscuro interactivo
-                    keyboard: true // Permite cerrar con ESC
-                });
-
-                // Evento para limpiar al cerrar
-                modalElement.addEventListener('hidden.bs.modal', function() {
-                    document.querySelector('#historialModal form').reset();
-                });
-            }
-            return expedienteModal;
+        const fecha = document.getElementById("fecha").value;
+        if (!fecha) {
+            alert("Por favor, selecciona una fecha.");
+            return;
         }
 
-        // Función para abrir el modal
-        function abrirModalExpediente(idCita) {
-            const modal = inicializarModal();
-
-            // Resto de tu código para cargar datos...
-            document.getElementById('idCitaDebug').value = idCita;
-
-            fetch(`../controladores/controladorExpediente.php?action=getCitaData&idCita=${idCita}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (!data.success) throw new Error(data.message);
-
-                    // Llenar los campos del formulario
-                    document.getElementById('Fecha').value = data.fecha;
-
-                    if (data.expediente) {
-                        document.getElementById('motivo').value = data.expediente.motivo || '';
-                        document.getElementById('diagnostico').value = data.expediente.diagnostico || '';
-                        document.getElementById('tratamiento').value = data.expediente.tratamiento || '';
-                        document.getElementById('observacion').value = data.expediente.observacion || '';
-                    }
-
-                    modal.show();
-                    document.querySelector('#historialModal form').dataset.idCita = idCita;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error al cargar los datos de la cita');
-                });
-        }
-
-        // Manejar el envío del formulario
-        document.querySelector('#historialModal form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const modal = inicializarModal();
-
-            const idCita = this.dataset.idCita;
-            const formData = {
-                motivo: document.getElementById('motivo').value,
-                diagnostico: document.getElementById('diagnostico').value,
-                tratamiento: document.getElementById('tratamiento').value,
-                observacion: document.getElementById('observacion').value
-            };
-
-            fetch('../controladores/controladorExpediente.php?action=guardarExpediente', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        idCita: idCita,
-                        datos: formData
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Expediente guardado correctamente');
-                        modal.hide(); // Cerrar usando la instancia
-                    } else {
-                        alert('Error al guardar: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error al guardar el expediente');
-                });
+        fetch("../controladores/controladorAsistentes.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `fecha=${encodeURIComponent(fecha)}`
+        })
+        .then(response => {
+            if (!response.ok) throw new Error("Error en la respuesta del servidor.");
+            return response.text();
+        })
+        .then(html => {
+            document.getElementById("citasTable").innerHTML = html;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Hubo un problema al cargar las citas.");
         });
-    </script>
+    });
+
+    // Función para abrir el modal y precargar datos
+    function abrirModalExpediente(idCita) {
+        console.log("ID de cita recibido:", idCita);
+        document.getElementById('idCitaDebug').value = idCita;
+
+        fetch(`../controladores/controladorExpediente.php?action=getCitaData&idCita=${idCita}`)
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    console.error("Error del servidor:", data.message);
+                    alert("Error: " + data.message);
+                    return;
+                }
+
+                console.log("Datos de la cita:", data);
+                document.getElementById('Fecha').value = data.fecha;
+
+                if (data.expediente) {
+                    document.getElementById('motivo').value = data.expediente.motivo || '';
+                    document.getElementById('diagnostico').value = data.expediente.diagnostico || '';
+                    document.getElementById('tratamiento').value = data.expediente.tratamiento || '';
+                    document.getElementById('observacion').value = data.expediente.observacion || '';
+                } else {
+                    // Limpia el formulario si no hay expediente
+                    document.getElementById('motivo').value = '';
+                    document.getElementById('diagnostico').value = '';
+                    document.getElementById('tratamiento').value = '';
+                    document.getElementById('observacion').value = '';
+                }
+
+                const modal = new bootstrap.Modal(document.getElementById('historialModal'));
+                modal.show();
+                document.querySelector('#historialModal form').dataset.idCita = idCita;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al cargar los datos de la cita');
+            });
+    }
+
+    // Guardar datos del expediente al enviar formulario
+    document.querySelector('#historialModal form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const idCita = this.dataset.idCita;
+        const formData = {
+            motivo: document.getElementById('motivo').value,
+            diagnostico: document.getElementById('diagnostico').value,
+            tratamiento: document.getElementById('tratamiento').value,
+            observacion: document.getElementById('observacion').value
+        };
+
+        fetch('../controladores/controladorExpediente.php?action=guardarExpediente', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                idCita: idCita,
+                datos: formData
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Expediente guardado correctamente');
+
+                // Cerrar el modal de forma segura
+                const modalEl = document.getElementById('historialModal');
+                const modal = bootstrap.Modal.getInstance(modalEl);
+                modal.hide();
+
+                // 🔴 Solución: eliminar backdrop manualmente
+                document.body.classList.remove('modal-open');
+                document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+
+                // (Opcional) Limpiar el formulario
+                modalEl.querySelector('form').reset();
+
+            } else {
+                alert('Error al guardar: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al guardar el expediente');
+        });
+    });
+
+    // 🔁 También asegura limpieza del backdrop al cerrar cualquier modal
+    document.addEventListener('hidden.bs.modal', function (event) {
+        document.body.classList.remove('modal-open');
+        document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+    });
+</script>
+
 </body>
 
 </html>

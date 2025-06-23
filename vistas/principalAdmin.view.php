@@ -119,7 +119,7 @@ $clienteLogueado = [
         }
     }
 
-    /* Estilos para el menú lateral */
+ /* Estilos para el menú lateral */
 
 
     .sidebar {
@@ -322,19 +322,6 @@ $clienteLogueado = [
                     <span class="sidebar-menu-text">Registrar Asistentes</span>
                 </a>
 
-                <a href="../chatbot/revisar_preguntas.php" class="sidebar-menu-item">
-                    <svg class="sidebar-menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                        viewBox="0 0 24 24" fill="none" stroke="#f3f1f1" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path
-                            d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" />
-                        <path d="M9.5 9h.01" />
-                        <path d="M14.5 9h.01" />
-                        <path d="M9.5 13a3.5 3.5 0 0 0 5 0" />
-                    </svg>
-                    <span class="sidebar-menu-text">ChatBot</span>
-                </a>
-
                 <a href="../public/servicioAdmin.php" class="sidebar-menu-item">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB90lEQVR4nO3WT4hNYRjH8WNMItGUjSQkpVlZzIiloklNQ7GwUJqVPwuJBTUShaRIFrKQhQzFDqVsUBZiWAwWNv4M+VeSKH/jo9e8J+9c0x3vGd2F/Da3nuf8ft97zj33ed6i+JeES9jYSGC7QXU0EjodOzEm1zgN+9GPZ7iDM9iNbTiKK3iCxziH5cPktGEzZo0EXIQ3eIUT6MHhGF7qHk7hGF4k9dNojjlLYi1kLa4HnIG3OI9JNb3m+K0/hn5Sn4jeBHww1seiNXyOdJdHMIAJda4JQV01tQC4FaFfws9TF1RjfoS9f2wY6l2X3G13jvFrluH3d6HUjhzjB2yqCO1IoFtzjA9xqCK0O4EuyTFeCP+5itCDCbQtx7gdr9FUAVq+ve8xrsrcbM8ETsG36M17UmiKk6gn07cqebQbsqAx4CT6Mj1nE+jsKtCuaG5NanPwNNZfYl7Sa4mjMehmNjCZsc/TyRQ3TKkHuJz01ia99UVVGVxrA3GmTsanGNqHTnzHzHjt9dgLg6VlNNC5MWgFliZ3sgvjIyAMg/lJr7cysOacczXu01KdsXcj7tiwU0stLEarv5bw3ST45wkAx3Efn2P92qiBpXA7Ab4rzz3YYqiWFX9LWJkEX0zqC5J6f5WxWVdYjX2YOswU2hNOf/UT/qtonH4Arg46sVPur4QAAAAASUVORK5CYII="
                         alt="toothache--v1">
@@ -349,12 +336,12 @@ $clienteLogueado = [
             </div>
 
             <div class="sidebar-footer">
-                <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
+               <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post">
                     <input type="hidden" name="accion" value="logout">
+                    <button type="submit" class="logout-btn" title="Cerrar sesión">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
                 </form>
-                <a href="#" onclick="document.getElementById('logoutForm').submit();" class="logout-btn" title="Cerrar sesión">
-                    <i class="fas fa-sign-out-alt"></i>
-                </a>
             </div>
         </div>
     </nav>

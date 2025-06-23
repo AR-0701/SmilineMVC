@@ -127,15 +127,15 @@ $clienteLogueado = [
             </div>
         </div>
     </div>
-  <!-- Ventana emergente de carga -->
-                <div id="loaderModal" class="modal-overlay">
-                    <div class="modal-content text-center">
-                        <div class="spinner-border custom-color" role="status">
-                            <span class="visually-hidden">Cargando...</span>
-                        </div>
-                        <p class="mt-3">Procesando tu cita, por favor espera...</p>
-                    </div>
-                </div>
+    <!-- Ventana emergente de carga -->
+    <div id="loaderModal" class="modal-overlay">
+        <div class="modal-content text-center">
+            <div class="spinner-border custom-color" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+            <p class="mt-3">Procesando tu cita, por favor espera...</p>
+        </div>
+    </div>
     <!-- Modal de mensajes -->
     <div id="modalOverlay" class="modal-overlay">
         <div class="modal-content">
@@ -181,13 +181,13 @@ $clienteLogueado = [
         .modal-overlay.active .modal-content {
             transform: translateY(0);
         }
+
         /* Spinner en color #00837A */
         .spinner-border.custom-color {
             color: #00837A !important;
             text-align: center;
             margin: 0 auto;
         }
-
     </style>
 
     <!-- JavaScript: Loader + Modal -->
