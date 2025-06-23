@@ -588,9 +588,9 @@ include '../controladores/ControladorUsuario.php';
                                         <i class="fas fa-venus-mars input-icon"></i>
                                         <select class="form-select-custom" id="gender" name="gender" required>
                                             <option value="" selected disabled>Seleccione una opción</option>
-                                            <option value="M">Masculino</option>
-                                            <option value="F">Femenino</option>
-                                            <option value="O">Otro</option>
+                                            <option value="male">Masculino</option>
+                                            <option value="female">Femenino</option>
+                                            <option value="o">Otro</option>
                                         </select>
                                     </div>  
                                 </div>

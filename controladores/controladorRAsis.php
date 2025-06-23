@@ -19,8 +19,10 @@ class RegistroController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Validar datos
             $errores = $this->validarDatos($_POST);
-
+            // Inicializar variable para mensajes de error
+            $errorGeneral = '';
             if (!empty($errores)) {
+                echo "Hay errores en el formulario " . print_r($errores);
                 // Mostrar formulario con errores
                 require '../vistas/registroAsis.view.php';
                 return;

@@ -1,8 +1,8 @@
 <?php
 require '../vendor/autoload.php';
 
-$client = new MongoDB\Client("mongodb://localhost:27017");
-$db = $client->chat;
+$client = new MongoDB\Client("mongodb+srv://rolando98alex1234:soIo8NyYxaCRr9dR@cluster0.xt7xsuv.mongodb.net/chat");
+$db = $client->selectDatabase('chat');
 
 // Búsqueda y paginación
 $filtro = ['procesada' => false];

@@ -3,8 +3,9 @@ require '../vendor/autoload.php';
 session_start();
 
 try {
-    $client = new MongoDB\Client("mongodb://localhost:27017");
-    $db = $client->chat;
+   $client = new MongoDB\Client("mongodb+srv://rolando98alex1234:soIo8NyYxaCRr9dR@cluster0.xt7xsuv.mongodb.net/chat");
+$db = $client->selectDatabase('chat');
+
     $preguntasCollection = $db->preguntas;
     $interaccionesCollection = $db->interacciones;
     $preguntasNuevasCollection = $db->preguntas_nuevas;

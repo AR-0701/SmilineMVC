@@ -19,11 +19,12 @@ class UsuarioModel
     {
         try {
             // 1. Mapear el valor de género a los valores ENUM permitidos
+            echo "el valor de género es: " . $datosUsuario;
             $genero = match (strtolower($datosUsuario['gender'])) {
                 'male', 'masculino', 'm' => 'M',
                 'female', 'femenino', 'f' => 'F',
                 'other', 'otro', 'o' => 'O',
-                default => 'O' // Valor por defecto si no coincide
+                default => 'O' 
             };
 
             // 2. Verificar si el email ya existe
