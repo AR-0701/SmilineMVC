@@ -21,17 +21,17 @@ $clienteLogueado = [
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
-   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to top, #13cdbd, #5a18ff);
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to top, #13cdbd, #5a18ff);
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     .container {
         background-color: white;
@@ -127,28 +127,28 @@ $clienteLogueado = [
         padding: 20px;
     }
 
-   .carousel-inner img {
-            max-height: 400px;
-            object-fit: contain;
-            transition: transform 0.5s ease;
+    .carousel-inner img {
+        max-height: 400px;
+        object-fit: contain;
+        transition: transform 0.5s ease;
 
-        }
+    }
 
-        .carousel-item:hover img {
-            transform: scale(1.03);
-        }
+    .carousel-item:hover img {
+        transform: scale(1.03);
+    }
 
-        .carousel-indicators [data-bs-target] {
-            background-color: #00A99D;
-        }
+    .carousel-indicators [data-bs-target] {
+        background-color: #00A99D;
+    }
 
-        .custom-icon {
-            background-color: #00a99d;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
+    .custom-icon {
+        background-color: #00a99d;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
 
 
 
@@ -185,17 +185,17 @@ $clienteLogueado = [
         <header>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="#">
+                    <a href="../public/inicioClientes.php">
                         <img src="../Imagenes/loogo.png" alt="Smile Line Odontología">
                     </a>
                 </div>
                 <img src="../Imagenes/User.png" class="user-icon" alt="Usuario">
-                    <div class="dropdown-menu" id="dropdownMenu">
-                        <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
-                            <input type="hidden" name="accion" value="logout">
-                        </form>
-                        <a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar sesión</a>
-                    </div>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <form id="logoutForm" action="../controladores/ControladorUsuario.php" method="post" style="display: none;">
+                        <input type="hidden" name="accion" value="logout">
+                    </form>
+                    <a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar sesión</a>
+                </div>
             </div>
         </header>
 
@@ -221,40 +221,40 @@ $clienteLogueado = [
 
         <main>
             <!-- Inicio del cuerpo -->
-             <!-- Carrusel mejorado -->
-        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
+            <!-- Carrusel mejorado -->
+            <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/Imagenes/Promociones/1.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/Imagenes/Promociones/2.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/Imagenes/Promociones/3.png" class="d-block w-100" alt="...">
+                    </div>
+                    <!-- Puedes seguir agregando más imágenes aquí -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon custom-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon custom-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/Imagenes/Promociones/1.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="/Imagenes/Promociones/2.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="/Imagenes/Promociones/3.png" class="d-block w-100" alt="...">
-                </div>
-                <!-- Puedes seguir agregando más imágenes aquí -->
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon custom-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon custom-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Siguiente</span>
-            </button>
-        </div>
-        <!-- Fin del carrusel -->
+            <!-- Fin del carrusel -->
 
         </main>
         <!-- Footer -->

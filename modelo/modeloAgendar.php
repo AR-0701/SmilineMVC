@@ -39,7 +39,7 @@ function agendarCita($idUsuario, $dia, $hora)
         $stmtVerificar->execute([$dia, $hora]);
 
         if ($stmtVerificar->rowCount() > 0) {
-            header("Location: ../vistas/mensaje.view.php?msg=horario_ocupado&redirect=../public/agendar.php");
+            header("Location: ../public/agendar.php?msg=horario_ocupado");
             exit;
         } else {
 
@@ -90,11 +90,11 @@ function agendarCita($idUsuario, $dia, $hora)
                 }
             }
 
-            header("Location: ../vistas/mensaje.view.php?msg=cita_agendada&redirect=../public/inicioClientes.php");
-            exit;
+            header("Location: ../public/agendar.php?msg=cita_agendada");
+        exit;
         }
     } else {
-        header("Location: ../vistas/mensaje.view.php?msg=no_horarios&redirect=../public/agendar.php");
-        exit;
+            header("Location: ../public/agendar.php?msg=no_horarios");
+
     }
 }
