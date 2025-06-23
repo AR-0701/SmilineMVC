@@ -693,7 +693,7 @@ include '../controladores/controladorVerClientes.php';
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Funcionalidad de búsqueda
+        // Funcionalidad de  búsqueda
         var searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', function() {
             var filter = searchInput.value.toLowerCase();
