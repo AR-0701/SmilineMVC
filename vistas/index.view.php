@@ -252,18 +252,14 @@
         });
 
         function accionBoton1() {
-            // Recarga la misma página con ?modal=false
             window.location.href = window.location.pathname + "?modal=false";
         }
 
         function accionBoton2() {
             if (esChrome()) {
-                // Si es Chrome, seguir normalmente
                 window.location.href = "../inclusivo/inclusiva2.html";
             } else {
-                // Si no es Chrome, informar al usuario
                 alert("Este modo especial está optimizado para Google Chrome. Por favor, ábrelo desde Chrome para una mejor experiencia.");
-                // Opcionalmente, redirigir a una versión simplificada:
                 window.location.href = "index.php";
             }
         }
