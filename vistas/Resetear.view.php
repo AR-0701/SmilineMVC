@@ -283,7 +283,7 @@ $token = $_GET['token'] ?? '';
                     <i class="fas fa-lock input-icon"></i>
                     <input type="password" class="form-control-custom" id="password" name="password"
                         placeholder="Crea una contraseña segura" required>
-                    <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+                    
                 </div>
 
             <div class="form-group">
@@ -292,7 +292,6 @@ $token = $_GET['token'] ?? '';
                     <i class="fas fa-lock input-icon"></i>
                     <input type="password" class="form-control-custom" id="confirmPassword"
                         name="confirmPassword" placeholder="Repite tu contraseña" required>
-                    <i class="fas fa-eye password-toggle" id="toggleConfirmPassword"></i>
                 </div>
                 <div id="passwordError" class="invalid-feedback"></div>
             </div>
