@@ -28,7 +28,7 @@ class UsuarioModelo
 
     public function buscarPorToken($token)
     {
-        $sql = "SELECT * FROM Usuarios WHERE token_recuperacion = ? AND token_expira > NOW() LIMIT 1";
+        $sql = "SELECT * FROM usuarios WHERE token_recuperacion = ? AND token_expira > NOW() LIMIT 1";
         $stmt = $this->conexion->prepare($sql);
         $stmt->execute([$token]);
         return $stmt->fetch();

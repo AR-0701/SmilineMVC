@@ -276,41 +276,44 @@ $token = $_GET['token'] ?? '';
             <h1 class="modify-title">Recuperar Contraseña</h1>
         </header>
         <form action="../controladores/RecuperarHandler.php" method="POST">
+
             <input type="hidden" name="token" value="<?= $token ?>">
             <div class="form-group">
+
                 <label for="password" class="form-label">Nueva Contraseña</label>
                 <div class="input-group-custom">
                     <i class="fas fa-lock input-icon"></i>
-                    <input type="password" class="form-control-custom" id="password" name="password"
+                    <input type="password" class="form-control-custom" id="password" name="nuevaPass"
                         placeholder="Crea una contraseña segura" required>
-                    
+
                 </div>
 
-            <div class="form-group">
-                <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
-                <div class="input-group-custom">
-                    <i class="fas fa-lock input-icon"></i>
-                    <input type="password" class="form-control-custom" id="confirmPassword"
-                        name="confirmPassword" placeholder="Repite tu contraseña" required>
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+                    <div class="input-group-custom">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" class="form-control-custom" id="confirmPassword"
+                            name="confirmPassword" placeholder="Repite tu contraseña" required>
+                    </div>
+                    <div id="passwordError" class="invalid-feedback"></div>
                 </div>
-                <div id="passwordError" class="invalid-feedback"></div>
-            </div>
 
-            <!-- Checklist de contraseña -->
-            <div class="password-checklist">
-                <p><i class="fas fa-shield-alt"></i> Requisitos de la contraseña</p>
-                <ul>
-                    <li id="check-length"><i class="far fa-circle"></i> Mínimo 8 caracteres</li>
-                    <li id="check-uppercase"><i class="far fa-circle"></i> Al menos una mayúscula</li>
-                    <li id="check-number"><i class="far fa-circle"></i> Al menos un número</li>
-                    <li id="check-symbol"><i class="far fa-circle"></i> Al menos un símbolo especial</li>
-                </ul>
-            </div>
+                <!-- Checklist de contraseña -->
+                <div class="password-checklist">
+                    <p><i class="fas fa-shield-alt"></i> Requisitos de la contraseña</p>
+                    <ul>
+                        <li id="check-length"><i class="far fa-circle"></i> Mínimo 8 caracteres</li>
+                        <li id="check-uppercase"><i class="far fa-circle"></i> Al menos una mayúscula</li>
+                        <li id="check-number"><i class="far fa-circle"></i> Al menos un número</li>
+                        <li id="check-symbol"><i class="far fa-circle"></i> Al menos un símbolo especial</li>
+                    </ul>
+                </div>
 
-            <!-- Botón de envío -->
-            <button type="submit" class="btn-primary-custom" name="solicitar">
-                <span>Actualizar Contraseña</span>
-            </button>
+                <!-- Botón de envío -->
+                <button type="submit" class="btn-primary-custom" name="cambiar">
+                    <span>Actualizar Contraseña</span>
+                </button>
+            </div>
         </form>
     </div>
 
