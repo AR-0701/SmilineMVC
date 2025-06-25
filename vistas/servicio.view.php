@@ -8,13 +8,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(to top, #13cdbd, #5a18ff);
             min-height: 100vh;
             margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .container {
@@ -28,7 +31,8 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             position: relative;
         }
- .navbar-nav .nav-link {
+
+        .navbar-nav .nav-link {
             color: black;
             font-weight: bold;
             margin: 0 10px;
@@ -44,7 +48,7 @@
             height: 90px;
         }
 
-        
+
         .main-content {
             margin-top: 25px;
             padding: 250px;
@@ -131,64 +135,64 @@
         <!-- Inicio del cuerpo -->
         <!-- Servicios -->
         <main>
-        <div class="row text-center">
+            <div class="row text-center">
 
-            <div class="col-md-3">
-                <div class="card animate__animated animate__zoomIn">
-                    <img src="/Imagenes/Se1.png" alt="Limpieza" class="animate__animated animate__pulse animate__infinite">
+                <div class="col-md-3">
+                    <div class="card animate__animated animate__zoomIn">
+                        <img src="/Imagenes/Se1.png" alt="Limpieza" class="animate__animated animate__pulse animate__infinite">
+                    </div>
                 </div>
+
+
+                <div class="col-md-3">
+                    <div class="card animate__animated animate__zoomIn">
+                        <img src="/Imagenes/Se2.png" alt="Endodoncia" class="animate__animated animate__pulse animate__infinite">
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="card animate__animated animate__zoomIn">
+                        <img src="/Imagenes/Se3.png" alt="Resinas" class="animate__animated animate__pulse animate__infinite">
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="card animate__animated animate__zoomIn">
+                        <img src="/Imagenes/Se4.png" alt="Blanqueamiento" class="animate__animated animate__pulse animate__infinite">
+                    </div>
+                </div>
+
             </div>
 
+            <div class="row text-center mt-4">
 
-            <div class="col-md-3">
-                <div class="card animate__animated animate__zoomIn">
-                    <img src="/Imagenes/Se2.png" alt="Endodoncia" class="animate__animated animate__pulse animate__infinite">
+                <div class="col-md-3">
+                    <div class="card animate__animated animate__zoomIn">
+                        <img src="/Imagenes/Se5.png" alt="Extracciones" class="animate__animated animate__pulse animate__infinite">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card animate__animated animate__zoomIn">
+                        <img src="/Imagenes/Se6.png" alt="Cirugía" class="animate__animated animate__pulse animate__infinite">
+                    </div>
+                </div>
+
+                <div class="col-md-3 animate__animated animate__zoomIn">
+                    <div class="card">
+                        <img src="/Imagenes/Se7.png" alt="Brackets" class="animate__animated animate__pulse animate__infinite">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card animate__animated animate__zoomIn">
+                        <img src="/Imagenes/Se8.png" alt="General" class="animate__animated animate__pulse animate__infinite">
+                    </div>
                 </div>
             </div>
-
-
-            <div class="col-md-3">
-                <div class="card animate__animated animate__zoomIn">
-                    <img src="/Imagenes/Se3.png" alt="Resinas" class="animate__animated animate__pulse animate__infinite">
-                </div>
-            </div>
-
-
-            <div class="col-md-3">
-                <div class="card animate__animated animate__zoomIn">
-                    <img src="/Imagenes/Se4.png" alt="Blanqueamiento" class="animate__animated animate__pulse animate__infinite">
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row text-center mt-4">
-
-            <div class="col-md-3">
-                <div class="card animate__animated animate__zoomIn">
-                    <img src="/Imagenes/Se5.png" alt="Extracciones" class="animate__animated animate__pulse animate__infinite">
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card animate__animated animate__zoomIn">
-                    <img src="/Imagenes/Se6.png" alt="Cirugía" class="animate__animated animate__pulse animate__infinite">
-                </div>
-            </div>
-
-            <div class="col-md-3 animate__animated animate__zoomIn">
-                <div class="card">
-                    <img src="/Imagenes/Se7.png" alt="Brackets" class="animate__animated animate__pulse animate__infinite">
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card animate__animated animate__zoomIn">
-                    <img src="/Imagenes/Se8.png" alt="General" class="animate__animated animate__pulse animate__infinite">
-                </div>
-            </div>
-        </div>
-    </main>
+        </main>
 
         <!-- Footer -->
         <footer>
