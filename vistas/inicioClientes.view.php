@@ -159,7 +159,7 @@ $clienteLogueado = [
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="#">
-                        <img src="../Imagenes/loogo.png" alt="Smile Line Odontología">
+                        <img src="../Imagenes/loogo.png" alt="Smile Line Odontología" title="© 2025 SmileLine - Imagen creada por nosotros">
                     </a>
                 </div>
                 <div class="user-menu">
@@ -209,7 +209,7 @@ $clienteLogueado = [
                 </div>
                 <div class="col-md-6">
                     <img src="../Imagenes/Cliente/Img_Principal.jpg" alt="Dentist with a child" 
-                    class="img-fluid animate__animated animate__fadeInRight" id="animatedImage">
+                    class="img-fluid animate__animated animate__fadeInRight" id="animatedImage" title="Imagen obtenida de Freepik (uso libre comercial).">
                 </div>
 
             </section>

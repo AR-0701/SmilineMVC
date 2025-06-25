@@ -264,6 +264,77 @@ $clienteLogueado = [
         margin-right: 15px;
         flex-shrink: 0;
     }
+
+    /* Estilos para créditos sin fondo */
+.creditos-sin-fondo {
+    padding: 20px 0;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.creditos-sin-fondo .copyright {
+    color: #666;
+    font-weight: 400;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.creditos-sin-fondo .creditos-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.creditos-sin-fondo .creditos-list li {
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.4;
+    flex-wrap: wrap;
+}
+
+.creditos-sin-fondo .creditos-list i {
+    color: #00A99D;
+    margin-right: 8px;
+    width: 16px;
+    text-align: center;
+}
+
+.creditos-sin-fondo .creditos-list a {
+    color: #06a1a9;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.creditos-sin-fondo .creditos-list a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive para créditos */
+@media (max-width: 768px) {
+    .creditos-sin-fondo .creditos-list li {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    
+    .creditos-sin-fondo .creditos-list i {
+        margin-bottom: 5px;
+        margin-right: 0;
+    }
+    
+    .creditos-sin-fondo .creditos-list a {
+        margin-left: 0;
+        display: inline-block;
+    }
+}
 </style>
 
 <body>
@@ -387,6 +458,17 @@ $clienteLogueado = [
 
                         </section>
             </main>
+        </div>
+    <!-- Sección de créditos sin fondo -->
+        <div class="creditos-sin-fondo">
+            <div class="container">
+                <p class="copyright">© 2025 SmileLine. Todos los derechos reservados.</p>
+                <ul class="creditos-list">
+                    <li><i class="fas fa-icons"></i> Íconos: Font Awesome 6.4.0 — © Fonticons, Inc. — Licencia CC BY 4.0 — <a href="https://fontawesome.com" target="_blank">fontawesome.com</a></li>
+                    <li><i class="fas fa-font"></i> Fuente: "Poppins" — SIL Open Font License 1.1 — <a href="https://fonts.google.com/specimen/Poppins" target="_blank">fonts.google.com</a></li>
+                    <li><i class="fas fa-image"></i> Imágenes: Creadas por nosotros mismos en 2024.</li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>

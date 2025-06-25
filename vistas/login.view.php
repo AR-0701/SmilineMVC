@@ -27,7 +27,7 @@ session_start();
         }
 
         .login-image {
-            background: url('../Imagenes/Imagen_Login.jpg') no-repeat center center;
+            background: url('../Imagenes/Imagen_Login.jpg') no-repeat center center ;
             background-size: cover;
             border-top-left-radius: 20px;
             border-bottom-left-radius: 20px;
@@ -72,7 +72,7 @@ session_start();
     <div class="card login-card overflow-hidden">
         <div class="row g-0">
             <!-- Imagen -->
-            <div class="col-md-6 d-none d-md-block login-image"></div>
+            <div class="col-md-6 d-none d-md-block login-image" title="Imagen obtenida de Freepik (uso libre comercial)."></div>
             <!-- Formulario -->
             <div class="col-md-6 bg-white p-5">
                 <h3 class="text-center mb-4 fw-bold">Iniciar Sesión</h3>
@@ -111,7 +111,6 @@ session_start();
                 </div>
             </div>
         </div>
-
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             const passwordInput = document.getElementById("password");

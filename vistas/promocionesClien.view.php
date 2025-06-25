@@ -177,6 +177,72 @@ $clienteLogueado = [
     .footer-link:hover {
         text-decoration: underline;
     }
+    /* Estilos para la sección de créditos */
+        .creditos-footer {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .creditos-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 800px;
+            font-size: 0.8rem;
+        }
+
+        .creditos-list li {
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0 15px;
+            position: relative;
+        }
+
+        .creditos-list li:not(:last-child):after {
+            content: "•";
+            position: absolute;
+            right: -5px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .creditos-list i {
+            margin-right: 5px;
+            color: #a8f0eb;
+            font-size: 0.9rem;
+        }
+
+        .creditos-list a {
+            color: #a8f0eb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .creditos-list a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .creditos-list li {
+                display: block;
+                padding: 5px 0;
+            }
+
+            .creditos-list li:after {
+                display: none;
+            }
+        }
 </style>
 
 <body>
@@ -186,7 +252,7 @@ $clienteLogueado = [
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="../public/inicioClientes.php">
-                        <img src="../Imagenes/loogo.png" alt="Smile Line Odontología">
+                        <img src="../Imagenes/loogo.png" alt="Smile Line Odontología" title="© 2025 SmileLine - Imagen creada por nosotros">
                     </a>
                 </div>
                 <img src="../Imagenes/User.png" class="user-icon" alt="Usuario">
@@ -289,6 +355,17 @@ $clienteLogueado = [
                         <img src="/Imagenes/icon4.png" alt="Instagram" class="footer-icon">
                         <a href="https://www.instagram.com" class="footer-link ms-2">Instagram</a>
                     </div>
+                </div>
+            </div>
+            <!-- Nueva fila: Créditos y derechos -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <p class="copyright text-center">© 2025 SmileLine. Todos los derechos reservados.</p>
+                    <ul class="creditos-list text-center">
+                        <li><i class="fas fa-icons"></i> Íconos: Font Awesome 6.4.0 — © Fonticons, Inc. — Licencia CC BY 4.0 — <a href="https://fontawesome.com" target="_blank">fontawesome.com</a></li>
+                        <li><i class="fas fa-font"></i> Fuente: "Poppins" — SIL Open Font License 1.1 — <a href="https://fonts.google.com/specimen/Poppins" target="_blank">fonts.google.com</a></li>
+                        <li><i class="fas fa-image"></i> Imágenes: Creadas por nosotros mismos en 2024.</li>
+                    </ul>
                 </div>
             </div>
         </footer>

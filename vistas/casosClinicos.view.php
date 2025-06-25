@@ -92,6 +92,73 @@
         .footer-link:hover {
             text-decoration: underline;
         }
+
+        /* Estilos para la sección de créditos */
+        .creditos-footer {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .creditos-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 800px;
+            font-size: 0.8rem;
+        }
+
+        .creditos-list li {
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0 15px;
+            position: relative;
+        }
+
+        .creditos-list li:not(:last-child):after {
+            content: "•";
+            position: absolute;
+            right: -5px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .creditos-list i {
+            margin-right: 5px;
+            color: #a8f0eb;
+            font-size: 0.9rem;
+        }
+
+        .creditos-list a {
+            color: #a8f0eb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .creditos-list a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .creditos-list li {
+                display: block;
+                padding: 5px 0;
+            }
+
+            .creditos-list li:after {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -104,9 +171,9 @@
                 <div class="container-fluid">
                     <div class="logo">
                         <a href="index.php">
-                            <img src="/Imagenes/loogo.png" alt="Smile Line Odontología">
+                            <img src="/Imagenes/loogo.png" alt="Smile Line Odontología" title="© 2025 SmileLine - Imagen creada por nosotros">
                         </a>
-                    </div>  
+                    </div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -183,9 +250,21 @@
                     </div>
                 </div>
             </div>
+            <!-- Nueva fila: Créditos y derechos -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <p class="copyright text-center">© 2025 SmileLine. Todos los derechos reservados.</p>
+                    <ul class="creditos-list text-center">
+                        <li><i class="fas fa-icons"></i> Íconos: Font Awesome 6.4.0 — © Fonticons, Inc. — Licencia CC BY 4.0 — <a href="https://fontawesome.com" target="_blank">fontawesome.com</a></li>
+                        <li><i class="fas fa-font"></i> Fuente: "Poppins" — SIL Open Font License 1.1 — <a href="https://fonts.google.com/specimen/Poppins" target="_blank">fonts.google.com</a></li>
+                        <li><i class="fas fa-image"></i> Imágenes: <a href="https://www.freepik.com" target="_blank">Freepik</a> — Uso comercial permitido</li>
+                    </ul>
+                </div>
+            </div>
         </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-<?php include 'chatbot/index.php'; ?>
+    <?php include '../chatbot/index.php'; ?>
 </body>
+
 </html>
