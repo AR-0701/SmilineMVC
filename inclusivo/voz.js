@@ -57,7 +57,7 @@ recognition.onresult = function (event) {
     if (estado === "bienvenida") {
         nombreCliente = texto;
         console.log("Nombre del cliente:", nombreCliente);
-        hablar(`¿Confirmas que tu nombre es ${nombreCliente}? Responde sí o no.`);
+        hablar(`¿Confirmas que tu nombre es ${nombreCliente}? Responde claro o no.`);
         estado = "confirmarNombre";
 
     } else if (estado === "confirmarNombre") {
@@ -95,7 +95,7 @@ recognition.onresult = function (event) {
             hablar("Por favor, repite tu nombre.");
             estado = "bienvenida";
         } else {
-            hablar("No entendí tu respuesta. ¿Podrías repetir? Responde sí o no.");
+            hablar("No entendí tu respuesta. ¿Podrías repetir? Responde claro o no.");
         }
     }
     else if (estado === "seleccionCita") {
@@ -159,7 +159,7 @@ recognition.onresult = function (event) {
 
     if (estado === "bienvenida") {
         nombreCliente = texto;
-        hablar(`¿Confirmas que tu nombre es ${nombreCliente}? Responde sí o no.`);
+        hablar(`¿Confirmas que tu nombre es ${nombreCliente}? Responde claro o no.`);
         estado = "confirmarNombre";
 
     } else if (estado === "confirmarNombre") {
@@ -201,7 +201,7 @@ recognition.onresult = function (event) {
             hablar("Por favor, repite tu nombre.");
             estado = "bienvenida";
         } else {
-            hablar("No entendí tu respuesta. ¿Podrías repetir? Responde sí o no.");
+            hablar("No entendí tu respuesta. ¿Podrías repetir? Responde claro o no.");
         }
     }
     else if (estado === "seleccionCita") {
