@@ -56,7 +56,6 @@ class RecuperarController
             ";
 
             $mail->send();
-            echo "Fecha actual del servidor: " . date('Y-m-d H:i:s');
             return "Correo enviado con éxito.";
 
         } catch (Exception $e) {
@@ -73,6 +72,6 @@ class RecuperarController
 
         $passwordHash = password_hash($nuevaPass, PASSWORD_BCRYPT);
         $this->modelo->actualizarPassword($usuario['idUsuario'], $passwordHash);
-        return "Contraseña actualizada correctamente.";
+        header ("location: ../public/login.php");
     }
 }
