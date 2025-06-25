@@ -471,7 +471,9 @@
                     chatbox.appendChild(errorMsg);
                     chatbox.scrollTop = chatbox.scrollHeight;
 
-                    console.error('Error:', error);
+    console.error('Error al enviar fetch:', error);
+                        errorMsg.textContent = 'error .'+ error;
+
                 });
         }
 

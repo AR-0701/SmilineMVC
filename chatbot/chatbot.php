@@ -3,8 +3,8 @@ require '../vendor/autoload.php';
 session_start();
 
 try {
-   $client = new MongoDB\Client("mongodb+srv://rolando98alex1234:soIo8NyYxaCRr9dR@cluster0.xt7xsuv.mongodb.net/chat");
-$db = $client->selectDatabase('chat');
+    $client = new MongoDB\Client("mongodb://localhost:27017");
+    $db = $client->chat;
 
     $preguntasCollection = $db->preguntas;
     $interaccionesCollection = $db->interacciones;
@@ -21,7 +21,7 @@ $db = $client->selectDatabase('chat');
     if ($exactMatch) {
         registrarInteraccion($interaccionesCollection, $usuarioId, $preguntaUsuario, $exactMatch['_id'], 100);
         actualizarEstadisticas($preguntasCollection, $exactMatch['_id']);
-        
+
         echo json_encode([
             "respuesta" => $exactMatch['respuesta'],
             "categoria" => $exactMatch['categoria'],
@@ -57,7 +57,7 @@ $db = $client->selectDatabase('chat');
         $mejorResultado = $resultados[0];
         registrarInteraccion($interaccionesCollection, $usuarioId, $preguntaUsuario, $mejorResultado['_id'], $mejorResultado['similitud']);
         actualizarEstadisticas($preguntasCollection, $mejorResultado['_id']);
-        
+
         echo json_encode([
             "respuesta" => $mejorResultado['respuesta'],
             "categoria" => $mejorResultado['categoria'],
@@ -66,19 +66,19 @@ $db = $client->selectDatabase('chat');
     } else {
         guardarPreguntaDesconocida($preguntasNuevasCollection, $usuarioId, $preguntaUsuario);
         $respuestaGenerica = generarRespuestaInteligente($preguntaUsuario);
-        
+
         echo json_encode([
             "respuesta" => $respuestaGenerica,
             "categoria" => "desconocida",
             "confianza" => 0
         ]);
     }
-
 } catch (MongoDB\Driver\Exception\Exception $e) {
     echo json_encode(["respuesta" => "Lo siento, estoy teniendo problemas técnicos. Por favor intenta más tarde.", "categoria" => "error"]);
 }
 
-function registrarInteraccion($collection, $usuarioId, $pregunta, $respuestaId, $confianza) {
+function registrarInteraccion($collection, $usuarioId, $pregunta, $respuestaId, $confianza)
+{
     $collection->insertOne([
         'usuario_id' => $usuarioId,
         'pregunta' => $pregunta,
@@ -93,7 +93,8 @@ function registrarInteraccion($collection, $usuarioId, $pregunta, $respuestaId, 
     ]);
 }
 
-function actualizarEstadisticas($collection, $preguntaId) {
+function actualizarEstadisticas($collection, $preguntaId)
+{
     $collection->updateOne(
         ['_id' => $preguntaId],
         [
@@ -103,7 +104,8 @@ function actualizarEstadisticas($collection, $preguntaId) {
     );
 }
 
-function guardarPreguntaDesconocida($collection, $usuarioId, $pregunta) {
+function guardarPreguntaDesconocida($collection, $usuarioId, $pregunta)
+{
     $collection->insertOne([
         'usuario_id' => $usuarioId,
         'pregunta' => $pregunta,
@@ -116,9 +118,10 @@ function guardarPreguntaDesconocida($collection, $usuarioId, $pregunta) {
     ]);
 }
 
-function generarRespuestaInteligente($pregunta) {
+function generarRespuestaInteligente($pregunta)
+{
     $preguntaLower = strtolower($pregunta);
-    
+
     if (strpos($preguntaLower, 'emergencia') !== false) {
         return "🚑 Para emergencias dentales, llama inmediatamente al 555-7890. Estamos disponibles 24/7 para ayudarte.";
     } elseif (strpos($preguntaLower, 'horario') !== false || strpos($preguntaLower, 'hora') !== false) {
@@ -132,11 +135,11 @@ function generarRespuestaInteligente($pregunta) {
     }
 }
 
-function detectarDispositivo() {
+function detectarDispositivo()
+{
     $ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
     if (preg_match('/mobile|android|iphone|ipad|ipod/i', $ua)) {
         return 'mobile';
     }
     return 'desktop';
 }
-?>
