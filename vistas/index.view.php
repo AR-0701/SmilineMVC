@@ -121,6 +121,73 @@
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
+
+        /* Estilos para la sección de créditos */
+        .creditos-footer {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .creditos-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 800px;
+            font-size: 0.8rem;
+        }
+
+        .creditos-list li {
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0 15px;
+            position: relative;
+        }
+
+        .creditos-list li:not(:last-child):after {
+            content: "•";
+            position: absolute;
+            right: -5px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .creditos-list i {
+            margin-right: 5px;
+            color: #a8f0eb;
+            font-size: 0.9rem;
+        }
+
+        .creditos-list a {
+            color: #a8f0eb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .creditos-list a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .creditos-list li {
+                display: block;
+                padding: 5px 0;
+            }
+
+            .creditos-list li:after {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -178,7 +245,7 @@
             <div class="row">
                 <!-- Columna 1: Ubicación -->
                 <div class="col-md-4 d-flex align-items-start">
-                    <img src="/Imagenes/icon1.png" alt="Ubicación" class="footer-icon ">
+                    <img src="/Imagenes/icon1.png" alt="Ubicación" class="footer-icon">
                     <div class="ms-2">
                         <h6>Ubicación:</h6>
                         <p>Circuito 7 H. Cocoyoc MZ 88 LOTE 8-B, Ex. Hacienda Santa Inés, 55796, México, México.</p>
@@ -207,72 +274,81 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content shadow-lg rounded-4">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            <!-- Nueva fila: Créditos y derechos -->
+            <div class="row mt-4">
+                <div class="col-12">
+                        <p class="copyright text-center">© 2025 SmileLine. Todos los derechos reservados.</p>
+                        <ul class="creditos-list text-center">
+                            <li><i class="fas fa-icons"></i> Íconos: Font Awesome 6.4.0 — © Fonticons, Inc. — Licencia CC BY 4.0 — <a href="https://fontawesome.com" target="_blank">fontawesome.com</a></li>
+                            <li><i class="fas fa-font"></i> Fuente: "Poppins" — SIL Open Font License 1.1 — <a href="https://fonts.google.com/specimen/Poppins" target="_blank">fonts.google.com</a></li>
+                            <li><i class="fas fa-image"></i> Imágenes: <a href="https://www.freepik.com" target="_blank">Freepik</a> — Uso comercial permitido</li>
+                        </ul>
                 </div>
-                <div class="modal-body text-center">
-                    <p class="texto-opciones">¿Quieres activar el modo especial para que sea más fácil de navegar?</p>
-                    <div class="row justify-content-center g-3">
-                        <div class="col-6 col-md-5 image-button">
-                            <button type="button" class="btn btn-light p-0 border-0" onclick="accionBoton1()">
-                                <img src="../Imagenes/1.png" alt="Botón 1" class="img-fluid">
-                            </button>
-                        </div>
-                        <div class="col-6 col-md-5 image-button">
-                            <button type="button" class="btn btn-light p-0 border-0" onclick="accionBoton2()">
-                                <img src="../Imagenes/2.png" alt="Botón 2" class="img-fluid">
-                            </button>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content shadow-lg rounded-4">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p class="texto-opciones">¿Quieres activar el modo especial para que sea más fácil de navegar?</p>
+                        <div class="row justify-content-center g-3">
+                            <div class="col-6 col-md-5 image-button">
+                                <button type="button" class="btn btn-light p-0 border-0" onclick="accionBoton1()">
+                                    <img src="../Imagenes/1.png" alt="Botón 1" class="img-fluid">
+                                </button>
+                            </div>
+                            <div class="col-6 col-md-5 image-button">
+                                <button type="button" class="btn btn-light p-0 border-0" onclick="accionBoton2()">
+                                    <img src="../Imagenes/2.png" alt="Botón 2" class="img-fluid">
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mostrar automáticamente el modal si no está ?modal=false en la URL
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('modal') !== 'false') {
-                var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
-                    backdrop: 'static',
-                    keyboard: false
-                });
-                myModal.show();
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Mostrar automáticamente el modal si no está ?modal=false en la URL
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('modal') !== 'false') {
+                    var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    myModal.show();
+                }
+            });
+
+            function accionBoton1() {
+                window.location.href = window.location.pathname + "?modal=false";
             }
-        });
 
-        function accionBoton1() {
-            window.location.href = window.location.pathname + "?modal=false";
-        }
-
-        function accionBoton2() {
-            if (esChrome()) {
-                window.location.href = "../inclusivo/inclusiva2.html";
-            } else {
-                alert("Este modo especial está optimizado para Google Chrome. Por favor, ábrelo desde Chrome para una mejor experiencia.");
-                window.location.href = "index.php";
+            function accionBoton2() {
+                if (esChrome()) {
+                    window.location.href = "../inclusivo/inclusiva2.html";
+                } else {
+                    alert("Este modo especial está optimizado para Google Chrome. Por favor, ábrelo desde Chrome para una mejor experiencia.");
+                    window.location.href = "index.php";
+                }
             }
-        }
 
-        function esChrome() {
-            const ua = navigator.userAgent;
-            return ua.includes("Chrome") && !ua.includes("Edg") && !ua.includes("OPR");
-        }
-    </script>
+            function esChrome() {
+                const ua = navigator.userAgent;
+                return ua.includes("Chrome") && !ua.includes("Edg") && !ua.includes("OPR");
+            }
+        </script>
 
 
 </body>
 <?php include 'chatbot/index.php'; ?>
-
 
 </html>

@@ -49,13 +49,11 @@ $clienteLogueado = [
     }
 
     /* Menu */
-
     .navbar {
         background: linear-gradient(to right, #00C9FF, #00A99D);
         padding: 10px 0;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-
 
     .navbar-nav {
         display: flex;
@@ -210,7 +208,8 @@ $clienteLogueado = [
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="../Imagenes/Cliente/Img_Principal.jpg" alt="Dentist with a child" class="img-fluid animate__animated animate__fadeInRight" id="animatedImage">
+                    <img src="../Imagenes/Cliente/Img_Principal.jpg" alt="Dentist with a child" 
+                    class="img-fluid animate__animated animate__fadeInRight" id="animatedImage">
                 </div>
 
             </section>
